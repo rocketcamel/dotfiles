@@ -8,7 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ nixpkgs, ... }:
+  outputs = inputs@{ nixpkgs, home-manager, nixos-wsl, ... }:
     let
       systems = [ "x86_64-linux" ];
       hosts = [{
@@ -20,7 +20,7 @@
         name = host.name;
         value = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs;
             meta = { hostname = host.name; };
           };
           system = "x86_64-linux";

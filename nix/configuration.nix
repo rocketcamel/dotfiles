@@ -6,7 +6,7 @@
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  environment.systemPackages = with pkgs; [ wget busybox ];
+  environment.systemPackages = with pkgs; [ wget busybox stow ];
   programs.nix-ld.enable = true;
   networking.hostName = meta.hostname;
 
