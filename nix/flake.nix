@@ -24,13 +24,10 @@
             meta = { hostname = host.name; };
           };
           system = "x86_64-linux";
-          modules =
-            [ ./configuration.nix home-manager.nixosModules.home-manager ]
-            ++ (if host.isWSL then [
-              ./wsl.nix
-              nixos-wsl.nixosModules.default
-            ] else
-              [ ]);
+          modules = [
+            ./hosts/${host.name}/configuration.nix
+            home-manager.nixosModules.home-manager
+          ] ++ (if host.isWSL then [ nixos-wsl.nixosModules.default ] else [ ]);
         };
       }) hosts);
     };
