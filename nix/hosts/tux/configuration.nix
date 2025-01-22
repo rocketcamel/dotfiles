@@ -28,6 +28,7 @@
 
   hm.enable = true;
   i3.enable = true;
+  kanata.enable = true;
 
   #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   programs.firefox.enable = true;
