@@ -2,13 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, home-manager, ... }:
+{ config, lib, pkgs, inputs, home-manager, meta, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/default.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,28 +19,15 @@
   networking.networkmanager.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "tux"; # Define your hostname.
-
-#  services.xserver = {
-#    enable = true;
-#    windowManager.i3.enable = true;
-#  };
-#
-#  services.displayManager = {
-#    defaultSession = "none+i3";
-#  };
-
-
-  #programs.hyprland = {
-  #  enable = true;
-  #  xwayland.enable = true;
-  #};
+  networking.hostName = meta.hostname; # Define your hostname.
 
   security.sudo = {
     enable = true;
     wheelNeedsPassword = false;
   };
 
+  hm.enable = true;
+  i3.enable = true;
 
   #programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
   programs.firefox.enable = true;
@@ -54,11 +41,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common = {
-      default = [
-	"gtk"
-      ];
-    };
+    config.common = { default = [ "gtk" ]; };
   };
 
   # Pick only one of the below networking options.
@@ -83,9 +66,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
-  
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -100,47 +80,38 @@
     enable = true;
     pulse.enable = true;
   };
-  
-  hardware = {
-    graphics.enable = true;
-  };
+
+  hardware = { graphics.enable = true; };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.luca = import ./home/home.nix;
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      vesktop
-      nodejs_22
-      pnpm
-    ];
+    packages = with pkgs; [ vesktop nodejs_22 pnpm ];
     shell = pkgs.zsh;
-    hashedPassword = "$y$j9T$wp9I05TfxjrAzCMCcxlei1$Fm7sJJSwFHpSIQT0RESOdJ7vkTYyN0IXs5n/xkg65y3";
+    hashedPassword =
+      "$y$j9T$wp9I05TfxjrAzCMCcxlei1$Fm7sJJSwFHpSIQT0RESOdJ7vkTYyN0IXs5n/xkg65y3";
   };
-  programs.zsh.enable = true;
 
   # programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
- environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   wget
-   curl
-   ripgrep
-   git
-   neovim
-   busybox
-   dolphin
-   wireguard-tools
-   gh
- ];
+  environment.systemPackages = with pkgs; [
+    #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    curl
+    ripgrep
+    git
+    neovim
+    busybox
+    dolphin
+    wireguard-tools
+    gh
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

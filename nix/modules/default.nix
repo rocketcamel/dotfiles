@@ -1,2 +1,4 @@
-{ pkgs, lib, config, ... }: { imports = [ ./commonPackages.nix ./hm.nix ]; }
+{ pkgs, lib, config, ... }: {
+  imports = [ ./commonPackages.nix ./hm.nix ./i3.nix ];
+}
 

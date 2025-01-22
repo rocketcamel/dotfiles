@@ -11,10 +11,16 @@
   outputs = inputs@{ nixpkgs, home-manager, nixos-wsl, ... }:
     let
       systems = [ "x86_64-linux" ];
-      hosts = [{
-        name = "wsl-kumatani";
-        isWSL = true;
-      }];
+      hosts = [
+        {
+          name = "wsl-kumatani";
+          isWSL = true;
+        }
+        {
+          name = "tux";
+          isWSL = false;
+        }
+      ];
     in {
       nixosConfigurations = builtins.listToAttrs (map (host: {
         name = host.name;

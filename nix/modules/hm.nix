@@ -5,7 +5,6 @@
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.users.luca = import ../users/luca/home.nix;
-    users.users.luca.shell = pkgs.zsh;
     programs.zsh.enable = true;
   };
 }

@@ -16,11 +16,20 @@
           settings.window.opacity = 0.6;
         };
       };
-    };
 
-    services.picom = {
-      enable = true;
-      vSync = true;
+      services.picom = {
+        enable = true;
+        vSync = true;
+      };
+
+      xsession.windowManager.i3 = {
+        enable = true;
+        config = {
+          modifier = "Mod4";
+          defaultWorkspace = "workspace number 1";
+          terminal = "alacritty";
+        };
+      };
     };
   };
 }

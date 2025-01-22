@@ -11,8 +11,6 @@
     helix = import ./helix.nix { inherit pkgs; };
   };
 
- config.i3.enable ? 
-
   home.packages = with pkgs; [
     nodePackages_latest.typescript-language-server
     nodejs_22
