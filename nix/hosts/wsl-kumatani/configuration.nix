@@ -10,7 +10,6 @@
   wsl.enable = true;
   wsl.defaultUser = "luca";
   networking.hostName = meta.hostname;
-  programs.nix-ld.enable = true;
   hm.enable = true;
   users.users.luca.shell = pkgs.zsh;
 

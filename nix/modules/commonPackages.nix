@@ -7,4 +7,5 @@
     };
   };
   config.commonPackages = with pkgs; [ wget busybox curl stow ];
+  config.programs.nix-ld.enable = true;
 }
