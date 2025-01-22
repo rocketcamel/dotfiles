@@ -12,6 +12,7 @@
   networking.hostName = meta.hostname;
   programs.nix-ld.enable = true;
   hm.enable = true;
+  users.users.luca.shell = pkgs.zsh;
 
   environment.systemPackages = with pkgs;
     config.commonPackages ++ [ asciiquarium ];
