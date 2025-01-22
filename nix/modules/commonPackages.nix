@@ -6,5 +6,5 @@
       description = "Common packages";
     };
   };
-  config.commonPackages = with pkgs; [ wget busybox curl ];
+  config.commonPackages = with pkgs; [ wget busybox curl stow ];
 }
