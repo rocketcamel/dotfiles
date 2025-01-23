@@ -8,11 +8,9 @@
     git = import ./git.nix;
     zsh = import ./zsh.nix;
     tmux = import ./tmux.nix { inherit pkgs; };
-    helix = import ./helix.nix { inherit pkgs; };
   };
 
   home.packages = with pkgs; [
-    nodePackages_latest.typescript-language-server
     nodejs_22
     pnpm
     gh
