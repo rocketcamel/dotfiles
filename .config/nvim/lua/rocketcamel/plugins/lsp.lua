@@ -14,6 +14,7 @@ return {
 					"ts_ls",
 					"lua_ls",
 					"rust_analyzer",
+					"nil_ls",
 				},
 				handlers = {
 					function(server)

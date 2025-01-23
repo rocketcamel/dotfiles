@@ -33,6 +33,9 @@
           modules = [
             ./hosts/${host.name}/configuration.nix
             home-manager.nixosModules.home-manager
+            {
+              nix.settings.experimental-features = [ "nix-command" "flakes" ];
+            }
           ] ++ (if host.isWSL then [ nixos-wsl.nixosModules.default ] else [ ]);
         };
       }) hosts);

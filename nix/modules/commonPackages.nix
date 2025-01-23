@@ -18,6 +18,7 @@
     git
     gcc
     rustup
+    nixfmt-rfc-style
   ];
   config.programs.nix-ld.enable = true;
 }
