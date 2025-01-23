@@ -6,6 +6,16 @@
       description = "Common packages";
     };
   };
-  config.commonPackages = with pkgs; [ wget busybox curl stow ];
+  config.commonPackages = with pkgs; [
+    wget
+    busybox
+    curl
+    stow
+    gh
+    oh-my-posh
+    neovim
+    ripgrep
+    git
+  ];
   config.programs.nix-ld.enable = true;
 }

@@ -91,7 +91,6 @@
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ vesktop nodejs_22 pnpm ];
     shell = pkgs.zsh;
     hashedPassword =
       "$y$j9T$wp9I05TfxjrAzCMCcxlei1$Fm7sJJSwFHpSIQT0RESOdJ7vkTYyN0IXs5n/xkg65y3";
@@ -102,18 +101,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
-    config.commonPackages ++ [
-      #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      wget
-      curl
-      ripgrep
-      git
-      neovim
-      busybox
-      dolphin
-      wireguard-tools
-      gh
-    ];
+    config.commonPackages ++ [ dolphin wireguard-tools ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -10,12 +10,7 @@
     tmux = import ./tmux.nix { inherit pkgs; };
   };
 
-  home.packages = with pkgs; [
-    nodejs_22
-    pnpm
-    gh
-    oh-my-posh
-  ];
+  home.packages = with pkgs; [ nodejs_22 pnpm ];
 
   home.stateVersion = "24.11";
 
