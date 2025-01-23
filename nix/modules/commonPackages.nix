@@ -16,6 +16,8 @@
     neovim
     ripgrep
     git
+    gcc
+    rustup
   ];
   config.programs.nix-ld.enable = true;
 }
