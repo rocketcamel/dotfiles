@@ -8,6 +8,7 @@
     };
 
     services.displayManager = { defaultSession = "none+i3"; };
+    services.libinput.touchpad.naturalScrolling = true;
 
     home-manager.users.luca = {
       programs = {
