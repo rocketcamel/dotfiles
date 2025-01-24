@@ -1,5 +1,13 @@
-{ pkgs, lib, config, ... }: {
-  options.kanata = { enable = lib.mkEnableOption "enable kanata"; };
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options.kanata = {
+    enable = lib.mkEnableOption "enable kanata";
+  };
 
   config = lib.mkIf config.kanata.enable {
     services.kanata.enable = true;

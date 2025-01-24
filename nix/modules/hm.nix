@@ -1,5 +1,13 @@
-{ lib, config, pkgs, ... }: {
-  options = { hm.enable = lib.mkEnableOption "enable home-manager"; };
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  options = {
+    hm.enable = lib.mkEnableOption "enable home-manager";
+  };
 
   config = lib.mkIf config.hm.enable {
     home-manager.useGlobalPkgs = true;

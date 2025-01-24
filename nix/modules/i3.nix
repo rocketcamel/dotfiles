@@ -1,5 +1,13 @@
-{ pkgs, lib, config, ... }: {
-  options = { i3.enable = lib.mkEnableOption "enable i3"; };
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options = {
+    i3.enable = lib.mkEnableOption "enable i3";
+  };
 
   config = lib.mkIf config.i3.enable {
     services.xserver = {
@@ -7,7 +15,9 @@
       windowManager.i3.enable = true;
     };
 
-    services.displayManager = { defaultSession = "none+i3"; };
+    services.displayManager = {
+      defaultSession = "none+i3";
+    };
     services.libinput.touchpad.naturalScrolling = true;
 
     home-manager.users.luca = {

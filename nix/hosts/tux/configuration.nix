@@ -2,10 +2,19 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, home-manager, meta, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  home-manager,
+  meta,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/default.nix
   ];
@@ -18,7 +27,10 @@
   };
 
   networking.networkmanager.enable = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking.hostName = meta.hostname;
 
@@ -45,7 +57,9 @@
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common = { default = [ "gtk" ]; };
+    config.common = {
+      default = [ "gtk" ];
+    };
   };
 
   time.timeZone = "America/Vancouver";
@@ -66,18 +80,24 @@
     pulse.enable = true;
   };
 
-  hardware = { graphics.enable = true; };
+  hardware = {
+    graphics.enable = true;
+  };
 
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
-    hashedPassword =
-      "$y$j9T$wp9I05TfxjrAzCMCcxlei1$Fm7sJJSwFHpSIQT0RESOdJ7vkTYyN0IXs5n/xkg65y3";
+    hashedPassword = "$y$j9T$wp9I05TfxjrAzCMCcxlei1$Fm7sJJSwFHpSIQT0RESOdJ7vkTYyN0IXs5n/xkg65y3";
   };
 
-  environment.systemPackages = with pkgs;
-    config.commonPackages ++ [ dolphin wireguard-tools ];
+  environment.systemPackages =
+    with pkgs;
+    config.commonPackages
+    ++ [
+      dolphin
+      wireguard-tools
+    ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -91,4 +111,3 @@
 
   system.stateVersion = "24.11";
 }
-

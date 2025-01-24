@@ -2,7 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, meta, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  meta,
+  ...
+}:
 
 {
   imports = [ ../../modules/default.nix ];
@@ -13,8 +19,7 @@
   hm.enable = true;
   users.users.luca.shell = pkgs.zsh;
 
-  environment.systemPackages = with pkgs;
-    config.commonPackages ++ [ asciiquarium ];
+  environment.systemPackages = with pkgs; config.commonPackages ++ [ asciiquarium ];
 
   system.stateVersion = "24.05";
 }

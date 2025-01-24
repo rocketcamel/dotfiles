@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   options = {
     commonPackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
