@@ -27,6 +27,10 @@
     wheelNeedsPassword = false;
   };
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   hm.enable = true;
   i3.enable = true;
   kanata.enable = true;
