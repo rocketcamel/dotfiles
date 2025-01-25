@@ -22,10 +22,10 @@
           name = "wsl-kumatani";
           isWSL = true;
         }
-	{
-	  name = "wsl-usahara";
-	  isWSL = true;
-	}
+        {
+          name = "wsl-usahara";
+          isWSL = true;
+        }
         {
           name = "tux";
         }
