@@ -19,7 +19,7 @@
   hm.enable = true;
   users.users.luca.shell = pkgs.zsh;
 
-  environment.systemPackages = with pkgs; config.commonPackages ++ [ asciiquarium ];
+  environment.systemPackages = with pkgs; config.commonPackages ++ [ ];
 
   system.stateVersion = "24.05";
 }

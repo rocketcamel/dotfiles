@@ -20,6 +20,7 @@
     gcc
     rustup
     nixfmt-rfc-style
+    asciiquarium
   ];
   config.programs.nix-ld.enable = true;
 }
