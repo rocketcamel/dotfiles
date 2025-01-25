@@ -9,6 +9,7 @@ return {
 				typescript = { "prettier" },
 				json = { "prettier" },
 				tsx = { "prettier" },
+				nix = { "nixfmt" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
