@@ -22,6 +22,7 @@
       rustup
       nixfmt-rfc-style
       asciiquarium
+      wireguard-tools
     ];
     programs.nix-ld.enable = true;
     programs.zsh.enable = true;

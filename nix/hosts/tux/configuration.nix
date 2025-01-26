@@ -76,6 +76,8 @@
 
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
 
@@ -95,7 +97,6 @@
     config.commonPackages
     ++ [
       dolphin
-      wireguard-tools
     ];
 
   # Some programs need SUID wrappers, can be configured further or are

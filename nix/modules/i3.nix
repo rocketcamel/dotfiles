@@ -39,6 +39,14 @@
           modifier = "Mod4";
           defaultWorkspace = "workspace number 1";
           terminal = "alacritty";
+          keybindings =
+            let
+              modifier = config.xsession.windowManager.i3.config.modifier;
+            in
+            lib.mkOptionDefault {
+              "XF86AudioRaiseVolume" = "exec pamixer -i 5";
+              "XF86AudioLowerVolume" = "exec pamixer -d 5";
+            };
         };
       };
     };
