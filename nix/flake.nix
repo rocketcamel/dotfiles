@@ -6,8 +6,6 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    rokit.url = "github:rocketcamel/rokit-nix";
-    rokit.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -54,7 +52,6 @@
                     "nix-command"
                     "flakes"
                   ];
-                  environment.systemPackages = [ inputs.rokit.packages.x86_64-linux.rokit ];
                 }
               ]
               ++ (
