@@ -88,11 +88,32 @@
         "type": "github"
       }
     },
+    "rokit": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737867604,
+        "narHash": "sha256-Zqez88FVTfXX0MXwIBKhV9RRQrqFYj5sxtschbloaL0=",
+        "owner": "rocketcamel",
+        "repo": "rokit-nix",
+        "rev": "e70887b617a7c38e767497aeb51a07d0ae23817d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rocketcamel",
+        "repo": "rokit-nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nixos-wsl": "nixos-wsl",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "rokit": "rokit"
       }
     }
   },
