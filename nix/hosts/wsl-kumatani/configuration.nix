@@ -11,7 +11,7 @@
 }:
 
 {
-  imports = [ ../../modules/default.nix ];
+  imports = [ ];
 
   wsl.enable = true;
   wsl.defaultUser = "luca";

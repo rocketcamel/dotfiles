@@ -13,6 +13,5 @@
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.users.luca = import ../users/luca/home.nix;
-    programs.zsh.enable = true;
   };
 }

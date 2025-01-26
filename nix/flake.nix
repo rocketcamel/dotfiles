@@ -43,20 +43,17 @@
               };
             };
             system = "x86_64-linux";
-            modules =
-              [
-                ./hosts/${host.name}/configuration.nix
-                home-manager.nixosModules.home-manager
-                {
-                  nix.settings.experimental-features = [
-                    "nix-command"
-                    "flakes"
-                  ];
-                }
-              ]
-              ++ (
-                if builtins.hasAttr "isWSL" host && host.isWSL then [ nixos-wsl.nixosModules.default ] else [ ]
-              );
+            modules = [
+              ./hosts/${host.name}/configuration.nix
+              ./modules/default.nix
+              home-manager.nixosModules.home-manager
+              {
+                nix.settings.experimental-features = [
+                  "nix-command"
+                  "flakes"
+                ];
+              }
+            ] ++ (if builtins.hasAttr "isWSL" host then [ nixos-wsl.nixosModules.default ] else [ ]);
           };
         }) hosts
       );
