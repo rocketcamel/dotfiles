@@ -23,6 +23,7 @@
       nixfmt-rfc-style
       asciiquarium
       wireguard-tools
+      fzf
     ];
     programs.nix-ld.enable = true;
     programs.zsh.enable = true;
