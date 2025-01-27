@@ -20,6 +20,10 @@
     };
     services.libinput.touchpad.naturalScrolling = true;
 
+    environment.systemPackages = with pkgs; [
+      dolphin
+    ];
+
     home-manager.users.luca = {
       programs = {
         alacritty = {
