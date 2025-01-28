@@ -16,7 +16,6 @@
       ...
     }:
     let
-      systems = [ "x86_64-linux" ];
       hosts = [
         {
           name = "wsl-kumatani";
