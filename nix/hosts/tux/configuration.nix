@@ -89,7 +89,8 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
-    hashedPassword = "$y$j9T$wp9I05TfxjrAzCMCcxlei1$Fm7sJJSwFHpSIQT0RESOdJ7vkTYyN0IXs5n/xkg65y3";
+    hashedPassword = config.hashedPassword;
+    openssh.authorizedKeys.keys = config.authorized_ssh;
   };
 
   environment.systemPackages =
@@ -105,8 +106,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  services.openssh.enable = true;
 
   system.stateVersion = "24.11";
 }

@@ -11,5 +11,6 @@
     ./i3.nix
     ./kanata.nix
     ./pipewire.nix
+    ./keys.nix
   ];
 }

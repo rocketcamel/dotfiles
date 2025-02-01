@@ -25,10 +25,11 @@
       wireguard-tools
       fzf
     ];
-    programs.nix-ld.enable = true;
-    programs.zsh.enable = true;
+    programs.nix-ld.enable = lib.mkDefault true;
+    programs.zsh.enable = lib.mkDefault true;
+    services.openssh.enable = lib.mkDefault true;
 
-    programs.neovim = {
+    programs.neovim = lib.mkDefault {
       enable = true;
       defaultEditor = true;
       vimAlias = true;
