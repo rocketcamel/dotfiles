@@ -14,7 +14,6 @@
       curl
       stow
       gh
-      oh-my-posh
       neovim
       ripgrep
       git

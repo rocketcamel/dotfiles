@@ -16,7 +16,6 @@
   wsl.enable = true;
   wsl.defaultUser = "luca";
   networking.hostName = meta.hostname;
-  hm.enable = true;
   users.users.luca = {
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = config.authorized_ssh;

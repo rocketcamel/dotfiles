@@ -6,8 +6,9 @@
 
   programs = {
     git = import ./git.nix;
-    zsh = import ./zsh.nix;
+    zsh = import ./zsh.nix { inherit pkgs; };
     tmux = import ./tmux.nix { inherit pkgs; };
+    oh-my-posh = import ./omp.nix;
   };
 
   home.packages = with pkgs; [
