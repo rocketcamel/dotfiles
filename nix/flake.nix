@@ -19,14 +19,17 @@
       hosts = [
         {
           name = "wsl-kumatani";
+          architecture = "x86_64-linux";
           isWSL = true;
         }
         {
           name = "wsl-usahara";
+          architecture = "x86_64-linux";
           isWSL = true;
         }
         {
           name = "tux";
+          architecture = "x86_64-linux";
         }
       ];
     in
@@ -41,7 +44,7 @@
                 hostname = host.name;
               };
             };
-            system = "x86_64-linux";
+            system = host.architecture;
             modules = [
               ./hosts/${host.name}/configuration.nix
               ./modules/default.nix
