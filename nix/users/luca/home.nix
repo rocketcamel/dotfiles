@@ -8,6 +8,7 @@
     git = import ./git.nix;
     zsh = import ./zsh.nix;
     tmux = import ./tmux.nix { inherit pkgs; };
+    oh-my-posh = import ./omp.nix;
   };
 
   home.packages = with pkgs; [

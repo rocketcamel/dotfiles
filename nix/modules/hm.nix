@@ -6,7 +6,9 @@
 }:
 {
   options = {
-    hm.enable = lib.mkEnableOption "enable home-manager";
+    hm.enable = lib.mkEnableOption "enable home-manager" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.hm.enable {
