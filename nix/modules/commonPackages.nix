@@ -23,6 +23,7 @@
       asciiquarium
       wireguard-tools
       fzf
+      lune
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
