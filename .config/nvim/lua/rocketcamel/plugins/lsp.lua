@@ -5,6 +5,7 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"j-hui/fidget.nvim",
+			"lopi-py/luau-lsp.nvim",
 		},
 		config = function()
 			require("mason").setup()
@@ -22,9 +23,15 @@ return {
 						require("lspconfig")[server].setup({})
 					end,
 					luau_lsp = function()
-						require("lspconfig").luau_lsp.setup({
+						require("luau-lsp").setup({
 							fflags = {
 								enable_new_solver = true,
+							},
+							platform = {
+								type = "roblox",
+							},
+							types = {
+								roblox_security_level = "PluginSecurity",
 							},
 						})
 					end,
