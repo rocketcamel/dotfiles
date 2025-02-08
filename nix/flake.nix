@@ -31,6 +31,11 @@
           name = "tux";
           architecture = "x86_64-linux";
         }
+        {
+          name = "tux-wsl";
+          architecture = "x86_64-linux";
+          isWSL = true;
+        }
       ];
     in
     {
@@ -45,17 +50,27 @@
               };
             };
             system = host.architecture;
-            modules = [
-              ./hosts/${host.name}/configuration.nix
-              ./modules/default.nix
-              home-manager.nixosModules.home-manager
-              {
-                nix.settings.experimental-features = [
-                  "nix-command"
-                  "flakes"
-                ];
-              }
-            ] ++ (if builtins.hasAttr "isWSL" host then [ nixos-wsl.nixosModules.default ] else [ ]);
+            modules =
+              [
+                ./hosts/${host.name}/configuration.nix
+                ./modules/default.nix
+                home-manager.nixosModules.home-manager
+                {
+                  nix.settings.experimental-features = [
+                    "nix-command"
+                    "flakes"
+                  ];
+                }
+              ]
+              ++ (
+                if builtins.hasAttr "isWSL" host then
+                  [
+                    nixos-wsl.nixosModules.default
+                    ./hosts/wsl/configuration.nix
+                  ]
+                else
+                  [ ]
+              );
           };
         }) hosts
       );
