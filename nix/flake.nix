@@ -6,6 +6,8 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    pesde.url = "github:rocketcamel/pesde-nix";
+    pesde.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -59,6 +61,9 @@
                   nix.settings.experimental-features = [
                     "nix-command"
                     "flakes"
+                  ];
+                  environment.systemPackages = [
+                    inputs.pesde.packages.${host.architecture}.default
                   ];
                 }
               ]
