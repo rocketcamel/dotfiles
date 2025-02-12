@@ -28,7 +28,9 @@
       programs = {
         alacritty = {
           enable = true;
-          settings.window.opacity = 0.6;
+          settings = {
+            window.opacity = 0.6;
+          };
         };
       };
 

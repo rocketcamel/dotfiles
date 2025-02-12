@@ -65,6 +65,7 @@
                   environment.systemPackages = [
                     inputs.pesde.packages.${host.architecture}.default
                   ];
+                  nixpkgs.config.allowUnfree = true;
                 }
               ]
               ++ (
