@@ -15,6 +15,8 @@ return {
 				"tsx",
 				"rust",
 				"zig",
+				"svelte",
+				"html",
 			},
 			sync_install = true,
 			auto_install = true,

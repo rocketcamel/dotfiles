@@ -17,6 +17,9 @@ return {
 					"luau_lsp",
 					"rust_analyzer",
 					"nil_ls",
+					"tailwindcss",
+					"svelte",
+					"html",
 				},
 				handlers = {
 					function(server)
