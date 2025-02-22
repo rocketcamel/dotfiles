@@ -22,6 +22,7 @@
 
     environment.systemPackages = with pkgs; [
       dolphin
+      vscode-fhs
     ];
 
     home-manager.users.luca = {
