@@ -36,6 +36,26 @@
         "type": "github"
       }
     },
+    "mantle": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740286249,
+        "narHash": "sha256-BvNcVzVXf8N7mCxV6PpO7cR5hx4k32BfuYiSmE1+DzA=",
+        "owner": "rocketcamel",
+        "repo": "mantle-nix",
+        "rev": "a5bdab16b5d3024e7be1f4f2bc9011b2999f3073",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rocketcamel",
+        "repo": "mantle-nix",
+        "type": "github"
+      }
+    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -111,6 +131,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mantle": "mantle",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
         "pesde": "pesde"

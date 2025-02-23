@@ -8,6 +8,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     pesde.url = "github:rocketcamel/pesde-nix";
     pesde.inputs.nixpkgs.follows = "nixpkgs";
+    mantle.url = "github:rocketcamel/mantle-nix";
+    mantle.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -64,6 +66,7 @@
                   ];
                   environment.systemPackages = [
                     inputs.pesde.packages.${host.architecture}.default
+                    inputs.mantle.packages.${host.architecture}.default
                   ];
                   nixpkgs.config.allowUnfree = true;
                 }
