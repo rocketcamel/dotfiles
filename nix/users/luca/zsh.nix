@@ -6,7 +6,7 @@
   syntaxHighlighting.enable = true;
   history.size = 1000;
   envExtra = ''
-    export PATH="$PATH:$HOME/.pesde/bin"
+    export PATH="$PATH:$HOME/.rokit/bin"
   '';
   oh-my-zsh = {
     enable = true;

@@ -10,6 +10,8 @@
     pesde.inputs.nixpkgs.follows = "nixpkgs";
     mantle.url = "github:rocketcamel/mantle-nix";
     mantle.inputs.nixpkgs.follows = "nixpkgs";
+    rokit.url = "github:rocketcamel/rokit-nix";
+    rokit.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -67,6 +69,7 @@
                   environment.systemPackages = [
                     inputs.pesde.packages.${host.architecture}.default
                     inputs.mantle.packages.${host.architecture}.default
+                    inputs.rokit.packages.${host.architecture}.default
                   ];
                   nixpkgs.config.allowUnfree = true;
                 }
