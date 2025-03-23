@@ -23,6 +23,7 @@
     environment.systemPackages = with pkgs; [
       dolphin
       vscode-fhs
+      pavucontrol
     ];
 
     home-manager.users.luca = {
@@ -40,15 +41,16 @@
         vSync = true;
       };
 
+      xsession.initExtra = ''
+        xset s off
+        xset s noblank
+      '';
       xsession.windowManager.i3 = {
         enable = true;
         config = {
           modifier = "Mod4";
           defaultWorkspace = "workspace number 1";
           terminal = "alacritty";
-          initExtra = ''
-            xset s off
-          '';
           keybindings =
             let
               modifier = config.xsession.windowManager.i3.config.modifier;
