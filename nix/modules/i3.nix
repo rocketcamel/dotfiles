@@ -46,6 +46,9 @@
           modifier = "Mod4";
           defaultWorkspace = "workspace number 1";
           terminal = "alacritty";
+          initExtra = ''
+            xset s off
+          '';
           keybindings =
             let
               modifier = config.xsession.windowManager.i3.config.modifier;

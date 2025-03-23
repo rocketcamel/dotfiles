@@ -32,6 +32,7 @@
   ];
 
   networking.hostName = meta.hostname;
+  hardware.bluetooth.enable = true;
 
   security.sudo = {
     enable = true;
