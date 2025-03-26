@@ -13,6 +13,12 @@
     services.xserver = {
       enable = true;
       windowManager.i3.enable = true;
+      serverLayoutSection = ''
+        Option "BlankTime" "0"
+        Option "StandbyTime" "0"
+        Option "SuspendTime" "0"
+        Option "OffTime" "0"
+      '';
     };
 
     services.displayManager = {
@@ -24,6 +30,7 @@
       dolphin
       vscode-fhs
       pavucontrol
+      vlc
     ];
 
     home-manager.users.luca = {
