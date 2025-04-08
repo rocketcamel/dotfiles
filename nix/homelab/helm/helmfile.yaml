@@ -9,6 +9,8 @@ releases:
     namespace: longhorn-system
     chart: longhorn/longhorn
     version: 1.8.1
+    values:
+      - values/longhorn-values.yaml
   - name: jellyfin
     namespace: media
     chart: jellyfin/jellyfin

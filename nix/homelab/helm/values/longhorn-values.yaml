@@ -1,0 +1,9 @@
+ingress:
+  enabled: true
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "web"
+    traefik.ingress.kubernetes.io/router.rule: "Host(`longhorn.local`)"
+  hosts:
+    - host: longhorn.local
+      paths:
+        - /
