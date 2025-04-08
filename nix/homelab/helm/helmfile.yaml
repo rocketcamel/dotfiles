@@ -1,8 +1,15 @@
 repositories:
+  - name: longhorn
+    url: https://charts.longhorn.io
   - name: jellyfin
     url: https://jellyfin.github.io/jellyfin-helm
 
 releases:
+  - name: longhorn
+    namespace: longhorn-system
+    chart: longhorn/longhorn
+    version: 1.8.1
   - name: jellyfin
     namespace: media
     chart: jellyfin/jellyfin
+    version: 2.3.0
