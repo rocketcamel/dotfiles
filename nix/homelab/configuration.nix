@@ -47,6 +47,8 @@
     curl
     k3s
     git
+    helmfile
+    helm
   ];
 
   services.openssh.enable = true;
