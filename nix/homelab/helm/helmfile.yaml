@@ -1,0 +1,8 @@
+repositories:
+  - name: jellyfin
+    url: https://jellyfin.github.io/jellyfin-helm
+
+releases:
+  - name: jellyfin
+    namespace: media
+    chart: jellyfin/jellyfin

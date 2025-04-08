@@ -45,6 +45,8 @@
     neovim
     wget
     curl
+    k3s
+    git
   ];
 
   services.openssh.enable = true;
