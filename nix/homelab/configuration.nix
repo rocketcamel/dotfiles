@@ -23,7 +23,7 @@
   time.timeZone = "America/Vancouver";
 
   systemd.tmpfiles.rules = [
-    "L + /usr/local/bin - - - - /run/current-system/sw/bin"
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin"
   ];
 
   services.k3s = {
