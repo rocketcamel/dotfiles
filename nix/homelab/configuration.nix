@@ -32,6 +32,8 @@
     ]);
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
