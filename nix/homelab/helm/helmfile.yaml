@@ -15,3 +15,5 @@ releases:
     namespace: media
     chart: jellyfin/jellyfin
     version: 2.3.0
+    values:
+      - values/jellyfin.yaml
