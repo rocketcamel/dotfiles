@@ -36,6 +36,10 @@
     ]);
   };
 
+  services.openiscsi = {
+    enable = true;
+  };
+
   security.sudo.wheelNeedsPassword = false;
 
   users.users.luca = {
