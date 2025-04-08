@@ -50,7 +50,7 @@
     k3s
     git
     helmfile
-    helm
+    kubernetes-helm
   ];
 
   services.openssh.enable = true;
