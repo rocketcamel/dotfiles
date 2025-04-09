@@ -4,8 +4,9 @@ ingress:
     traefik.ingress.kubernetes.io/router.entrypoints: web
   hosts:
     - host: jellyfin.local
-  paths:
-    - path: /
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
 
 persistence:
   media:
