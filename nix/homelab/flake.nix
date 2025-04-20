@@ -1,5 +1,5 @@
 {
-  description = "Homelab-test";
+  description = "Homelab";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -12,22 +12,38 @@
       self,
       nixpkgs,
       disko,
-    }:
+    }@inputs:
+    let
+      nodes = [
+        {
+          name = "kube";
+          architecture = "x86_64-linux";
+        }
+      ];
+    in
     {
-      nixosConfigurations = {
-        main = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            meta = {
-              hostname = "kube";
+      nixosConfigurations = builtins.listToAttrs (
+        map (
+          node:
+          {
+            name = node.name;
+            value = nixpkgs.lib.nixosSystem {
+              system = node.architecture;
+              specialArgs = {
+                meta = {
+                  hostname = node.name;
+                };
+              };
+              modules = [
+                disko.nixosModules.disko
+                ./${node.name}-configuration.nix
+                ./${node.name}-hardware-configuration.nix
+                ./${node.name}-disk-config.nix
+              ];
             };
-          };
-          modules = [
-            disko.nixosModules.disko
-            ./configuration.nix
-            ./hardware-configuration.nix
-          ];
-        };
-      };
+          }
+            nodes
+        )
+      );
     };
 }

@@ -8,8 +8,6 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./disk-config.nix
   ];
 
   boot.loader.grub.enable = true;

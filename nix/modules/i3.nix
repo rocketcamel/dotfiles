@@ -27,7 +27,7 @@
     services.libinput.touchpad.naturalScrolling = true;
 
     environment.systemPackages = with pkgs; [
-      dolphin
+      kdePackages.dolphin
       vscode-fhs
       pavucontrol
       vlc
