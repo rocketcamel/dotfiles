@@ -31,6 +31,8 @@
       vscode-fhs
       pavucontrol
       vlc
+      vinegar
+      wine64
     ];
 
     home-manager.users.luca = {
