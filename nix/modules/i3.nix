@@ -35,6 +35,7 @@
       wine64
       vesktop
       firefox
+      brightnessctl
     ];
 
     home-manager.users.luca = {
