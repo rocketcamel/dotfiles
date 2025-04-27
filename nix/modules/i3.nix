@@ -36,6 +36,7 @@
       vesktop
       firefox
       brightnessctl
+      volumeicon
     ];
 
     home-manager.users.luca = {
@@ -46,6 +47,9 @@
             window.opacity = 0.6;
           };
         };
+      };
+      services.dunst = {
+        enable = true;
       };
 
       services.picom = {
@@ -70,7 +74,14 @@
             lib.mkOptionDefault {
               "XF86AudioRaiseVolume" = "exec pamixer -i 5";
               "XF86AudioLowerVolume" = "exec pamixer -d 5";
+              "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
+              "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
             };
+          startup = [
+            {
+              command = "exec volumeicon";
+            }
+          ];
         };
       };
     };
