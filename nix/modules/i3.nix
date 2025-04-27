@@ -33,6 +33,8 @@
       vlc
       vinegar
       wine64
+      vesktop
+      firefox
     ];
 
     home-manager.users.luca = {
