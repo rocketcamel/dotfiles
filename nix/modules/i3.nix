@@ -39,6 +39,7 @@
       volumeicon
       arandr
       flameshot
+      jellyfin-media-player
     ];
 
     home-manager.users.luca = {
