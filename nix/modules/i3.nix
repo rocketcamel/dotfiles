@@ -64,6 +64,9 @@
       '';
       xsession.windowManager.i3 = {
         enable = true;
+        extraConfig = ''
+          exec --no-startup-id sleep 2 && volumeicon
+        '';
         config = {
           modifier = "Mod4";
           defaultWorkspace = "workspace number 1";
@@ -78,11 +81,11 @@
               "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
             };
-          startup = [
-            {
-              command = "exec --no-startup-id volumeicon";
-            }
-          ];
+          #startup = [
+          #  {
+          #    command = "volumeicon";
+          #  }
+          #];
         };
       };
     };
