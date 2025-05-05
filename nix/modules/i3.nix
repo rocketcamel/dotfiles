@@ -38,6 +38,7 @@
       brightnessctl
       volumeicon
       arandr
+      flameshot
     ];
 
     home-manager.users.luca = {
