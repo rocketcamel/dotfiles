@@ -37,6 +37,7 @@
       firefox
       brightnessctl
       volumeicon
+      arandr
     ];
 
     home-manager.users.luca = {
@@ -79,7 +80,7 @@
             };
           startup = [
             {
-              command = "exec volumeicon";
+              command = "exec --no-startup-id volumeicon";
             }
           ];
         };
