@@ -40,6 +40,8 @@
       arandr
       flameshot
       jellyfin-media-player
+      anki-bin
+      mpv
     ];
 
     home-manager.users.luca = {
@@ -73,6 +75,13 @@
           modifier = "Mod4";
           defaultWorkspace = "workspace number 1";
           terminal = "alacritty";
+          fonts = {
+            names = [
+              "Noto Sans"
+              "Noto Sans CJK JP"
+            ];
+            size = 10.0;
+          };
           keybindings =
             let
               modifier = config.xsession.windowManager.i3.config.modifier;
