@@ -20,6 +20,8 @@ return {
 					"tailwindcss",
 					"svelte",
 					"html",
+					"gopls",
+					"templ",
 				},
 				handlers = {
 					function(server)

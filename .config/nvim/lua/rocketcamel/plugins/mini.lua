@@ -6,6 +6,7 @@ return {
 			require("mini.completion").setup()
 			require("mini.fuzzy").setup()
 			require("mini.pairs").setup()
+			require("mini.comment").setup()
 		end,
 	},
 }
