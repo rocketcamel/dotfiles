@@ -61,6 +61,7 @@ return {
 			vim.lsp.config("*", {
 				capabilities = capabilities,
 			})
+			vim.keymap.set("n", "gtd", vim.lsp.buf.definition)
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
