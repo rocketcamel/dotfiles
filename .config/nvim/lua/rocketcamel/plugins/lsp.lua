@@ -62,6 +62,8 @@ return {
 				capabilities = capabilities,
 			})
 			vim.keymap.set("n", "gtd", vim.lsp.buf.definition)
+			vim.keymap.set("n", "ev", vim.diagnostic.show)
+			vim.diagnostic.config({ virtual_text = true })
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
