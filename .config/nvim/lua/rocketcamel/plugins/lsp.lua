@@ -14,7 +14,13 @@ return {
 		},
 		config = function()
 			require("mason").setup()
-			require("fidget").setup()
+			require("fidget").setup({
+				notification = {
+					window = {
+						winblend = 0,
+					},
+				},
+			})
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"ts_ls",
@@ -62,7 +68,12 @@ return {
 				capabilities = capabilities,
 			})
 			vim.keymap.set("n", "gtd", vim.lsp.buf.definition)
-			vim.keymap.set("n", "ev", vim.diagnostic.show)
+			vim.keymap.set("n", "ev", function()
+				vim.diagnostic.open_float({ border = "rounded" })
+			end)
+			vim.keymap.set("n", "K", function()
+				vim.lsp.buf.hover({ border = "rounded" })
+			end)
 			vim.diagnostic.config({ virtual_text = true })
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
