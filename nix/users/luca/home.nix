@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   home.username = "luca";
@@ -9,6 +14,7 @@
     zsh = import ./zsh.nix { inherit pkgs; };
     tmux = import ./tmux.nix { inherit pkgs; };
     oh-my-posh = import ./omp.nix;
+    eza = import ./eza.nix;
   };
 
   home.packages = with pkgs; [

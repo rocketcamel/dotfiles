@@ -46,6 +46,7 @@
       tailwindcss_4
       gnumake
       watchman
+      bat
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
