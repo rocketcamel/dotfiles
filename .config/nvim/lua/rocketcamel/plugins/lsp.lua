@@ -34,9 +34,7 @@ return {
 					"gopls",
 					"templ",
 				},
-				automatic_enable = {
-					exclude = { "luau_lsp" },
-				},
+				automatic_enable = true,
 			})
 			local cmp = require("cmp")
 			cmp.setup({
