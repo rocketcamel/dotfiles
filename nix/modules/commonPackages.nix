@@ -28,7 +28,6 @@
       ripgrep
       git
       gcc
-      rustup
       nixfmt-rfc-style
       asciiquarium
       wireguard-tools
@@ -47,6 +46,8 @@
       gnumake
       watchman
       bat
+      cargo
+      rustc
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;

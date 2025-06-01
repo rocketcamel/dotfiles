@@ -72,6 +72,9 @@ return {
 			vim.keymap.set("n", "K", function()
 				vim.lsp.buf.hover({ border = "rounded" })
 			end)
+			vim.keymap.set("i", "<C-s>", function()
+				vim.lsp.buf.signature_help({ border = "rounded" })
+			end)
 			vim.diagnostic.config({ virtual_text = true })
 			cmp.setup.cmdline({ "/", "?" }, {
 				mapping = cmp.mapping.preset.cmdline(),
