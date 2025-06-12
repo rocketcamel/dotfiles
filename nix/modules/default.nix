@@ -12,6 +12,5 @@
     ./kanata.nix
     ./pipewire.nix
     ./keys.nix
-    ./keyd.nix
   ];
 }

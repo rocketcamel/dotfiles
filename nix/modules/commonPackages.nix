@@ -46,8 +46,10 @@
       gnumake
       watchman
       bat
-      cargo
-      rustc
+      rustup
+      emote
+      pkg-config
+      openssl
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;

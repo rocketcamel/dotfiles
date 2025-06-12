@@ -66,6 +66,7 @@
         enable = true;
         vSync = true;
       };
+      services.copyq.enable = true;
 
       xsession.initExtra = ''
         xset s off
