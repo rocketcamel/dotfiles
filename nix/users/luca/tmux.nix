@@ -9,8 +9,8 @@
   keyMode = "vi";
   plugins = with pkgs; [ { plugin = tmuxPlugins.tokyo-night-tmux; } ];
   extraConfig = ''
-    bind -n M-H previous-window
-    bind -n M-L next-window
+    bind -n M-h previous-window
+    bind -n M-l next-window
   '';
   escapeTime = 0;
 }
