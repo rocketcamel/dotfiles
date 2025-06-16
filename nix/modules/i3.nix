@@ -54,10 +54,14 @@
 
     home-manager.users.luca = {
       programs = {
-        alacritty = {
+        ghostty = {
           enable = true;
           settings = {
-            window.opacity = 0.9;
+            "shell-integration-features" = "no-cursor";
+            "background-opacity" = 0.8;
+            "cursor-style" = "block";
+            "cursor-style-blink" = false;
+            "font-size" = 15;
           };
         };
       };
@@ -110,6 +114,7 @@
               "${modifier}+Shift+j" = "move down";
               "${modifier}+Shift+k" = "move up";
               "${modifier}+Shift+l" = "move right";
+              "${modifier}+Return" = "exec ghostty";
             };
           #startup = [
           #  {
