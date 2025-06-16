@@ -31,7 +31,6 @@
     services.libinput.touchpad.naturalScrolling = true;
 
     environment.systemPackages = with pkgs; [
-      kdePackages.dolphin
       vscode-fhs
       pavucontrol
       vlc
@@ -47,14 +46,18 @@
       anki-bin
       mpv
       ahk_x11
+      prismlauncher
+      feh
     ];
+    programs.thunar.enable = true;
+    services.tumbler.enable = true;
 
     home-manager.users.luca = {
       programs = {
         alacritty = {
           enable = true;
           settings = {
-            window.opacity = 0.6;
+            window.opacity = 0.9;
           };
         };
       };
@@ -76,6 +79,8 @@
         enable = true;
         extraConfig = ''
           exec --no-startup-id sleep 2 && volumeicon
+          for_window [all] title_window_icon padding 3px
+          exec --no-startup-id feh --bg-scale ~/.config/wallpaper/bg.jpg
         '';
         config = {
           modifier = "Mod4";
@@ -90,13 +95,21 @@
           };
           keybindings =
             let
-              modifier = config.xsession.windowManager.i3.config.modifier;
+              modifier = "Mod4";
             in
             lib.mkOptionDefault {
               "XF86AudioRaiseVolume" = "exec pamixer -i 5";
               "XF86AudioLowerVolume" = "exec pamixer -d 5";
               "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
               "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
+              "${modifier}+h" = "focus left";
+              "${modifier}+j" = "focus down";
+              "${modifier}+k" = "focus up";
+              "${modifier}+l" = "focus right";
+              "${modifier}+Shift+h" = "move left";
+              "${modifier}+Shift+j" = "move down";
+              "${modifier}+Shift+k" = "move up";
+              "${modifier}+Shift+l" = "move right";
             };
           #startup = [
           #  {

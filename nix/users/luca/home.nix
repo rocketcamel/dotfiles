@@ -16,6 +16,7 @@
     oh-my-posh = import ./omp.nix;
     eza = import ./eza.nix;
   };
+  xdg.mimeApps = import ./mime.nix;
 
   home.packages = with pkgs; [
     nodejs_22
