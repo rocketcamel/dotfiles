@@ -39,7 +39,6 @@
       vesktop
       firefox
       brightnessctl
-      volumeicon
       arandr
       flameshot
       jellyfin-media-player
@@ -51,6 +50,8 @@
       dconf
       rofi
       papirus-icon-theme
+      pa_applet
+      libnotify
     ];
     programs.thunar.enable = true;
     services.tumbler.enable = true;
@@ -94,7 +95,7 @@
       xsession.windowManager.i3 = {
         enable = true;
         extraConfig = ''
-          exec --no-startup-id sleep 2 && volumeicon
+          exec --no-startup-id pa-applet
           for_window [all] title_window_icon padding 3px
           exec --no-startup-id feh --bg-scale ~/.config/wallpaper/bg.jpg
         '';
@@ -116,10 +117,10 @@
               modifier = "Mod4";
             in
             lib.mkOptionDefault {
-              "XF86AudioRaiseVolume" = "exec pamixer -i 5";
-              "XF86AudioLowerVolume" = "exec pamixer -d 5";
-              "XF86MonBrightnessUp" = "exec brightnessctl s +5%";
-              "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
+              "XF86MonBrightnessUp" =
+                "exec bash -c 'brightnessctl s +5% && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc'";
+              "XF86MonBrightnessDown" =
+                "exec bash -c 'brightnessctl set 5%- && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc'";
               "${modifier}+h" = "focus left";
               "${modifier}+j" = "focus down";
               "${modifier}+k" = "focus up";
