@@ -16,6 +16,11 @@
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      roboto
+      roboto-mono
+      open-sans
     ];
     fonts.fontDir.enable = true;
     commonPackages = with pkgs; [

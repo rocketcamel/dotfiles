@@ -12,6 +12,8 @@
     mantle.inputs.nixpkgs.follows = "nixpkgs";
     rokit.url = "github:rocketcamel/rokit-nix";
     rokit.inputs.nixpkgs.follows = "nixpkgs";
+    custom-fonts.url = "path:./fonts";
+    custom-fonts.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -70,6 +72,9 @@
                     inputs.pesde.packages.${host.architecture}.default
                     inputs.mantle.packages.${host.architecture}.default
                     inputs.rokit.packages.${host.architecture}.default
+                  ];
+                  fonts.packages = [
+                    inputs.custom-fonts.packages.${host.architecture}.default
                   ];
                   nixpkgs.config.allowUnfree = true;
                 }

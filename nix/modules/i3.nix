@@ -48,9 +48,13 @@
       ahk_x11
       prismlauncher
       feh
+      dconf
+      rofi
+      papirus-icon-theme
     ];
     programs.thunar.enable = true;
     services.tumbler.enable = true;
+    rofi.enable = true;
 
     home-manager.users.luca = {
       programs = {
@@ -58,7 +62,7 @@
           enable = true;
           settings = {
             "shell-integration-features" = "no-cursor";
-            "background-opacity" = 0.8;
+            "background-opacity" = 0.85;
             "cursor-style" = "block";
             "cursor-style-blink" = false;
             "font-size" = 15;
@@ -67,6 +71,18 @@
       };
       services.dunst = {
         enable = true;
+        configFile = ../../custom/dunst/dunstrc;
+      };
+      gtk = {
+        enable = true;
+        theme.name = "Adwaita-dark";
+        gtk4.extraConfig = {
+          gtk-application-prefer-dark-theme = true;
+        };
+      };
+      qt = {
+        enable = true;
+        style.name = "adwaita-dark";
       };
 
       services.picom = {
@@ -75,10 +91,6 @@
       };
       services.copyq.enable = true;
 
-      xsession.initExtra = ''
-        xset s off
-        xset s noblank
-      '';
       xsession.windowManager.i3 = {
         enable = true;
         extraConfig = ''
@@ -89,11 +101,13 @@
         config = {
           modifier = "Mod4";
           defaultWorkspace = "workspace number 1";
-          terminal = "alacritty";
+          terminal = "ghostty";
           fonts = {
             names = [
               "Noto Sans"
               "Noto Sans CJK JP"
+              "Open Sans"
+              "Feather"
             ];
             size = 10.0;
           };
@@ -114,7 +128,7 @@
               "${modifier}+Shift+j" = "move down";
               "${modifier}+Shift+k" = "move up";
               "${modifier}+Shift+l" = "move right";
-              "${modifier}+Return" = "exec ghostty";
+              "${modifier}+d" = "exec rofi -show drun -theme ~/.config/rofi/launcher.rasi";
             };
           #startup = [
           #  {

@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "custom-fonts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./fonts",
+        "type": "path"
+      },
+      "original": {
+        "path": "./fonts",
+        "type": "path"
+      },
+      "parent": []
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -150,6 +166,7 @@
     },
     "root": {
       "inputs": {
+        "custom-fonts": "custom-fonts",
         "home-manager": "home-manager",
         "mantle": "mantle",
         "nixos-wsl": "nixos-wsl",

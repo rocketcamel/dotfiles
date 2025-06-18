@@ -39,10 +39,6 @@
     wheelNeedsPassword = false;
   };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
-
   i3.enable = true;
   kanata.enable = true;
 
