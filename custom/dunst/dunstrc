@@ -17,7 +17,7 @@
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = Roboto mono 12
+    font = Roboto mono 11
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
@@ -43,7 +43,7 @@
     class = Dunst
     startup_notification = false
     verbosity = mesg
-    corner_radius = 20
+    corner_radius = 0
     ignore_dbusclose = false
     force_xinerama = false
     mouse_middle_click = do_action, close_current
