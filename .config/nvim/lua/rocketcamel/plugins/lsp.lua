@@ -1,3 +1,28 @@
+local function setup_luau()
+	require("luau-lsp").setup({
+		platform = {
+			type = "roblox",
+		},
+		types = {
+			roblox_security_level = "PluginSecurity",
+		},
+		sourcemap = {
+			enabled = true,
+			autogenerate = true,
+			rojo_project_file = "default.project.json",
+			sourcemap_file = "sourcemap.json",
+		},
+		plugin = {
+			enabled = true,
+			port = 3667,
+		},
+		fflags = {
+			enable_new_solver = true,
+			sync = true,
+		},
+	})
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -34,8 +59,9 @@ return {
 					"gopls",
 					"templ",
 				},
-				automatic_enable = true,
+				automatic_enable = { exclude = { "luau_lsp" } },
 			})
+			setup_luau()
 			local cmp = require("cmp")
 			cmp.setup({
 				snippet = {
