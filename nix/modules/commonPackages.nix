@@ -39,7 +39,7 @@
       fzf
       lune
       awscli2
-      deno
+      # deno
       jq
       nfs-utils
       bluetui

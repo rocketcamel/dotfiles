@@ -39,7 +39,8 @@
     wheelNeedsPassword = false;
   };
 
-  i3.enable = true;
+  # i3.enable = true;
+  desktop.enable = true;
   kanata.enable = true;
 
   services.flatpak.enable = true;

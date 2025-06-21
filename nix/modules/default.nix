@@ -13,5 +13,6 @@
     ./pipewire.nix
     ./keys.nix
     ./rofi.nix
+    ./desktop.nix
   ];
 }
