@@ -33,11 +33,16 @@
       pa_applet
       libnotify
       adwaita-icon-theme
+      swaybg
     ];
     programs.thunar.enable = true;
     programs.hyprland.enable = true;
     services.tumbler.enable = true;
-    # services.displayManager.ly.enable = true;
+    services.displayManager.ly.enable = true;
+    # services.displayManager.sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    # };
     rofi.enable = true;
 
     home-manager.users.luca = {
@@ -54,7 +59,6 @@
         };
         waybar = {
           enable = true;
-          systemd.enable = true;
         };
       };
       xdg.configFile = {
@@ -144,6 +148,10 @@
           env = [
             "XCURSOR_THEME, Adwaita"
             "XCURSOR_SIZE,24"
+          ];
+          exec-once = [
+            "swaybg -i ~/.config/wallpaper/bg.jpg"
+            "waybar"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"

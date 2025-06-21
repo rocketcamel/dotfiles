@@ -108,13 +108,6 @@ window#waybar.chromium {
     color: @fg-color;
 }
 
-#custom-covid {
-    padding: 0 10px;
-    margin: 0 4px;
-    background-color: @bg-color-16;
-    color: @fg-color;
-}
-
 #backlight {
     padding: 0 10px;
     margin: 0 4px;
@@ -234,13 +227,6 @@ window#waybar.chromium {
     padding: 0 10px;
     margin: 0 4px;
     background-color: @bg-color-5;
-    color: @fg-color;
-}
-
-#idle_inhibitor {
-    padding: 0 10px;
-    margin: 0 4px;
-    background-color: @bg-color-14;
     color: @fg-color;
 }
 
