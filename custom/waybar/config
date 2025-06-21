@@ -14,11 +14,18 @@
         "network",
         "cpu",
         "memory",
+        "disk",
         "battery",
         "clock",
         "tray",
     ],
     // Modules configuration
+    "disk": {
+      "interval": 30,
+      "path": "/",
+      "format": "{specific_free:0.2f}GiB",
+      "unit": "GiB",
+    },
     "keyboard-state": {
         "numlock": true,
         "capslock": true,

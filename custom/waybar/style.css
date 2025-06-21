@@ -230,6 +230,13 @@ window#waybar.chromium {
     color: @fg-color;
 }
 
+#disk {
+  padding: 0 5px;
+  margin: 0 4px;
+  background-color: @bg-color-5;
+    color: @fg-color;
+}
+
 #mpd {
     padding: 0 10px;
     margin: 0 4px;

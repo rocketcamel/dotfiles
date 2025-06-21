@@ -13,7 +13,7 @@
     home-manager.users.luca = {
 
       xdg.configFile = {
-        "rofi".source = ../../custom/rofi;
+        rofi.source = ../../custom/rofi;
       };
     };
   };

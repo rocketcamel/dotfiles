@@ -39,10 +39,6 @@
     programs.hyprland.enable = true;
     services.tumbler.enable = true;
     services.displayManager.ly.enable = true;
-    # services.displayManager.sddm = {
-    #   enable = true;
-    #   wayland.enable = true;
-    # };
     rofi.enable = true;
 
     home-manager.users.luca = {
@@ -62,7 +58,7 @@
         };
       };
       xdg.configFile = {
-        "waybar".source = ../../custom/waybar;
+        waybar.source = ../../custom/waybar;
       };
       services.dunst = {
         enable = true;
@@ -84,56 +80,48 @@
         enable = true;
         xwayland.enable = true;
         systemd.enable = true;
-        plugins = with pkgs; [
-          hyprlandPlugins.hy3
-        ];
         settings = {
           "$mod" = "SUPER";
           "$terminal" = "ghostty";
           "$menu" = "rofi -show drun -theme ~/.config/rofi/launcher.rasi";
-          bind = [
-            "$mod, Return, exec, $terminal"
-            "$mod SHIFT, Q, killactive"
-            "$mod SHIFT, E, exit"
-            "$mod SHIFT, SPACE, togglefloating"
-            "$mod, d, exec, $menu"
-            "$mod, h, movefocus, l"
-            "$mod, l, movefocus, r"
-            "$mod, k, movefocus, u"
-            "$mod, j, movefocus, d"
+          bind =
+            [
+              "$mod, Return, exec, $terminal"
+              "$mod SHIFT, Q, killactive"
+              "$mod SHIFT, E, exit"
+              "$mod SHIFT, SPACE, togglefloating"
+              "$mod, d, exec, $menu"
+              "$mod, h, movefocus, l"
+              "$mod, l, movefocus, r"
+              "$mod, k, movefocus, u"
+              "$mod, j, movefocus, d"
 
-            "$mod, 1, workspace, 1"
-            "$mod, 2, workspace, 2"
-            "$mod, 3, workspace, 3"
-            "$mod, 4, workspace, 4"
-            "$mod, 5, workspace, 5"
-            "$mod, 6, workspace, 6"
-            "$mod, 7, workspace, 7"
-            "$mod, 8, workspace, 8"
-            "$mod, 9, workspace, 9"
-            "$mod, 0, workspace, 10"
-            "$mod SHIFT, 1, movetoworkspace, 1"
-            "$mod SHIFT, 2, movetoworkspace, 2"
-            "$mod SHIFT, 3, movetoworkspace, 3"
-            "$mod SHIFT, 4, movetoworkspace, 4"
-            "$mod SHIFT, 5, movetoworkspace, 5"
-            "$mod SHIFT, 6, movetoworkspace, 6"
-            "$mod SHIFT, 7, movetoworkspace, 7"
-            "$mod SHIFT, 8, movetoworkspace, 8"
-            "$mod SHIFT, 9, movetoworkspace, 9"
-            "$mod SHIFT, 0, movetoworkspace, 10"
-          ];
+              "$mod, 0, workspace, 10"
+              "$mod SHIFT, 0, movetoworkspacesilent, 10"
+            ]
+            ++ (builtins.concatLists (
+              builtins.genList (
+                i:
+                let
+                  ws = i + 1;
+                in
+                [
+                  "$mod, ${toString ws}, workspace, ${toString ws}"
+                  "$mod SHIFT, ${toString ws}, movetoworkspacesilent, ${toString ws}"
+                ]
+              ) 9
+            ));
           bindm = [
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
           ];
           bindel = [
-            ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-            ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ",XF86AudioRaiseVolume, exec, bash -c \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && vol=\\\$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int(\\\$2 * 100)}') && notify-send -h int:value:\\\$vol -h string:synchronous:volume -u low \\\"Volume\\\"\""
+            ",XF86AudioLowerVolume, exec, bash -c \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && vol=\\\$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int(\\\$2 * 100)}') && notify-send -h int:value:\\\$vol -h string:synchronous:volume -u low \\\"Volume\\\"\""
             ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
             ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            ",XF86MonBrightnessUp, exec, bash -c 'brightnessctl s +5% && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc'"
-            ",XF86MonBrightnessDown, exec, bash -c 'brightnessctl s 5%- && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc'"
+            ",XF86MonBrightnessUp, exec, bash -c 'brightnessctl s +5% && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc -h string:synchronous:brightness -u low'"
+            ",XF86MonBrightnessDown, exec, bash -c 'brightnessctl s 5%- && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc -h string:synchronous:brightness -u low'"
           ];
           general = {
             gaps_in = 0;
