@@ -27,6 +27,12 @@ final_space = true
     [blocks.segments.properties]
       cache_duration = 'none'
       style = 'full'
+[[blocks.segments]]
+  type = "text"
+  template = "{{if eq .Env.name \"nix-shell-env\"}} (dev){{end}}"
+  foreground = "yellow"
+  background = "transparent"
+  style = "plain"
 
   [[blocks.segments]]
     template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'

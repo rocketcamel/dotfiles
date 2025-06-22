@@ -275,7 +275,7 @@ label:focus {
 }
 
 #network.disconnected {
-    background-color: @alert-bg-color;
+    background-color: @bg-color;
 }
 
 #custom-vpn.disconnected {
