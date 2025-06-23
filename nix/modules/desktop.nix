@@ -34,6 +34,7 @@
       libnotify
       adwaita-icon-theme
       swaybg
+      gnome-themes-extra
     ];
     programs.thunar.enable = true;
     programs.hyprland.enable = true;
@@ -54,17 +55,19 @@
             "font-size" = 15;
           };
         };
-        waybar = {
+        hyprlock = {
           enable = true;
         };
       };
       xdg.configFile = {
-        waybar.source = ../../custom/waybar;
+        "hypr/hyprlock.conf".source = ../../custom/hyprlock/hyprlock.conf;
       };
       services.dunst = {
         enable = true;
         configFile = ../../custom/dunst/dunstrc;
       };
+      services.hyprpolkitagent.enable = true;
+      services.copyq.enable = true;
       gtk = {
         enable = true;
         theme.name = "Adwaita-dark";
