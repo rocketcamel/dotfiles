@@ -31,6 +31,14 @@ window.Bar {
     background-color: $inactive-bg-color;
   }
 
+  .nix-icon {
+    font-size: 24px;
+    padding: 0 2px;
+    background-color: #4169e1;
+    border-top-right-radius: 4px;
+    border: none;
+  }
+
   .workspaces {
     font-weight: bold;
 

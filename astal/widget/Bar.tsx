@@ -139,6 +139,9 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
     application={App}>
     <centerbox>
       <box hexpand halign={Gtk.Align.START} >
+        <box className="nix-icon">
+          <icon icon="nixos-2" />
+        </box>
         <Workspaces />
       </box>
       <box></box>
