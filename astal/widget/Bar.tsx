@@ -140,7 +140,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
     <centerbox>
       <box hexpand halign={Gtk.Align.START} >
         <box className="nix-icon">
-          <icon icon="nixos-2" />
+          <icon icon="nixos-3" />
         </box>
         <Workspaces />
       </box>
