@@ -14,6 +14,10 @@
     rokit.inputs.nixpkgs.follows = "nixpkgs";
     custom-fonts.url = "path:./fonts";
     custom-fonts.inputs.nixpkgs.follows = "nixpkgs";
+    status-bar = {
+      url = "path:../astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -72,6 +76,7 @@
                     inputs.pesde.packages.${host.architecture}.default
                     inputs.mantle.packages.${host.architecture}.default
                     inputs.rokit.packages.${host.architecture}.default
+                    inputs.status-bar.packages.${host.architecture}.status-bar
                   ];
                   fonts.packages = [
                     inputs.custom-fonts.packages.${host.architecture}.default

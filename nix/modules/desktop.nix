@@ -40,6 +40,7 @@
     services.tumbler.enable = true;
     services.displayManager.ly.enable = true;
     rofi.enable = true;
+    services.upower.enable = true;
 
     home-manager.users.luca = {
       programs = {
@@ -139,7 +140,7 @@
           ];
           exec-once = [
             "swaybg -i ~/.config/wallpaper/bg.jpg"
-            "waybar"
+            "status-bar"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"
