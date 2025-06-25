@@ -1,5 +1,6 @@
 import { GLib, Variable } from "astal";
 import GTop from "gi://GTop";
+import Wp05 from "gi://Wp";
 
 type Snapshot = {
   total: number;
@@ -35,12 +36,23 @@ export function get_ram_info() {
   };
 }
 
+function format_bytes(bytes: number) {
+  let units = ["B", "KiB", "MiB", "GiB", "TiB"];
+  let i = 0;
+  let num: number = bytes;
+  while (num >= 1024 && i < units.length - 1) {
+    num /= 1024;
+    i++;
+  }
+
+  return `${num.toFixed(2)}${units[i]}`;
+}
+
 export function get_disk_space() {
   const usage = new GTop.glibtop_fsusage();
   GTop.glibtop_get_fsusage(usage, "/");
 
   const free_bytes = usage.bavail * usage.block_size;
-  const free_gib = free_bytes / 1024 ** 3;
 
-  return free_gib.toFixed(2);
+  return format_bytes(free_bytes);
 }

@@ -92,10 +92,10 @@ function Ram() {
   </box>
 }
 
-let disk_space = Variable(get_disk_space())
+let disk_space = Variable(get_disk_space()).poll(5000, () => get_disk_space())
 function Disk() {
   return <box className="status-box">
-    <label label={bind(disk_space).as((s) => `${s}GiB`)} />
+    <label label={bind(disk_space).as((s) => `${s}`)} />
   </box>
 }
 
@@ -106,7 +106,7 @@ function Battery() {
     if (charging) {
       return { label: `${full_percentage == 100 ? "FULL" : "CHR"}: ${full_percentage}%` }
     }
-    return { label: `${full_percentage == 100 ? "FULL" : "BAT"}: ${full_percentage}` }
+    return { label: `${full_percentage == 100 ? "FULL" : "BAT"}: ${full_percentage}%` }
   })
 
   return <box className="status-box">

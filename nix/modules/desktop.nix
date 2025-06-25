@@ -35,6 +35,8 @@
       adwaita-icon-theme
       swaybg
       gnome-themes-extra
+      wl-clipboard
+      wl-clip-persist
     ];
     programs.thunar.enable = true;
     programs.hyprland.enable = true;
@@ -67,7 +69,7 @@
         configFile = ../../custom/dunst/dunstrc;
       };
       services.hyprpolkitagent.enable = true;
-      services.copyq.enable = true;
+      services.cliphist.enable = true;
       gtk = {
         enable = true;
         theme.name = "Adwaita-dark";
@@ -102,6 +104,7 @@
 
               "$mod, 0, workspace, 10"
               "$mod SHIFT, 0, movetoworkspacesilent, 10"
+              "$mod, f, fullscreen"
             ]
             ++ (builtins.concatLists (
               builtins.genList (
@@ -144,6 +147,7 @@
           exec-once = [
             "swaybg -i ~/.config/wallpaper/bg.jpg"
             "status-bar"
+            "wl-clip-persist --clipboard regular"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"
