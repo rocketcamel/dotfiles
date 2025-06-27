@@ -109,6 +109,9 @@ function Battery() {
     return { label: `${full_percentage == 100 ? "FULL" : "BAT"}: ${full_percentage}%` }
   })
 
+  if (!battery.is_battery) {
+    return <></>
+  }
   return <box className="status-box">
     <label label={battery_info((i) => i.label)} />
   </box>
