@@ -37,6 +37,7 @@
       wl-clipboard
       wl-clip-persist
       wdisplays
+      efibootmgr
     ];
     programs.thunar.enable = true;
     programs.hyprland = {

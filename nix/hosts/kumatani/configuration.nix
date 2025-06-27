@@ -21,6 +21,7 @@
     efiSupport = true;
     device = "nodev";
     efiInstallAsRemovable = true;
+    useOSProber = true;
   };
   networking.hostName = meta.hostname;
   networking.networkmanager.enable = true;
