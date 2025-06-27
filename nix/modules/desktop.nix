@@ -39,9 +39,15 @@
       wdisplays
     ];
     programs.thunar.enable = true;
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
     services.tumbler.enable = true;
-    services.displayManager.ly.enable = true;
+    services.displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
     rofi.enable = true;
     services.upower.enable = true;
 
@@ -91,31 +97,6 @@
       qt = {
         enable = true;
         style.name = "adwaita-dark";
-      };
-      services.kanshi = {
-        enable = true;
-        systemdTarget = "graphical-session.target";
-        settings = [
-          {
-            profile.name = "main";
-            profile.outputs = [
-              {
-                criteria = "DP-1";
-                status = "enable";
-                scale = 1.0;
-                mode = "1920x1080";
-                position = "0,190";
-              }
-              {
-                criteria = "HDMI-A-1";
-                status = "enable";
-                scale = 1.0;
-                mode = "3440x1440";
-                position = "1920,0";
-              }
-            ];
-          }
-        ];
       };
 
       wayland.windowManager.hyprland = {
@@ -188,7 +169,6 @@
           exec-once = [
             "status-bar"
             "wl-clip-persist --clipboard regular"
-            "sleep 4 && kanshi"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"
