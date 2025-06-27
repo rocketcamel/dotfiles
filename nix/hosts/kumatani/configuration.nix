@@ -46,6 +46,7 @@
 
   desktop.enable = true;
   kanata.enable = true;
+  kanata.apple = true;
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
