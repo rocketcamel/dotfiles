@@ -48,6 +48,10 @@
           architecture = "x86_64-linux";
           isWSL = true;
         }
+        {
+          name = "kumatani";
+          architecture = "x86_64-linux";
+        }
       ];
     in
     {

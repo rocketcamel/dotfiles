@@ -33,10 +33,10 @@
       pa_applet
       libnotify
       adwaita-icon-theme
-      swaybg
       gnome-themes-extra
       wl-clipboard
       wl-clip-persist
+      wdisplays
     ];
     programs.thunar.enable = true;
     programs.hyprland.enable = true;
@@ -70,6 +70,15 @@
       };
       services.hyprpolkitagent.enable = true;
       services.cliphist.enable = true;
+      services.hyprpaper = {
+        enable = true;
+        settings = {
+          preload = [ "~/dotfiles/.config/wallpaper/bg.jpg" ];
+          wallpaper = [
+            ",~/dotfiles/.config/wallpaper/bg.jpg"
+          ];
+        };
+      };
       gtk = {
         enable = true;
         theme.name = "Adwaita-dark";
@@ -81,11 +90,38 @@
         enable = true;
         style.name = "adwaita-dark";
       };
+      services.kanshi = {
+        enable = true;
+        settings = [
+          {
+            profile.name = "main";
+            profile.outputs = [
+              {
+                criteria = "DP-1";
+                status = "enable";
+                scale = 1.0;
+                mode = "1920x1080";
+                position = "0,190";
+              }
+              {
+                criteria = "HDMI-A-1";
+                status = "enable";
+                scale = 1.0;
+                mode = "3440x1440";
+                position = "1920,0";
+              }
+            ];
+          }
+        ];
+      };
 
       wayland.windowManager.hyprland = {
         enable = true;
         xwayland.enable = true;
         systemd.enable = true;
+        extraConfig = ''
+          cursor:no_hardware_cursors=1
+        '';
         settings = {
           "$mod" = "SUPER";
           "$terminal" = "ghostty";
@@ -141,13 +177,15 @@
             };
           };
           env = [
-            "XCURSOR_THEME, Adwaita"
+            "XCURSOR_THEME,Adwaita"
             "XCURSOR_SIZE,24"
+            "LIBVA_DRIVER_NAME,nvidia"
+            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
           ];
           exec-once = [
-            "swaybg -i ~/.config/wallpaper/bg.jpg"
             "status-bar"
             "wl-clip-persist --clipboard regular"
+            "sleep 4 && kanshi"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"
