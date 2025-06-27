@@ -73,6 +73,8 @@
       services.hyprpaper = {
         enable = true;
         settings = {
+          ipc = "on";
+          splash = false;
           preload = [ "~/dotfiles/.config/wallpaper/bg.jpg" ];
           wallpaper = [
             ",~/dotfiles/.config/wallpaper/bg.jpg"
@@ -92,6 +94,7 @@
       };
       services.kanshi = {
         enable = true;
+        systemdTarget = "graphical-session.target";
         settings = [
           {
             profile.name = "main";
