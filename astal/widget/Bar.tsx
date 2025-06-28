@@ -7,23 +7,23 @@ import GTop from "gi://GTop"
 import { calc_cpu_usage, get_cpu_snapshot, get_disk_space, get_ram_info } from "./cpu"
 import AstalBattery from "gi://AstalBattery"
 
-const time = Variable("").poll(1000, "date")
-
-function Workspaces() {
+function Workspaces({ monitor }: { monitor: Gdk.Monitor }) {
   const hypr = Hyprland.get_default()
 
   return <box className="workspaces">
     {bind(hypr, "workspaces").as(wss => wss.filter(ws => !(ws.id >= -99 && ws.id <= -2))
       .sort((a, b) => a.id - b.id)
-      .map(ws => (
-        //@ts-ignore
-        <button
-          className={bind(hypr, "focusedWorkspace").as(fw =>
-            ws === fw ? "focused" : "")}
-          onClicked={() => ws.focus()}>
-          {ws.id}
-        </button>
-      )))}
+      .map(ws => {
+        if (ws.monitor.model !== monitor.model) return <></>
+        return (
+          <button
+            className={bind(hypr, "focusedWorkspace").as(fw =>
+              ws === fw ? "focused" : "")}
+            onClicked={() => ws.focus()}>
+            {ws.id}
+          </button>
+        )
+      }))}
   </box>
 }
 
@@ -145,7 +145,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
         <box className="nix-icon">
           <icon icon="nixos-3" />
         </box>
-        <Workspaces />
+        <Workspaces monitor={gdkmonitor} />
       </box>
       <box></box>
       <box hexpand halign={Gtk.Align.END}>
