@@ -28,7 +28,8 @@
           ui_font_size = 16;
           buffer_font_size = 16;
           theme = {
-            mode = "dark";
+            mode = "system";
+            light = "Rosé Pine";
             dark = "Rosé Pine";
           };
           diagnostics = {
