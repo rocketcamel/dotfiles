@@ -38,6 +38,7 @@
       wl-clip-persist
       wdisplays
       efibootmgr
+      nixd
     ];
     programs.thunar.enable = true;
     programs.hyprland = {
@@ -51,6 +52,7 @@
     };
     rofi.enable = true;
     services.upower.enable = true;
+    zed.enable = true;
 
     home-manager.users.luca = {
       programs = {

@@ -14,5 +14,6 @@
     ./keys.nix
     ./rofi.nix
     ./desktop.nix
+    ./zed-editor.nix
   ];
 }
