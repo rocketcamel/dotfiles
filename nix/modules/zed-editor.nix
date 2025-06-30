@@ -27,6 +27,9 @@
           vim_mode = true;
           ui_font_size = 16;
           buffer_font_size = 16;
+          git.inline_blame = {
+            enabled = false;
+          };
           theme = {
             mode = "system";
             light = "Rosé Pine";
@@ -41,6 +44,15 @@
           lsp = {
             "luau-lsp" = {
               settings = {
+                luau-lsp = {
+                  completion = {
+                    imports = {
+                      enabled = true;
+                      suggestRequires = true;
+                      suggestServices = true;
+                    };
+                  };
+                };
                 ext = {
                   roblox = {
                     enabled = true;

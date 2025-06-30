@@ -39,8 +39,8 @@
       wdisplays
       efibootmgr
       nixd
+      xfce.thunar
     ];
-    programs.thunar.enable = true;
     programs.hyprland = {
       enable = true;
       withUWSM = true;
@@ -69,6 +69,7 @@
         hyprlock = {
           enable = true;
         };
+        ranger.enable = true;
       };
       xdg.configFile = {
         "hypr/hyprlock.conf".source = ../../custom/hyprlock/hyprlock.conf;
