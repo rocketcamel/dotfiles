@@ -31,6 +31,7 @@
           git.inline_blame = {
             enabled = false;
           };
+          cursor_blink = false;
           theme = {
             mode = "system";
             light = "Rosé Pine";
