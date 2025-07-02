@@ -31,6 +31,12 @@
     open = true;
     videoAcceleration = true;
   };
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 4 * 1024;
+    }
+  ];
 
   time.timeZone = "America/Vancouver";
 

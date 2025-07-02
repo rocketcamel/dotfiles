@@ -28,6 +28,12 @@
   networking.hostName = meta.hostname;
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 4 * 1024;
+    }
+  ];
 
   time.timeZone = "America/Vancouver";
 
