@@ -52,6 +52,10 @@
           name = "kumatani";
           architecture = "x86_64-linux";
         }
+        {
+          name = "usahara";
+          architecture = "x86_64-linux";
+        }
       ];
     in
     {
