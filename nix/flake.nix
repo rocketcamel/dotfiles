@@ -18,6 +18,10 @@
       url = "path:../astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -74,6 +78,7 @@
               [
                 ./hosts/${host.name}/configuration.nix
                 ./modules/default.nix
+                inputs.sops-nix.nixosModules.sops
                 home-manager.nixosModules.home-manager
                 {
                   nix.settings.experimental-features = [
