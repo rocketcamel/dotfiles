@@ -55,7 +55,7 @@
     ];
     programs.thunar.enable = true;
     services.tumbler.enable = true;
-    rofi.enable = true;
+    # rofi.enable = true;
 
     home-manager.users.luca = {
       programs = {

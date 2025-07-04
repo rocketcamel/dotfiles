@@ -28,7 +28,6 @@
       prismlauncher
       feh
       dconf
-      rofi
       papirus-icon-theme
       pa_applet
       libnotify
@@ -50,7 +49,7 @@
       enable = true;
       wayland = true;
     };
-    rofi.enable = true;
+    wofi.enable = true;
     services.upower.enable = true;
     zed.enable = true;
 
@@ -135,7 +134,7 @@
         settings = {
           "$mod" = "SUPER";
           "$terminal" = "ghostty";
-          "$menu" = "rofi -show drun -theme ~/.config/rofi/launcher.rasi";
+          "$menu" = "wofi -show drun";
           bind =
             [
               "$mod, Return, exec, $terminal"
