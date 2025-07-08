@@ -39,6 +39,7 @@
       efibootmgr
       nixd
       xfce.thunar
+      altserver-linux
     ];
     programs.hyprland = {
       enable = true;

@@ -60,7 +60,7 @@
           profile.name = "main";
           profile.outputs = [
             {
-              criteria = "DP-1";
+              criteria = "DP-2";
               status = "enable";
               scale = 1.0;
               mode = "1920x1080";
