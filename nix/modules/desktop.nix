@@ -135,7 +135,7 @@
         settings = {
           "$mod" = "SUPER";
           "$terminal" = "ghostty";
-          "$menu" = "wofi -show drun";
+          "$menu" = "wofi";
           bind =
             [
               "$mod, Return, exec, $terminal"
@@ -143,6 +143,7 @@
               "$mod SHIFT, E, exit"
               "$mod SHIFT, SPACE, togglefloating"
               "$mod, d, exec, $menu"
+              "$mod SHIFT, D, exec, bash -c ~/dotfiles/scripts/workspace.sh"
               "$mod, h, movefocus, l"
               "$mod, l, movefocus, r"
               "$mod, k, movefocus, u"
