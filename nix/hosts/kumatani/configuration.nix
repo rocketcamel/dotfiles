@@ -26,11 +26,6 @@
   networking.hostName = meta.hostname;
   networking.networkmanager.enable = true;
   hardware.bluetooth.enable = true;
-  hardware.nvidia = {
-    modesetting.enable = true;
-    open = true;
-    videoAcceleration = true;
-  };
   swapDevices = [
     {
       device = "/swapfile";
@@ -92,6 +87,8 @@
   };
 
   hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";

@@ -2,9 +2,9 @@
   description = "Top level flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager?ref=release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     pesde.url = "github:rocketcamel/pesde-nix";
     pesde.inputs.nixpkgs.follows = "nixpkgs";

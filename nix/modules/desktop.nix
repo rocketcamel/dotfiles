@@ -46,7 +46,7 @@
       withUWSM = true;
     };
     services.tumbler.enable = true;
-    services.displayManager.gdm = {
+    services.xserver.displayManager.gdm = {
       enable = true;
       wayland = true;
     };

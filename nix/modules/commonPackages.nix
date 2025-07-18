@@ -37,7 +37,6 @@
       asciiquarium
       wireguard-tools
       fzf
-      lune
       awscli2
       # deno
       jq

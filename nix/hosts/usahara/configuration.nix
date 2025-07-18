@@ -62,6 +62,8 @@
     openssh.authorizedKeys.keys = config.authorized_ssh;
   };
   hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
@@ -76,7 +78,7 @@
             {
               status = "enable";
               criteria = "HDMI-A-1";
-              position = "0,0";
+              position = "1920,0";
               mode = "1920x1080";
               scale = 1.0;
             }
@@ -84,7 +86,7 @@
 
               status = "enable";
               criteria = "DP-1";
-              position = "1920,0";
+              position = "0,0";
               mode = "1920x1080@144Hz";
               scale = 1.0;
             }
