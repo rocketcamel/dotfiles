@@ -154,6 +154,7 @@
               "$mod, l, movefocus, r"
               "$mod, k, movefocus, u"
               "$mod, j, movefocus, d"
+              "$mod, Space, togglesplit"
 
               "$mod, 0, workspace, 10"
               "$mod SHIFT, 0, movetoworkspacesilent, 10"
@@ -186,6 +187,9 @@
           general = {
             gaps_in = 0;
             gaps_out = 0;
+          };
+          dwindle = {
+            preserve_split = true;
           };
           decoration = {
             rounding = 0;
