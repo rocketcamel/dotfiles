@@ -15,7 +15,6 @@
       vscode-fhs
       pavucontrol
       vlc
-      vinegar
       wine64
       vesktop
       firefox
@@ -53,6 +52,13 @@
     wofi.enable = true;
     services.upower.enable = true;
     zed.enable = true;
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      config.common = {
+        default = "gtk";
+      };
+    };
 
     home-manager.users.luca = {
       programs = {
