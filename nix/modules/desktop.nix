@@ -39,6 +39,7 @@
       nixd
       xfce.thunar
       altserver-linux
+      xdg-desktop-portal
     ];
     programs.hyprland = {
       enable = true;
@@ -52,6 +53,7 @@
     wofi.enable = true;
     services.upower.enable = true;
     zed.enable = true;
+    virt.enable = true;
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];

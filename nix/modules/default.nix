@@ -15,5 +15,6 @@
     ./wofi.nix
     ./desktop.nix
     ./zed-editor.nix
+    ./virtualization.nix
   ];
 }
