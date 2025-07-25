@@ -54,6 +54,7 @@
     services.upower.enable = true;
     zed.enable = true;
     virt.enable = true;
+    printing.enable = true;
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
