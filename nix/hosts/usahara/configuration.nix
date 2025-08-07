@@ -78,7 +78,7 @@
             {
               status = "enable";
               criteria = "HDMI-A-1";
-              position = "1920,0";
+              position = "0,0";
               mode = "1920x1080";
               scale = 1.0;
             }
@@ -86,7 +86,7 @@
 
               status = "enable";
               criteria = "DP-1";
-              position = "0,0";
+              position = "1920,0";
               mode = "1920x1080@144Hz";
               scale = 1.0;
             }
