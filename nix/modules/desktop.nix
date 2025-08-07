@@ -40,6 +40,11 @@
       xfce.thunar
       altserver-linux
       xdg-desktop-portal
+      microsoft-edge
+      libadwaita
+      grim
+      slurp
+      swappy
     ];
     programs.hyprland = {
       enable = true;
@@ -145,36 +150,36 @@
           "$mod" = "SUPER";
           "$terminal" = "ghostty";
           "$menu" = "wofi";
-          bind =
-            [
-              "$mod, Return, exec, $terminal"
-              "$mod SHIFT, Q, killactive"
-              "$mod SHIFT, E, exit"
-              "$mod SHIFT, SPACE, togglefloating"
-              "$mod, d, exec, $menu"
-              "$mod SHIFT, D, exec, bash -c ~/dotfiles/scripts/workspace.sh"
-              "$mod, h, movefocus, l"
-              "$mod, l, movefocus, r"
-              "$mod, k, movefocus, u"
-              "$mod, j, movefocus, d"
-              "$mod, Space, togglesplit"
+          bind = [
+            "$mod, Return, exec, $terminal"
+            "$mod SHIFT, Q, killactive"
+            "$mod SHIFT, E, exit"
+            "$mod SHIFT, SPACE, togglefloating"
+            "$mod, d, exec, $menu"
+            "$mod SHIFT, D, exec, bash -c ~/dotfiles/scripts/workspace.sh"
+            "$mod, h, movefocus, l"
+            "$mod, l, movefocus, r"
+            "$mod, k, movefocus, u"
+            "$mod, j, movefocus, d"
+            "$mod, Space, togglesplit"
+            "$mod SHIFT, v, exec, bash -c ~/dotfiles/scripts/copy.sh"
 
-              "$mod, 0, workspace, 10"
-              "$mod SHIFT, 0, movetoworkspacesilent, 10"
-              "$mod, f, fullscreen"
-            ]
-            ++ (builtins.concatLists (
-              builtins.genList (
-                i:
-                let
-                  ws = i + 1;
-                in
-                [
-                  "$mod, ${toString ws}, workspace, ${toString ws}"
-                  "$mod SHIFT, ${toString ws}, movetoworkspacesilent, ${toString ws}"
-                ]
-              ) 9
-            ));
+            "$mod, 0, workspace, 10"
+            "$mod SHIFT, 0, movetoworkspacesilent, 10"
+            "$mod, f, fullscreen"
+          ]
+          ++ (builtins.concatLists (
+            builtins.genList (
+              i:
+              let
+                ws = i + 1;
+              in
+              [
+                "$mod, ${toString ws}, workspace, ${toString ws}"
+                "$mod SHIFT, ${toString ws}, movetoworkspacesilent, ${toString ws}"
+              ]
+            ) 9
+          ));
           bindm = [
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
