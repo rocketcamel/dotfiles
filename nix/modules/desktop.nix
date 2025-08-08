@@ -45,7 +45,7 @@
       grim
       slurp
       swappy
-      lftp
+      termscp
     ];
     programs.hyprland = {
       enable = true;
@@ -88,12 +88,6 @@
       };
       xdg.configFile = {
         "hypr/hyprlock.conf".source = ../../custom/hyprlock/hyprlock.conf;
-      };
-      home.file = {
-        ".lftprc".text = ''
-          alias l ls
-          set default-protocol sftp
-        '';
       };
       services.dunst = {
         enable = true;
