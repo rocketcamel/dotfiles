@@ -22,6 +22,7 @@ in
     export GOPATH="$HOME/go"
     export GOBIN="$HOME/go/bin"
     export PATH="$GOBIN:$PATH"
+    export PATH="$HOME/.cache/.bun/bin:$PATH"
     alias cat="bat"
   ''
   + "\n"

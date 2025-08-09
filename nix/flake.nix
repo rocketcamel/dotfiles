@@ -74,38 +74,37 @@
               };
             };
             system = host.architecture;
-            modules =
-              [
-                ./hosts/${host.name}/configuration.nix
-                ./modules/default.nix
-                inputs.sops-nix.nixosModules.sops
-                home-manager.nixosModules.home-manager
-                {
-                  nix.settings.experimental-features = [
-                    "nix-command"
-                    "flakes"
-                  ];
-                  environment.systemPackages = [
-                    inputs.pesde.packages.${host.architecture}.default
-                    inputs.mantle.packages.${host.architecture}.default
-                    inputs.rokit.packages.${host.architecture}.default
-                    inputs.status-bar.packages.${host.architecture}.status-bar
-                  ];
-                  fonts.packages = [
-                    inputs.custom-fonts.packages.${host.architecture}.default
-                  ];
-                  nixpkgs.config.allowUnfree = true;
-                }
-              ]
-              ++ (
-                if builtins.hasAttr "isWSL" host then
-                  [
-                    nixos-wsl.nixosModules.default
-                    ./hosts/wsl/configuration.nix
-                  ]
-                else
-                  [ ]
-              );
+            modules = [
+              ./hosts/${host.name}/configuration.nix
+              ./modules/default.nix
+              inputs.sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
+              {
+                nix.settings.experimental-features = [
+                  "nix-command"
+                  "flakes"
+                ];
+                environment.systemPackages = [
+                  inputs.pesde.packages.${host.architecture}.default
+                  inputs.mantle.packages.${host.architecture}.default
+                  inputs.rokit.packages.${host.architecture}.default
+                  inputs.status-bar.packages.${host.architecture}.status-bar
+                ];
+                fonts.packages = [
+                  inputs.custom-fonts.packages.${host.architecture}.default
+                ];
+                nixpkgs.config.allowUnfree = true;
+              }
+            ]
+            ++ (
+              if builtins.hasAttr "isWSL" host then
+                [
+                  nixos-wsl.nixosModules.default
+                  ./hosts/wsl/configuration.nix
+                ]
+              else
+                [ ]
+            );
           };
         }) hosts
       );
