@@ -46,6 +46,7 @@
       slurp
       swappy
       termscp
+      awscli2
     ];
     programs.hyprland = {
       enable = true;
