@@ -59,6 +59,7 @@
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
     services.openssh.enable = lib.mkDefault true;
+    hardware.enableAllFirmware = true;
 
     programs.neovim = lib.mkDefault {
       enable = true;
