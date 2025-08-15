@@ -69,6 +69,10 @@
         default = "gtk";
       };
     };
+    services.tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
 
     home-manager.users.luca = {
       programs = {
