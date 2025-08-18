@@ -23,6 +23,26 @@ local function setup_luau()
   })
 end
 
+local function setup_lua()
+  require("lspconfig").lua_ls.setup({
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file('', true),
+          checkThirdParty = false,
+        },
+      }
+    }
+  })
+end
+
+local function setup_ts()
+  require("lspconfig").ts_ls.setup({})
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -45,7 +65,6 @@ return {
         ensure_installed = {
           "ts_ls",
           "lua_ls",
-          "luau_lsp",
           "rust_analyzer",
           "nil_ls",
           "tailwindcss",
@@ -54,9 +73,11 @@ return {
           "gopls",
           "templ",
         },
-        automatic_enable = { exclude = { "luau_lsp" } },
+        automatic_enable = { exclude = { "luau_lsp", "lua_ls" } },
       })
       setup_luau()
+      setup_lua()
+      setup_ts()
     end,
   },
 }
