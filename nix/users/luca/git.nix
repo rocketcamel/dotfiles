@@ -5,7 +5,7 @@
   signing = {
     signByDefault = true;
     format = "ssh";
-    key = "~/.ssh/commits.id_rsa.pub";
+    key = "~/.ssh/commits.id_ed25519.pub";
   };
   extraConfig = {
     init = {
