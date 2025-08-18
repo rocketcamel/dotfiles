@@ -97,26 +97,6 @@
         "type": "github"
       }
     },
-    "mantle": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1740286249,
-        "narHash": "sha256-BvNcVzVXf8N7mCxV6PpO7cR5hx4k32BfuYiSmE1+DzA=",
-        "owner": "rocketcamel",
-        "repo": "mantle-nix",
-        "rev": "a5bdab16b5d3024e7be1f4f2bc9011b2999f3073",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rocketcamel",
-        "repo": "mantle-nix",
-        "type": "github"
-      }
-    },
     "nixos-wsl": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -169,55 +149,12 @@
         "type": "github"
       }
     },
-    "pesde": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1743234589,
-        "narHash": "sha256-1m2PoBP7OL5oaw/xTx2opLEURzxWO16ZRT3Kms3khCw=",
-        "owner": "rocketcamel",
-        "repo": "pesde-nix",
-        "rev": "57df9aea751b121e10ce1b9104185912e525381a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rocketcamel",
-        "repo": "pesde-nix",
-        "type": "github"
-      }
-    },
-    "rokit": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1740302664,
-        "narHash": "sha256-CszU5pPaw1i03nesKvXxXQt83axbEStaYwP3sxQ31ts=",
-        "owner": "rocketcamel",
-        "repo": "rokit-nix",
-        "rev": "64b63797d6a3a9659de1fbd21612fee32e785f3d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rocketcamel",
-        "repo": "rokit-nix",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "custom-fonts": "custom-fonts",
         "home-manager": "home-manager",
-        "mantle": "mantle",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
-        "pesde": "pesde",
-        "rokit": "rokit",
         "sops-nix": "sops-nix",
         "status-bar": "status-bar"
       }

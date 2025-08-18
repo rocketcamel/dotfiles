@@ -47,6 +47,8 @@
       swappy
       termscp
       awscli2
+      gitui
+      htop
     ];
     programs.hyprland = {
       enable = true;

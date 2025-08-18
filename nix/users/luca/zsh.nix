@@ -18,7 +18,6 @@ in
   syntaxHighlighting.enable = true;
   history.size = 1000;
   envExtra = ''
-    export PATH="$PATH:$HOME/.rokit/bin"
     export GOPATH="$HOME/go"
     export GOBIN="$HOME/go/bin"
     export PATH="$GOBIN:$PATH"

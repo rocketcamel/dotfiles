@@ -4,20 +4,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     home-manager.url = "github:nix-community/home-manager?ref=release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    pesde.url = "github:rocketcamel/pesde-nix";
-    pesde.inputs.nixpkgs.follows = "nixpkgs";
-    mantle.url = "github:rocketcamel/mantle-nix";
-    mantle.inputs.nixpkgs.follows = "nixpkgs";
-    rokit.url = "github:rocketcamel/rokit-nix";
-    rokit.inputs.nixpkgs.follows = "nixpkgs";
+
     custom-fonts.url = "path:./fonts";
     custom-fonts.inputs.nixpkgs.follows = "nixpkgs";
+
     status-bar = {
       url = "path:../astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,9 +83,6 @@
                   "flakes"
                 ];
                 environment.systemPackages = [
-                  inputs.pesde.packages.${host.architecture}.default
-                  inputs.mantle.packages.${host.architecture}.default
-                  inputs.rokit.packages.${host.architecture}.default
                   inputs.status-bar.packages.${host.architecture}.status-bar
                 ];
                 fonts.packages = [
