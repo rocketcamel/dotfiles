@@ -36,7 +36,6 @@
       wl-clip-persist
       wdisplays
       efibootmgr
-      nixd
       xfce.thunar
       altserver-linux
       xdg-desktop-portal

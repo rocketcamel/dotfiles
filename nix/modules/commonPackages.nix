@@ -55,6 +55,7 @@
       pkg-config
       openssl
       gnupg
+      nixd
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;

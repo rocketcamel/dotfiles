@@ -15,6 +15,7 @@
     tmux = import ./tmux.nix { inherit pkgs; };
     oh-my-posh = import ./omp.nix;
     eza = import ./eza.nix;
+    mise = import ./mise.nix;
   };
   xdg.mimeApps = import ./mime.nix;
 

@@ -43,6 +43,10 @@ local function setup_ts()
   require("lspconfig").ts_ls.setup({})
 end
 
+local function setup_nix()
+  require("lspconfig").nixd.setup({})
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -65,8 +69,8 @@ return {
         ensure_installed = {
           "ts_ls",
           "lua_ls",
+          "luau_lsp",
           "rust_analyzer",
-          "nil_ls",
           "tailwindcss",
           "svelte",
           "html",
@@ -78,6 +82,7 @@ return {
       setup_luau()
       setup_lua()
       setup_ts()
+      setup_nix()
     end,
   },
 }
