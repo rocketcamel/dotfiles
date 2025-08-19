@@ -15,3 +15,5 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+
+vim.o.winborder = "rounded"
