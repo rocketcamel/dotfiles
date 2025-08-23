@@ -17,5 +17,6 @@
     ./zed-editor.nix
     ./virtualization.nix
     ./printing.nix
+    ./sensors.nix
   ];
 }

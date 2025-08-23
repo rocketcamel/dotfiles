@@ -50,6 +50,7 @@
   desktop.enable = true;
   kanata.enable = true;
   kanata.apple = true;
+  sensors.enable = true;
 
   users.users.luca = {
     isNormalUser = true;

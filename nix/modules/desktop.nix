@@ -48,6 +48,8 @@
       awscli2
       gitui
       htop
+      lm_sensors
+      fanctl
     ];
     programs.hyprland = {
       enable = true;
