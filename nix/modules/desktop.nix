@@ -50,7 +50,16 @@
       htop
       lm_sensors
       fanctl
+      libnotify
     ];
+    boot.kernelModules = [
+      "iptables"
+      "iptable_nat"
+    ];
+    virtualisation.docker = {
+      enable = true;
+      rootless.enable = true;
+    };
     programs.hyprland = {
       enable = true;
       withUWSM = true;

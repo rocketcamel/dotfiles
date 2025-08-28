@@ -56,11 +56,26 @@
       openssl
       gnupg
       nixd
+      sops
+      yubikey-personalization
+      yubikey-manager
+      gnupg
+      (pass.withExtensions (exts: with exts; [ pass-import ]))
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
     services.openssh.enable = lib.mkDefault true;
     hardware.enableAllFirmware = true;
+    sops.defaultSopsFile = ../../secrets/sops.yaml;
+    sops.age.sshKeyPaths = [ "/etc/ssh/id_ed25519" ];
+    sops.secrets.win_pw = { };
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+      pinentryPackage = pkgs.pinentry-gtk2;
+    };
+    services.pcscd.enable = true;
+    services.udev.packages = with pkgs; [ yubikey-personalization ];
 
     programs.neovim = lib.mkDefault {
       enable = true;
