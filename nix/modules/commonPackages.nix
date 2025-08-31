@@ -68,7 +68,6 @@
     hardware.enableAllFirmware = true;
     sops.defaultSopsFile = ../../secrets/sops.yaml;
     sops.age.sshKeyPaths = [ "/etc/ssh/id_ed25519" ];
-    sops.secrets.win_pw = { };
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
