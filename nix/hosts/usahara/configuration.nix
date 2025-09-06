@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+# Edit this configuration file to define what should be installed onusahara
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
@@ -91,7 +91,7 @@
               status = "enable";
               criteria = "DP-1";
               position = "1920,0";
-              mode = "1920x1080@144Hz";
+              mode = "3440x1440@144Hz";
               scale = 1.0;
             }
           ];
