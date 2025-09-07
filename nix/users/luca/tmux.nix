@@ -11,6 +11,11 @@
   extraConfig = ''
     bind -n M-h previous-window
     bind -n M-l next-window
+    bind h select-pane -L
+    bind j select-pane -D
+    bind k select-pane -U
+    bind l select-pane -R
+
   '';
   escapeTime = 0;
 }

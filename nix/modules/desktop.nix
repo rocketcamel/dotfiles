@@ -145,6 +145,21 @@
           ];
         };
       };
+      services.hyprsunset = {
+        enable = true;
+        transitions = {
+          sunrise = {
+            calendar = "*-*-* 06:00:00";
+          };
+          sunset = {
+            calendar = "*-*-* 20:00:00";
+            requests = [
+              [ "temperature 3500" ]
+              [ "gamma 0.8" ]
+            ];
+          };
+        };
+      };
       gtk = {
         enable = true;
         theme.name = "Adwaita-dark";
