@@ -55,6 +55,8 @@
     boot.kernelModules = [
       "iptables"
       "iptable_nat"
+      "bluetooth"
+      "btusb"
     ];
     virtualisation.docker = {
       enable = true;
@@ -64,6 +66,7 @@
       enable = true;
       withUWSM = true;
     };
+    programs.steam.enable = true;
     services.tumbler.enable = true;
     services.xserver.displayManager.gdm = {
       enable = true;

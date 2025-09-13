@@ -61,6 +61,9 @@
       yubikey-manager
       gnupg
       (pass.withExtensions (exts: with exts; [ pass-import ]))
+      python3
+      jdt-language-server
+      gradle
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;

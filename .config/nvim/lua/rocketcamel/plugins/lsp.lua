@@ -17,7 +17,7 @@ local function setup_luau()
 			port = 3667,
 		},
 		fflags = {
-			enable_new_solver = true,
+			-- enable_new_solver = true,
 			sync = true,
 		},
 	})
@@ -61,6 +61,12 @@ local function setup_nix()
 	require("lspconfig").nixd.setup({})
 end
 
+local function setup_java()
+	require("lspconfig").jdtls.setup({
+		root_markers = { "mise.toml", ".git", "gradlew", "gradle.properties", "settings.gradle.kts" },
+	})
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -90,6 +96,7 @@ return {
 					"html",
 					"gopls",
 					"templ",
+					"jdtls",
 				},
 				automatic_enable = { exclude = { "luau_lsp", "lua_ls" } },
 			})
@@ -97,6 +104,7 @@ return {
 			setup_lua()
 			setup_ts()
 			setup_nix()
+			setup_java()
 		end,
 	},
 }
