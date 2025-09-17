@@ -12,7 +12,7 @@
     ./kanata.nix
     ./pipewire.nix
     ./keys.nix
-    ./wofi.nix
+    ./rofi.nix
     ./desktop.nix
     ./zed-editor.nix
     ./virtualization.nix

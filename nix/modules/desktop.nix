@@ -19,16 +19,13 @@
       vesktop
       firefox
       brightnessctl
-      flameshot
       jellyfin-media-player
       anki-bin
       mpv
-      ahk_x11
       prismlauncher
       feh
       dconf
       papirus-icon-theme
-      pa_applet
       libnotify
       adwaita-icon-theme
       gnome-themes-extra
@@ -50,7 +47,6 @@
       htop
       lm_sensors
       fanctl
-      libnotify
     ];
     boot.kernelModules = [
       "iptables"
@@ -72,7 +68,7 @@
       enable = true;
       wayland = true;
     };
-    wofi.enable = true;
+    rofi.enable = true;
     services.upower.enable = true;
     zed.enable = true;
     virt.enable = true;
@@ -188,7 +184,7 @@
         settings = {
           "$mod" = "SUPER";
           "$terminal" = "ghostty";
-          "$menu" = "wofi";
+          "$menu" = "rofi -show drun";
           bind = [
             "$mod, Return, exec, $terminal"
             "$mod SHIFT, Q, killactive"
@@ -202,6 +198,7 @@
             "$mod, j, movefocus, d"
             "$mod, Space, togglesplit"
             "$mod SHIFT, v, exec, bash -c ~/dotfiles/scripts/copy.sh"
+            "$mod SHIFT, s, exec, bash -c ~/dotfiles/scripts/screenshot.sh"
 
             "$mod, 0, workspace, 10"
             "$mod SHIFT, 0, movetoworkspacesilent, 10"
