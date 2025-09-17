@@ -23,12 +23,16 @@ window.Bar {
   .status-box {
     background-color: $bg-color-6;
     padding: 0 4px;
-    margin: 0 4px;
+    margin: 0 2px;
     font-size: 16px;
   }
 
   .inactive {
     background-color: $inactive-bg-color;
+  }
+
+  .client-title label {
+    font-weight: bold;
   }
 
   .nix-icon {

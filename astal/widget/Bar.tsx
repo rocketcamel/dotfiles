@@ -7,9 +7,10 @@ import Ram from "./ram";
 import Disk from "./disk";
 import Battery from "./battery";
 import Time from "./time";
+import Title from "./title";
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
-  const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
+  const { TOP, LEFT, RIGHT } = Astal.WindowAnchor;
 
   //@ts-ignore
   return (
@@ -17,7 +18,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       className="Bar"
       gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      anchor={BOTTOM | LEFT | RIGHT}
+      anchor={TOP | LEFT | RIGHT}
       application={App}
     >
       <centerbox>
@@ -27,7 +28,9 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
           </box>
           <Workspaces monitor={gdkmonitor} />
         </box>
-        <box></box>
+        <box className="client-title">
+          <Title />
+        </box>
         <box hexpand halign={Gtk.Align.END}>
           <Audio />
           <NetworkModule />
