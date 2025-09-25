@@ -12,7 +12,7 @@
     custom-fonts.inputs.nixpkgs.follows = "nixpkgs";
 
     status-bar = {
-      url = "path:../astal";
+      url = "github:rocketcamel/dotfiles-status-bar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

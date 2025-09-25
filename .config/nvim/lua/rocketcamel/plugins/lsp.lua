@@ -30,6 +30,8 @@ local function setup_luau()
 						enabled = true,
 						suggestServices = true,
 						suggestRequires = true,
+						requireStyle = "alwaysAbsolute",
+						stringRequires = { enabled = true },
 					},
 				},
 			},
