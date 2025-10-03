@@ -99,6 +99,8 @@ return {
 					"gopls",
 					"templ",
 					"jdtls",
+					"clangd",
+					"cmake",
 				},
 				automatic_enable = { exclude = { "luau_lsp", "lua_ls" } },
 			})
