@@ -64,7 +64,11 @@
       python3
       jdt-language-server
       gradle
+<<<<<<< Updated upstream
       cmake
+=======
+      doppler
+>>>>>>> Stashed changes
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
