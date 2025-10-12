@@ -1,1 +1,1 @@
-cliphist list | rofi -dmenu -p "Copy to clipboard:" -config ~/.config/rofi/oneline-config.rasi | cliphist decode | wl-copy
+cliphist list | rofi -dmenu -p "Copy to clipboard:" | cliphist decode | wl-copy

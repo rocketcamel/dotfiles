@@ -199,6 +199,7 @@
             "$mod, Space, togglesplit"
             "$mod SHIFT, v, exec, bash -c ~/dotfiles/scripts/copy.sh"
             "$mod SHIFT, s, exec, bash -c ~/dotfiles/scripts/screenshot.sh"
+            "$mod, p, exec, bash -c ~/dotfiles/scripts/project.sh"
 
             "$mod, 0, workspace, 10"
             "$mod SHIFT, 0, movetoworkspacesilent, 10"
@@ -230,7 +231,7 @@
           ];
           general = {
             gaps_in = 0;
-            gaps_out = 0;
+            gaps_out = 10;
           };
           dwindle = {
             preserve_split = true;
