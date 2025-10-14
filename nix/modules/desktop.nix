@@ -39,6 +39,7 @@
       microsoft-edge
       libadwaita
       grim
+      grimblast
       slurp
       swappy
       termscp
