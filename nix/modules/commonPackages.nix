@@ -66,6 +66,11 @@
       gradle
       cmake
       doppler
+      wayland
+      wayland-protocols
+      libxkbcommon
+      udev
+      alsa-lib
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;

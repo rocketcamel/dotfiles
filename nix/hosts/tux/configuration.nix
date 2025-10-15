@@ -84,7 +84,10 @@
 
   users.users.luca = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
     hashedPassword = config.hashedPassword;
     openssh.authorizedKeys.keys = config.authorized_ssh;
