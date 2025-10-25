@@ -64,6 +64,7 @@
       withUWSM = true;
     };
     programs.steam.enable = true;
+    programs.obs-studio.enable = true;
     services.tumbler.enable = true;
     services.xserver.displayManager.gdm = {
       enable = true;
