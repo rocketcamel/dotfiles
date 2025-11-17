@@ -26,14 +26,6 @@
   };
 
   networking.hostName = meta.hostname;
-  networking.networkmanager = {
-    enable = true;
-    dns = "systemd-resolved";
-  };
-  # networking.search = [
-  #   "service.consul"
-  #   "node.consul"
-  # ];
   hardware.bluetooth.enable = true;
   swapDevices = [
     {

@@ -18,5 +18,6 @@
     ./virtualization.nix
     ./printing.nix
     ./sensors.nix
+    ./dns.nix
   ];
 }
