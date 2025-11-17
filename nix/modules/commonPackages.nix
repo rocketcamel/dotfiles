@@ -86,6 +86,23 @@
     services.pcscd.enable = true;
     services.udev.packages = with pkgs; [ yubikey-personalization ];
 
+    services.resolved = {
+      enable = true;
+      fallbackDns = [
+        "1.1.1.1"
+        "1.0.0.1"
+      ];
+      domains = [
+        "consul"
+        "service.consul"
+        "node.consul"
+      ];
+      extraConfig = ''
+        [Resolve]
+        DNS=192.168.20.5:8600
+      '';
+    };
+
     programs.neovim = lib.mkDefault {
       enable = true;
       defaultEditor = true;

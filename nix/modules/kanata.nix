@@ -54,6 +54,7 @@
                 @met-mod
               )
             '';
+            extraDefCfg = "process-unmapped-keys yes";
           };
         };
   };
