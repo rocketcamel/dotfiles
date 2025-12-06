@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  pkgs-before,
   ...
 }:
 
@@ -19,7 +20,7 @@
       vesktop
       firefox
       brightnessctl
-      jellyfin-media-player
+      pkgs-before.jellyfin-media-player
       anki-bin
       mpv
       prismlauncher

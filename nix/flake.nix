@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixpkgs-before.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
@@ -70,6 +71,7 @@
               meta = {
                 hostname = host.name;
               };
+              pkgs-before = import inputs.nixpkgs-before { system = host.architecture; };
             };
             system = host.architecture;
             modules = [
@@ -83,7 +85,7 @@
                   "flakes"
                 ];
                 environment.systemPackages = [
-                  inputs.status-bar.packages.${host.architecture}.status-bar
+                  inputs.status-bar.packages.${host.architecture}.default
                 ];
                 fonts.packages = [
                   inputs.custom-fonts.packages.${host.architecture}.default
