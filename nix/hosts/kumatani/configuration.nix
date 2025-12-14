@@ -47,34 +47,9 @@
   };
 
   desktop.enable = true;
-  home-manager.users.luca = {
-    services.kanshi = {
-      enable = true;
-      settings = [
-        {
-          profile.name = "main";
-          profile.outputs = [
-            {
-              criteria = "DP-2";
-              status = "enable";
-              scale = 1.0;
-              mode = "1920x1080";
-              position = "0,190";
-            }
-            {
-              criteria = "HDMI-A-1";
-              status = "enable";
-              scale = 1.0;
-              mode = "3440x1440";
-              position = "1920,0";
-            }
-          ];
-        }
-      ];
-    };
-  };
   kanata.enable = true;
   kanata.apple = true;
+
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [

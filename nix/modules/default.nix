@@ -19,5 +19,7 @@
     ./printing.nix
     ./sensors.nix
     ./dns.nix
+    ./mounts.nix
+    ./nfs-mesh.nix
   ];
 }
