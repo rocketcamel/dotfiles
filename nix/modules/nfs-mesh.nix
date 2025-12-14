@@ -34,7 +34,7 @@ in
 
     exportPath = lib.mkOption {
       type = lib.types.str;
-      default = "/home";
+      default = "/home/luca";
       description = ''
         Path to export to other hosts in the mesh.
         This will be mounted at /mnt/{hostname} on remote hosts.
