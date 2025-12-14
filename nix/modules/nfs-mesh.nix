@@ -74,7 +74,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && lib.elem config.networking.hostName cfg.hosts) {
     boot.supportedFilesystems = [ "nfs" ];
 
     services.rpcbind.enable = true;
