@@ -1,0 +1,63 @@
+From d41d977793921c2dfff6e9df0a721060d4c5ae40 Mon Sep 17 00:00:00 2001
+From: rocketcamel <luca_lise@icloud.com>
+Date: Fri, 19 Dec 2025 18:28:59 -0800
+Subject: [PATCH] fix: add monitor configuration to kumatani
+
+---
+ nix/hosts/kumatani/configuration.nix | 27 +++++++++++++++++++++++++++
+ nix/modules/desktop.nix              |  1 +
+ 2 files changed, 28 insertions(+)
+
+diff --git a/nix/hosts/kumatani/configuration.nix b/nix/hosts/kumatani/configuration.nix
+index 11b0b28..cf2aaab 100644
+--- a/nix/hosts/kumatani/configuration.nix
++++ b/nix/hosts/kumatani/configuration.nix
+@@ -63,6 +63,33 @@
+     hashedPassword = config.hashedPassword;
+     openssh.authorizedKeys.keys = config.authorized_ssh;
+   };
++  home-manager.users.luca = {
++    services.kanshi = {
++      enable = true;
++      settings = [
++        {
++          profile.name = "main";
++          profile.outputs = [
++            {
++              status = "enable";
++              criteria = "DP-2";
++              position = "0,0";
++              mode = "1920x1080";
++              scale = 1.0;
++            }
++            {
++
++              status = "enable";
++              criteria = "HDMI-A-1";
++              position = "1920,0";
++              mode = "3440x1440";
++              scale = 1.0;
++            }
++          ];
++        }
++      ];
++    };
++  };
+ 
+   hardware.graphics.enable = true;
+   services.xserver.videoDrivers = [ "nvidia" ];
+diff --git a/nix/modules/desktop.nix b/nix/modules/desktop.nix
+index d17ca67..5390fe3 100644
+--- a/nix/modules/desktop.nix
++++ b/nix/modules/desktop.nix
+@@ -49,6 +49,7 @@
+       htop
+       lm_sensors
+       fanctl
++      waypipe
+     ];
+     boot.kernelModules = [
+       "iptables"
+-- 
+2.51.2
+
