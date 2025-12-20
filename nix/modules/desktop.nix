@@ -49,6 +49,7 @@
       htop
       lm_sensors
       fanctl
+      waypipe
     ];
     boot.kernelModules = [
       "iptables"

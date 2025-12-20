@@ -63,6 +63,33 @@
     hashedPassword = config.hashedPassword;
     openssh.authorizedKeys.keys = config.authorized_ssh;
   };
+  home-manager.users.luca = {
+    services.kanshi = {
+      enable = true;
+      settings = [
+        {
+          profile.name = "main";
+          profile.outputs = [
+            {
+              status = "enable";
+              criteria = "DP-2";
+              position = "0,0";
+              mode = "1920x1080";
+              scale = 1.0;
+            }
+            {
+
+              status = "enable";
+              criteria = "HDMI-A-1";
+              position = "1920,0";
+              mode = "3440x1440";
+              scale = 1.0;
+            }
+          ];
+        }
+      ];
+    };
+  };
 
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
