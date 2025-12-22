@@ -10,10 +10,12 @@
   imports = [
   ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.efiInstallAsRemovable = true;
-  boot.loader.grub.device = "/dev/nvme0n1";
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    device = "/dev/nvme0n1";
+  };
 
   networking.hostName = meta.hostname;
   networking.networkmanager.enable = true;
@@ -48,7 +50,7 @@
     packages = with pkgs; [
       tree
     ];
-    hashedPassword = "$6$BZKOzqbNgj8F2JDm$KVpnMK1inaM0tnHSw6dIlA1oZ7sT/j7RQL4u5wa9RHYeHcqEFILTqi0HGKCYIwhCEWuJIhBv3h.tjSCZ/j6yw/";
+    hashedPassword = config.hashedPassword;
   };
 
   environment.systemPackages = with pkgs; [
@@ -63,6 +65,6 @@
 
   services.openssh.enable = true;
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
 }

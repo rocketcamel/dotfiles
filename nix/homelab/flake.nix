@@ -2,17 +2,16 @@
   description = "Homelab";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
-    {
-      self,
+    inputs@{
       nixpkgs,
       disko,
-    }@inputs:
+    }:
     let
       nodes = [
         {
@@ -31,12 +30,14 @@
               meta = {
                 hostname = node.name;
               };
+              inherit inputs;
             };
             modules = [
               disko.nixosModules.disko
-              ./${node.name}-configuration.nix
-              ./${node.name}-hardware-configuration.nix
-              ./${node.name}-disk-config.nix
+              ../modules/keys.nix
+              ./nodes/${node.name}/configuration.nix
+              ./nodes/${node.name}/hardware-configuration.nix
+              ./nodes/${node.name}/disk-config.nix
             ];
           };
         }) nodes

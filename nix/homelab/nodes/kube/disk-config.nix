@@ -7,13 +7,9 @@
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02";
-            };
             ESP = {
               type = "EF00";
-              size = "512M";
+              size = "1G";
               content = {
                 type = "filesystem";
                 mountpoint = "/boot";
