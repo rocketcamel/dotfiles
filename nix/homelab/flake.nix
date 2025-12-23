@@ -11,6 +11,7 @@
     inputs@{
       nixpkgs,
       disko,
+      ...
     }:
     let
       nodes = [
@@ -33,11 +34,17 @@
               inherit inputs;
             };
             modules = [
+              {
+                networking.firewall.enable = false;
+                nix.settings.experimental-features = [
+                  "nix-command"
+                  "flakes"
+                ];
+              }
               disko.nixosModules.disko
               ../modules/keys.nix
               ./nodes/${node.name}/configuration.nix
               ./nodes/${node.name}/hardware-configuration.nix
-              ./nodes/${node.name}/disk-config.nix
             ];
           };
         }) nodes

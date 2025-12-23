@@ -1,13 +1,5 @@
-ingress:
-  enabled: true
-  anontations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-  hosts:
-    - host: jellyfin.local
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-
 persistence:
+  config:
+    size: 5gi
   media:
-    size: 10Gi
+    size: 5Gi

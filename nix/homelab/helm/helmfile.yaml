@@ -5,15 +5,9 @@ repositories:
     url: https://jellyfin.github.io/jellyfin-helm
 
 releases:
-  - name: longhorn
-    namespace: longhorn-system
-    chart: longhorn/longhorn
-    version: 1.8.1
-    values:
-      - values/longhorn-values.yaml
   - name: jellyfin
     namespace: media
     chart: jellyfin/jellyfin
-    version: 2.3.0
+    version: 2.7.0
     values:
       - values/jellyfin.yaml

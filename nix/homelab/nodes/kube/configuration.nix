@@ -8,13 +8,14 @@
 
 {
   imports = [
+    ./disk-config.nix
   ];
 
   boot.loader.grub = {
     enable = true;
     efiSupport = true;
     efiInstallAsRemovable = true;
-    device = "/dev/nvme0n1";
+    device = "/dev/vda";
   };
 
   networking.hostName = meta.hostname;
@@ -31,10 +32,10 @@
     role = "server";
     tokenFile = /var/lib/rancher/k3s/server/token;
     clusterInit = true;
-    extraFlags = toString ([
+    extraFlags = toString [
       "--write-kubeconfig-mode \"0644\""
-      "--disable local-storage"
-    ]);
+      # "--disable local-storage"
+    ];
   };
 
   services.openiscsi = {

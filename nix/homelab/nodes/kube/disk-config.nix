@@ -2,11 +2,15 @@
   disko.devices = {
     disk = {
       disk1 = {
-        device = "/dev/nvme0n1";
+        device = "/dev/vda";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
+            boot = {
+              type = "EF02";
+              size = "1M";
+            };
             ESP = {
               type = "EF00";
               size = "1G";

@@ -23,6 +23,7 @@ in
     export PATH="$GOBIN:$PATH"
     export PATH="$HOME/.cache/.bun/bin:$PATH"
     alias cat="bat"
+    alias k="kubectl"
   ''
   + "\n"
   + aliases;
