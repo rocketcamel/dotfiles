@@ -1,5 +1,5 @@
 persistence:
   config:
-    size: 5gi
+    size: 2Gi
   media:
-    size: 5Gi
+    size: 2Gi

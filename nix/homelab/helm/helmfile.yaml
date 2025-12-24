@@ -11,10 +11,19 @@ releases:
     namespace: metallb-system
     version: 0.15.3
 
+  # Cert Manager
+  - name: cert-manager
+    chart: oci://quay.io/jetstack/charts/cert-manager
+    namespace: cert-manager
+    version: 1.19.2
+    values:
+      - crds:
+          enabled: true
+
   # Media Server
-  # - name: jellyfin
-  #   namespace: media
-  #   chart: jellyfin/jellyfin
-  #   version: 2.7.0
-  #   values:
-  #     - values/jellyfin.yaml
+  - name: jellyfin
+    namespace: media
+    chart: jellyfin/jellyfin
+    version: 2.7.0
+    values:
+      - values/jellyfin.yaml

@@ -3,3 +3,6 @@ kind: Kustomization
 
 resources:
   - ./metallb/pool.yaml
+  - ./traefik/config.yaml
+  - ./cert-manager/config.yaml
+  - ./routes/media.yaml
