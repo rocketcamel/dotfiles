@@ -17,12 +17,17 @@ spec:
       websecure:
         port: 443
         nodePort: 30001
-
       ssh:
         port: 22
         expose:
           default: true
         exposedPort: 22
+        protocol: TCP
+      minecraft-main:
+        port: 25565
+        expose:
+          default: true
+        exposedPort: 25565
         protocol: TCP
 
     persistence:
@@ -64,6 +69,12 @@ spec:
             - kind: Secret
               name: wildcard-lucalise.ca-tls
               group: ""
+        minecraft-main:
+          port: 25565
+          protocol: TCP
+          namespacePolicy:
+            from: All
+
     logs:
       general:
         level: INFO

@@ -6,3 +6,4 @@ resources:
   - ./traefik/config.yaml
   - ./cert-manager/config.yaml
   - ./routes/media.yaml
+  - ./routes/minecraft/main.yaml

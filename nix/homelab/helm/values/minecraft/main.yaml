@@ -1,0 +1,17 @@
+resources:
+  limits:
+    memory: 1Gi
+    cpu: 2500m
+
+minecraftServer:
+  eula: "TRUE"
+  type: "PAPER"
+  version: "1.21.11"
+  difficulty: hard
+  motd: "A Minecraft Server."
+  memory: 512M
+
+persistence:
+  dataDir:
+    enabled: true
+    size: 2Gi

@@ -3,6 +3,8 @@ repositories:
     url: https://metallb.github.io/metallb
   - name: jellyfin
     url: https://jellyfin.github.io/jellyfin-helm
+  - name: minecraft-charts
+    url: https://itzg.github.io/minecraft-server-charts
 
 releases:
   # Load Balancer
@@ -27,3 +29,11 @@ releases:
     version: 2.7.0
     values:
       - values/jellyfin.yaml
+
+  # Minecraft
+  - name: minecraft-main
+    namespace: minecraft
+    chart: minecraft-charts/minecraft
+    version: 5.0.0
+    values:
+      - values/minecraft/main.yaml
