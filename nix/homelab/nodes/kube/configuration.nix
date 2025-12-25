@@ -15,7 +15,7 @@
     enable = true;
     efiSupport = true;
     efiInstallAsRemovable = true;
-    device = "/dev/vda";
+    device = "/dev/nvme0n1";
   };
 
   networking.hostName = meta.hostname;
@@ -52,6 +52,7 @@
       tree
     ];
     hashedPassword = config.hashedPassword;
+    openssh.authorizedKeys.keys = config.authorized_ssh;
   };
 
   environment.systemPackages = with pkgs; [
