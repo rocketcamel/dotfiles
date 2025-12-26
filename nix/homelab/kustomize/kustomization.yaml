@@ -7,3 +7,5 @@ resources:
   - ./cert-manager/config.yaml
   - ./routes/media.yaml
   - ./routes/minecraft/main.yaml
+  - ./routes/gitea/ssh.yaml
+  - ./routes/gitea/http.yaml

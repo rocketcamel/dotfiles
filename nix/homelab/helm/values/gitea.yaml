@@ -1,0 +1,43 @@
+persistence:
+  size: 8Gi
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 128Mi
+  limits:
+    cpu: 1
+    memory: 512Mi
+
+gitea:
+  config:
+    repository:
+      ROOT: /git-data/git/repositories
+    database:
+      DB_TYPE: sqlite3
+    session:
+      PROVIDER: memory
+    cache:
+      ADAPTER: memory
+    queue:
+      TYPE: level
+nodeSelector:
+  kubernetes.io/hostname: kube
+      
+postgresql:
+  enabled: false
+postgresql-ha:
+  enabled: false
+valkey-cluster:
+  enabled: false
+valkey:
+  enabled: false
+
+extraVolumes:
+  - name: git-nfs
+    nfs:
+      server: 192.168.27.2
+      path: /data
+extraContainerVolumeMounts:
+  - name: git-nfs
+    mountPath: /git-data

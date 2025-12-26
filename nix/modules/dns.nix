@@ -17,6 +17,11 @@
       enable = true;
       dns = "systemd-resolved";
     };
+    networking.extraHosts = ''
+      192.168.18.31 traefik.lucalise.ca 
+      192.168.18.31 media.lucalise.ca 
+      192.168.18.31 git.lucalise.ca 
+    '';
 
     services.resolved = {
       enable = true;

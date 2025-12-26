@@ -5,6 +5,8 @@ repositories:
     url: https://jellyfin.github.io/jellyfin-helm
   - name: minecraft-charts
     url: https://itzg.github.io/minecraft-server-charts
+  - name: gitea-charts
+    url: https://dl.gitea.com/charts
 
 releases:
   # Load Balancer
@@ -29,6 +31,14 @@ releases:
     version: 2.7.0
     values:
       - values/jellyfin.yaml
+
+  # Git
+  - name: gitea
+    namespace: git
+    chart: gitea-charts/gitea
+    version: 12.4.0
+    values:
+      - values/gitea.yaml
 
   # Minecraft
   - name: minecraft-main
