@@ -20,7 +20,7 @@
     networking.extraHosts = ''
       192.168.18.31 traefik.lucalise.ca 
       192.168.18.31 media.lucalise.ca 
-      192.168.18.31 git.lucalise.ca 
+      192.168.18.31 git-new.lucalise.ca 
     '';
 
     services.resolved = {

@@ -12,7 +12,7 @@ resources:
 gitea:
   config:
     repository:
-      ROOT: /git-data/git/repositories
+      ROOT: /mnt/git-data/git/repositories
     database:
       DB_TYPE: sqlite3
     session:
@@ -21,8 +21,14 @@ gitea:
       ADAPTER: memory
     queue:
       TYPE: level
+  admin:
+    existingSecret: gitea-admin-secret
+    email: luca_lise@icloud.ca
 nodeSelector:
   kubernetes.io/hostname: kube
+
+strategy:
+  type: Recreate
       
 postgresql:
   enabled: false
@@ -40,4 +46,4 @@ extraVolumes:
       path: /data
 extraContainerVolumeMounts:
   - name: git-nfs
-    mountPath: /git-data
+    mountPath: /mnt/git-data
