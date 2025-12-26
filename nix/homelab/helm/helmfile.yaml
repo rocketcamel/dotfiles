@@ -50,6 +50,8 @@ releases:
     values:
       - defaultSettings:
           defaultReplicaCount: 1
+      - persistence:
+          defaultClassReplicaCount: 1
 
   # Minecraft
   - name: minecraft-main
