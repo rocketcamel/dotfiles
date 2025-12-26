@@ -9,3 +9,4 @@ resources:
   - ./routes/minecraft/main.yaml
   - ./routes/gitea/ssh.yaml
   - ./routes/gitea/http.yaml
+  - ./routes/longhorn.yaml

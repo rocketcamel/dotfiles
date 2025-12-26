@@ -35,6 +35,7 @@
     extraFlags = toString [
       "--write-kubeconfig-mode \"0644\""
       "--disable servicelb"
+      "--disable local-storage"
     ];
   };
 

@@ -23,7 +23,6 @@ gitea:
       TYPE: level
   admin:
     existingSecret: gitea-admin-secret
-    email: luca_lise@icloud.ca
 nodeSelector:
   kubernetes.io/hostname: kube
 
