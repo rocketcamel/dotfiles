@@ -95,9 +95,9 @@ spec:
           fi
         env:
         - name: SERVER_NAME
-          value: "main"
+          value: {{SERVER_NAME}}
         - name: BACKUP_FILE
-          value: "latest.tgz"
+          value: {{BACKUP_FILE}}
         
         volumeMounts:
         - name: data
@@ -109,7 +109,7 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: minecraft-main-datadir
+          claimName: minecraft-{{SERVER_NAME}}-datadir
       
       - name: backups
         nfs:
