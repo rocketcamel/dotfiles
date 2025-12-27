@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - ./metallb/pool.yaml
   - ./traefik/config.yaml
+  - ./traefik/rfc1918-middleware.yaml
+  - ./traefik/chain.yaml
   - ./cert-manager/config.yaml
   - ./routes/media.yaml
   - ./routes/minecraft.yaml

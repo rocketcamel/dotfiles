@@ -1,0 +1,32 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: rfc1918-chain
+  namespace: home
+spec:
+  chain:
+    middlewares:
+      - name: rfc1918-only
+        namespace: default
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: rfc1918-chain
+  namespace: longhorn-system
+spec:
+  chain:
+    middlewares:
+      - name: rfc1918-only
+        namespace: default
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: rfc1918-chain
+  namespace: media
+spec:
+  chain:
+    middlewares:
+      - name: rfc1918-only
+        namespace: default

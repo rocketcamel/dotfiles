@@ -18,12 +18,11 @@
       dns = "systemd-resolved";
     };
     networking.extraHosts = ''
-      192.168.18.31 traefik.lucalise.ca 
-      192.168.18.31 media.lucalise.ca 
-      192.168.18.31 git.lucalise.ca 
-      192.168.18.31 storage.lucalise.ca 
-      192.168.18.31 home-assistant.lucalise.ca 
-      192.168.18.31 mc-rocket.duckdns.org 
+      192.168.27.10 traefik.lucalise.ca 
+      192.168.27.10 media.lucalise.ca 
+      192.168.27.10 git.lucalise.ca 
+      192.168.27.10 storage.lucalise.ca 
+      192.168.27.10 home-assistant.lucalise.ca 
     '';
 
     services.resolved = {

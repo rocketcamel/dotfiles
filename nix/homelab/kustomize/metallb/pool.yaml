@@ -8,6 +8,16 @@ spec:
     - 192.168.18.31-192.168.18.61
 ---
 apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: rufus-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.27.10-192.168.27.30
+  autoAssign: false
+---
+apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
   name: pool
@@ -15,3 +25,15 @@ metadata:
 spec:
   ipAddressPools:
     - pool
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: rufus-advertisement
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - rufus-pool
+  nodeSelectors:
+    - matchLabels:
+        kubernetes.io/hostname: rufus
