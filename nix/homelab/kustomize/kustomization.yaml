@@ -6,7 +6,7 @@ resources:
   - ./traefik/config.yaml
   - ./cert-manager/config.yaml
   - ./routes/media.yaml
-  # - ./routes/minecraft.yaml
+  - ./routes/minecraft.yaml
   - ./routes/gitea/ssh.yaml
   - ./routes/gitea/http.yaml
   - ./routes/longhorn.yaml

@@ -13,66 +13,105 @@ minecraftServer:
   difficulty: hard
   motd: "A Minecraft Server."
   memory: 6G
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    port: 25575
+    existingSecret: rcon-credentials
+    secretKey: rcon-password
 
 persistence:
   dataDir:
     enabled: true
     Size: 4Gi
 
-# extraVolumes:
-#   - volumeMounts:
-#       - name: backup-volume
-#         mountPath: /backup
-#         readOnly: true
-#     volumes:
-#       - name: backup-volume
-#         hostPath:
-#           path: /var/lib/minecraft
-#           type: DirectoryOrCreate
+sidecarContainers:
+  - name: backup
+    image: itzg/mc-backup
+    imagePullPolicy: Always
+    env:
+      - name: RCON_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: rcon-credentials
+            key: rcon-password
+      - name: BACKUP_METHOD
+        value: tar
+      - name: BACKUP_INTERVAL
+        value: "15m"
+      - name: INITIAL_DELAY
+        value: "5m"
+      - name: PRUNE_BACKUPS_COUNT
+        value: "15"
+      - name: DEST_DIR
+        value: /mnt/backups
+      - name: LINK_LATEST
+        value: "true"
+      - name: TAR_COMPRESS_METHOD
+        value: gzip
+      - name: BACKUP_NAME
+        value: minecraft-main
+      - name: TZ
+        value: "America/Vancouver"
+    volumeMounts:
+      - name: datadir
+        mountPath: /data
+        readOnly: true
+      - name: backups
+        mountPath: /mnt/backups
 
-# initContainers:
-#   - name: world-restore
-#     image: busybox:latest
-#     command:
-#       - sh
-#       - -c
-#       - |
-#         set -e
-#
-#         echo "=== Minecraft World Restore ==="
-#
-#         BACKUP_FILE="/backup/main/latest.tar.gz"
-#
-#         # Check if backup exists
-#         if [ ! -f "$BACKUP_FILE" ]; then
-#           echo "No backup found at $BACKUP_FILE"
-#           echo "Skipping restore, server will start with existing/new world"
-#           exit 0
-#         fi
-#
-#         echo "✓ Backup found: $BACKUP_FILE"
-#         echo "  Size: $(du -h $BACKUP_FILE | cut -f1)"
-#
-#         # Check if world already exists
-#         if [ -f /data/world/level.dat ]; then
-#           echo "⚠ World already exists at /data/world/"
-#           echo "  Replacing with backup..."
-#           rm -rf /data/world /data/world_nether /data/world_the_end
-#         fi
-#
-#         # Extract backup
-#         echo "Extracting backup to /data/..."
-#         tar -xzf "$BACKUP_FILE" -C /data/
-#         echo "✓ Extraction complete"
-#
-#         echo ""
-#         echo "=== Restore Complete ==="
-#         echo "Restored world size: $(du -sh /data/world 2>/dev/null | cut -f1 || echo 'unknown')"
-#         ls -lh /data/ | grep -E "^d" || true
-#         echo ""
-#     volumeMounts:
-#       - name: datadir
-#         mountPath: /data
-#       - name: backup-volume
-#         mountPath: /backup
-#         readOnly: true
+extraVolumes:
+  - volumeMounts:
+      - name: backups
+        mountPath: /mnt/backups
+    volumes:
+      - name: backups
+        nfs:
+          server: 192.168.27.2
+          path: /backup/minecraft
+
+initContainers:
+  - name: world-restore
+    image: busybox:latest
+    command:
+      - sh
+      - -c
+      - |
+        set -e
+
+        echo "=== Minecraft World Restore ==="
+
+        BACKUP_FILE="/backups/latest.tgz"
+
+        # Check if backup exists
+        if [[ ! -f "$BACKUP_FILE" ]]; then
+          echo "Skipping restore, server will start with existing/new world"
+          exit 0
+        fi
+
+        echo "✓ Backup found: $BACKUP_FILE"
+        echo "  Size: $(du -h $BACKUP_FILE | cut -f1)"
+
+        # Check if world already exists
+        if [ -f /data/world/level.dat ]; then
+          echo "⚠ World already exists at /data/world/"
+          echo "  Replacing with backup..."
+          rm -rf /data/world /data/world_nether /data/world_the_end
+        fi
+
+        # Extract backup
+        echo "Extracting backup to /data/..."
+        tar -xzf "$BACKUP_FILE" -C /data/
+        echo "✓ Extraction complete"
+
+        echo ""
+        echo "=== Restore Complete ==="
+        echo "Restored world size: $(du -sh /data/world 2>/dev/null | cut -f1 || echo 'unknown')"
+        ls -lh /data/ | grep -E "^d" || true
+        echo ""
+    volumeMounts:
+      - name: datadir
+        mountPath: /data
+      - name: backup-volume
+        mountPath: /backup
+        readOnly: true

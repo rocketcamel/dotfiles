@@ -56,19 +56,19 @@ releases:
           defaultClassReplicaCount: 1
 
   # Minecraft
-  # - name: minecraft-router
-  #   namespace: minecraft
-  #   chart: minecraft-charts/mc-router
-  #   version: 1.4.0
-  #   values:
-  #     - values/minecraft/router.yaml
-  #
-  # - name: minecraft-main
-  #   namespace: minecraft
-  #   chart: minecraft-charts/minecraft
-  #   version: 5.0.0
-  #   values:
-  #     - values/minecraft/main.yaml
+  - name: minecraft-router
+    namespace: minecraft
+    chart: minecraft-charts/mc-router
+    version: 1.4.0
+    values:
+      - values/minecraft/router.yaml
+
+  - name: minecraft-main
+    namespace: minecraft
+    chart: minecraft-charts/minecraft
+    version: 5.0.0
+    values:
+      - values/minecraft/main.yaml
 
   - name: home-assistant
     namespace: home
