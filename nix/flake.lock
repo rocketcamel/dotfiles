@@ -226,11 +226,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765057626,
-        "narHash": "sha256-5kRRBCCS/51mRK+4p2iLrh0XEn1XD7gj40YQSnf+UfM=",
+        "lastModified": 1766081965,
+        "narHash": "sha256-6/VbUKyjJzjTBs86VT9Wh3dtvk7SSRcChbwRjVLlzWE=",
         "owner": "rocketcamel",
         "repo": "dotfiles-status-bar",
-        "rev": "d8b4e953c558b349a9053ab09cac4ba8d0107cb3",
+        "rev": "0d8f89ce48e4fca9afcd32b22a1592b7c185bb27",
         "type": "github"
       },
       "original": {
