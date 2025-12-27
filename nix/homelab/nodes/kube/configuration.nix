@@ -44,6 +44,11 @@
     name = "iqn.2020-08.org.linux-iscsi.initiatorhost:${meta.hostname}";
   };
 
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
+
   security.sudo.wheelNeedsPassword = false;
 
   users.users.luca = {
