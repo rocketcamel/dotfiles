@@ -1,0 +1,30 @@
+resources:
+  requests:
+    cpu: 1
+    memory: 500Mi
+  limits:
+    memory: 4Gi
+    cpu: 2000m
+
+minecraftServer:
+  eula: "TRUE"
+  type: "PAPER"
+  version: "1.21.11"
+  difficulty: hard
+  motd: "A Minecraft Server."
+  gameMode: creative
+  memory: 4G
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    port: 25575
+    existingSecret: rcon-credentials
+    secretKey: rcon-password
+
+nodeSelector:
+  kubernetes.io/hostname: kube
+
+persistence:
+  dataDir:
+    enabled: true
+    Size: 4Gi

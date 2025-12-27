@@ -30,3 +30,14 @@ spec:
     middlewares:
       - name: rfc1918-only
         namespace: default
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: rfc1918-chain
+  namespace: vaultwarden
+spec:
+  chain:
+    middlewares:
+      - name: rfc1918-only
+        namespace: default

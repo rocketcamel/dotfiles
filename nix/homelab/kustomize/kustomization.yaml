@@ -7,9 +7,10 @@ resources:
   - ./traefik/rfc1918-middleware.yaml
   - ./traefik/chain.yaml
   - ./cert-manager/config.yaml
-  - ./routes/media.yaml
   - ./routes/minecraft.yaml
   - ./routes/gitea/ssh.yaml
   - ./routes/gitea/http.yaml
   - ./routes/longhorn.yaml
   - ./routes/home-assistant.yaml
+  - ./routes/consul-media.yaml
+  - ./routes/consul-vaultwarden.yaml

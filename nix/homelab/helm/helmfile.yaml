@@ -28,14 +28,6 @@ releases:
       - crds:
           enabled: true
 
-  # Media Server
-  - name: jellyfin
-    namespace: media
-    chart: jellyfin/jellyfin
-    version: 2.7.0
-    values:
-      - values/jellyfin.yaml
-
   # Git
   - name: gitea
     namespace: git
@@ -69,6 +61,13 @@ releases:
     version: 5.0.0
     values:
       - values/minecraft/main.yaml
+
+  - name: minecraft-creative
+    namespace: minecraft
+    chart: minecraft-charts/minecraft
+    version: 5.0.0
+    values:
+      - values/minecraft/creative.yaml
 
   - name: home-assistant
     namespace: home

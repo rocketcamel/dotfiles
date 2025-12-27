@@ -1,5 +1,0 @@
-persistence:
-  config:
-    size: 5Gi
-  media:
-    size: 2Gi
