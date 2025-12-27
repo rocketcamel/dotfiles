@@ -1,0 +1,13 @@
+resources:
+  requests:
+    cpu: 100m
+    memory: 50Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi
+
+minecraftRouter:
+  mappings:
+    - externalHostname: "mc-rocket.duckdns.org"
+      host: "minecraft-main"
+      port: 25565

@@ -1,0 +1,17 @@
+persistence:
+  enabled: true
+
+resources:
+  requests:
+    cpu: 1
+    memory: 1Gi
+  limits:
+    cpu: 2
+    memory: 2Gi
+
+configuration:
+  enabled: true
+
+ingress:
+  enabled: false
+  external: true

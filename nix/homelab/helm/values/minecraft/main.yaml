@@ -1,6 +1,9 @@
 resources:
+  requests:
+    cpu: 1
+    memory: 500Mi
   limits:
-    memory: 1Gi
+    memory: 6Gi
     cpu: 2500m
 
 minecraftServer:
@@ -9,9 +12,67 @@ minecraftServer:
   version: "1.21.11"
   difficulty: hard
   motd: "A Minecraft Server."
-  memory: 512M
+  memory: 6G
 
 persistence:
   dataDir:
     enabled: true
-    size: 2Gi
+    Size: 4Gi
+
+# extraVolumes:
+#   - volumeMounts:
+#       - name: backup-volume
+#         mountPath: /backup
+#         readOnly: true
+#     volumes:
+#       - name: backup-volume
+#         hostPath:
+#           path: /var/lib/minecraft
+#           type: DirectoryOrCreate
+
+# initContainers:
+#   - name: world-restore
+#     image: busybox:latest
+#     command:
+#       - sh
+#       - -c
+#       - |
+#         set -e
+#
+#         echo "=== Minecraft World Restore ==="
+#
+#         BACKUP_FILE="/backup/main/latest.tar.gz"
+#
+#         # Check if backup exists
+#         if [ ! -f "$BACKUP_FILE" ]; then
+#           echo "No backup found at $BACKUP_FILE"
+#           echo "Skipping restore, server will start with existing/new world"
+#           exit 0
+#         fi
+#
+#         echo "✓ Backup found: $BACKUP_FILE"
+#         echo "  Size: $(du -h $BACKUP_FILE | cut -f1)"
+#
+#         # Check if world already exists
+#         if [ -f /data/world/level.dat ]; then
+#           echo "⚠ World already exists at /data/world/"
+#           echo "  Replacing with backup..."
+#           rm -rf /data/world /data/world_nether /data/world_the_end
+#         fi
+#
+#         # Extract backup
+#         echo "Extracting backup to /data/..."
+#         tar -xzf "$BACKUP_FILE" -C /data/
+#         echo "✓ Extraction complete"
+#
+#         echo ""
+#         echo "=== Restore Complete ==="
+#         echo "Restored world size: $(du -sh /data/world 2>/dev/null | cut -f1 || echo 'unknown')"
+#         ls -lh /data/ | grep -E "^d" || true
+#         echo ""
+#     volumeMounts:
+#       - name: datadir
+#         mountPath: /data
+#       - name: backup-volume
+#         mountPath: /backup
+#         readOnly: true

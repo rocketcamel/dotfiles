@@ -22,6 +22,8 @@
       192.168.18.31 media.lucalise.ca 
       192.168.18.31 git-new.lucalise.ca 
       192.168.18.31 storage.lucalise.ca 
+      192.168.18.31 home-assistant.lucalise.ca 
+      192.168.18.31 mc-rocket.duckdns.org 
     '';
 
     services.resolved = {

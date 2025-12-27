@@ -1,13 +1,13 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: minecraft-main
+  name: minecraft-router
   namespace: minecraft
 spec:
   entryPoints:
-    - minecraft-main
+    - minecraft
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: minecraft-main
+        - name: minecraft-router-mc-router
           port: 25565
