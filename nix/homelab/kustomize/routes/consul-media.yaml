@@ -36,12 +36,6 @@ spec:
     - backendRefs:
         - name: bazarr
           port: 6767
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain
 ---
 apiVersion: v1
 kind: Service
@@ -81,12 +75,6 @@ spec:
     - backendRefs:
         - name: prowlarr
           port: 9696
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain
 ---
 apiVersion: v1
 kind: Service
@@ -126,12 +114,6 @@ spec:
     - backendRefs:
         - name: radarr
           port: 7878
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain
 ---
 apiVersion: v1
 kind: Service
@@ -171,12 +153,6 @@ spec:
     - backendRefs:
         - name: sonarr
           port: 8989
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain
 ---
 apiVersion: v1
 kind: Service
@@ -216,12 +192,6 @@ spec:
     - backendRefs:
         - name: qbittorrent
           port: 8090
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain
 ---
 apiVersion: v1
 kind: Service
@@ -261,12 +231,6 @@ spec:
     - backendRefs:
         - name: flaresolverr
           port: 8191
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain
 ---
 apiVersion: v1
 kind: Service
@@ -306,9 +270,3 @@ spec:
     - backendRefs:
         - name: jellyfin
           port: 8096
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain

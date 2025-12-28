@@ -11,6 +11,8 @@ repositories:
     url: https://charts.longhorn.io
   - name: home-assistant
     url: https://pajikos.github.io/home-assistant-helm-chart
+  - name: pihole
+    url: https://mojo2600.github.io/pihole-kubernetes/
 
 releases:
   # Load Balancer
@@ -46,6 +48,13 @@ releases:
           defaultReplicaCount: 1
       - persistence:
           defaultClassReplicaCount: 1
+
+  - name: pihole
+    namespace: pihole-system
+    chart: pihole/pihole
+    version: 2.35.0
+    values:
+      - values/pihole.yaml
 
   # Minecraft
   - name: minecraft-router

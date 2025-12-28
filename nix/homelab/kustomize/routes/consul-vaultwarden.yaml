@@ -41,9 +41,3 @@ spec:
     - backendRefs:
         - name: vaultwarden
           port: 8000
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: rfc1918-chain

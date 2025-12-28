@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - ./metallb/pool.yaml
   - ./traefik/config.yaml
-  - ./traefik/rfc1918-middleware.yaml
-  - ./traefik/chain.yaml
   - ./cert-manager/config.yaml
   - ./routes/minecraft.yaml
   - ./routes/gitea/ssh.yaml
@@ -14,3 +12,4 @@ resources:
   - ./routes/home-assistant.yaml
   - ./routes/consul-media.yaml
   - ./routes/consul-vaultwarden.yaml
+  - ./routes/pihole.yaml
