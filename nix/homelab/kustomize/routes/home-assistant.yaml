@@ -2,7 +2,7 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: home-assistant
-  namespace: home
+  namespace: media
 spec:
   parentRefs:
     - name: traefik-gateway
@@ -10,12 +10,12 @@ spec:
   hostnames:
     - "home-assistant.lucalise.ca"
   rules:
-    - filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: private-networks
-      backendRefs:
-        - name: home-assistant
-          port: 8080
+      - filters:
+          - type: ExtensionRef
+            extensionRef:
+              group: traefik.io
+              kind: Middleware
+              name: private-networks
+        backendRefs:
+          - name: home-assistant
+            port: 8123

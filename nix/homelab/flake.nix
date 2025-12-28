@@ -20,6 +20,16 @@
           architecture = "x86_64-linux";
         }
       ];
+      systems = [ "x86_64-linux" ];
+      forAllSystems =
+        f:
+        nixpkgs.lib.genAttrs systems (
+          system:
+          f {
+            inherit system;
+            pkgs = nixpkgs.legacyPackages.${system};
+          }
+        );
     in
     {
       nixosConfigurations = builtins.listToAttrs (
@@ -48,6 +58,17 @@
             ];
           };
         }) nodes
+      );
+      devShells = forAllSystems (
+        { system, pkgs }:
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              openssl
+              pkgconf
+            ];
+          };
+        }
       );
     };
 }

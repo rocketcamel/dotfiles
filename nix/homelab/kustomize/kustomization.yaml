@@ -15,3 +15,5 @@ resources:
   - ./routes/consul-media.yaml
   - ./routes/consul-vaultwarden.yaml
   - ./routes/pihole.yaml
+  - ./routes/media/sonarr.yaml
+  - ./media/sonarr.yaml

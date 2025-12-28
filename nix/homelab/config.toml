@@ -1,0 +1,33 @@
+routes = [
+  {
+    name = "gitea",
+    hostname = "git",
+    namespace = "git",
+    service = "gitea-http",
+    port = 3000,
+    private = false
+  },
+  {
+    name = "sonarr",
+    hostname = "sonarr",
+    namespace = "media",
+    port = 8787,
+    private = true
+  },
+  {
+    name = "longhorn",
+    hostname = "storage",
+    namespace = "longhorn-system",
+    service = "longhorn-frontend",
+    port = 80,
+    private = true
+  },
+  {
+    name = "pihole",
+    hostname = "pihole",
+    namespace = "pihole-system",
+    service = "pihole-web",
+    port = 80,
+    private = true
+  }
+]

@@ -6,6 +6,7 @@ NAMESPACES=(
   "home"
   "longhorn-system"
   "pihole-system"
+  "media"
 )
 
 OUTPUT_FILE="kustomize/traefik/chains.yaml"
