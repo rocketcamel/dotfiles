@@ -17,13 +17,13 @@
       enable = true;
       dns = "systemd-resolved";
     };
-    networking.extraHosts = ''
-      192.168.27.10 traefik.lucalise.ca 
-      192.168.27.10 media.lucalise.ca 
-      192.168.27.10 git.lucalise.ca 
-      192.168.27.10 storage.lucalise.ca 
-      192.168.27.10 home-assistant.lucalise.ca 
-    '';
+    # networking.extraHosts = ''
+    #   75.157.238.86 traefik.lucalise.ca
+    #   75.157.238.86 media.lucalise.ca
+    #   75.157.238.86 git.lucalise.ca
+    #   75.157.238.86 storage.lucalise.ca
+    #   75.157.238.86 home-assistant.lucalise.ca
+    # '';
 
     services.resolved = {
       enable = true;

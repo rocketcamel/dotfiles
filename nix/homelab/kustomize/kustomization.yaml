@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - ./metallb/pool.yaml
   - ./traefik/config.yaml
+  - ./traefik/private-networks.yaml
+  - ./traefik/chains.yaml
   - ./cert-manager/config.yaml
   - ./routes/minecraft.yaml
   - ./routes/gitea/ssh.yaml

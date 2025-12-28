@@ -10,6 +10,12 @@ spec:
   hostnames:
     - "home-assistant.lucalise.ca"
   rules:
-    - backendRefs:
+    - filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+      backendRefs:
         - name: home-assistant
           port: 8080
