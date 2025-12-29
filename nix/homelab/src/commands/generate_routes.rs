@@ -4,12 +4,18 @@ use crate::{Config, HelperError};
 
 #[derive(Serialize, Deserialize, Default)]
 pub struct Route {
+    kind: RouteKind,
     name: String,
     hostname: String,
     namespace: String,
     service: Option<String>,
     port: i16,
     private: bool,
+}
+
+enum RouteKind {
+    HTTP,
+    TCP,
 }
 
 pub fn generate_routes(config: &Config) -> Result<(), HelperError> {
@@ -45,7 +51,7 @@ fn generate_route(route: &Route) -> String {
 
     format!(
         r#"apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+kind: {}
 metadata:
   name: {}
   namespace: {}
