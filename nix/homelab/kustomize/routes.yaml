@@ -14,6 +14,42 @@ spec:
         - name: gitea-http
           port: 3000
 ---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: gitea-ssh
+  namespace: git
+spec:
+  entryPoints:
+    - gitea-ssh
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: gitea-ssh
+          port: 22
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: home-assistant
+  namespace: home
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - home-assistant.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: home-assistant
+          port: 8123
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -73,6 +109,130 @@ spec:
     - backendRefs:
         - name: pihole-web
           port: 80
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: minecraft-router
+  namespace: minecraft
+spec:
+  entryPoints:
+    - minecraft-router
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: minecraft-router-mc-router
+          port: 25565
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - prowlarr.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: prowlarr
+          port: 9696
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: radarr
+  namespace: media
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - radarr.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: radarr
+          port: 7878
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: qbittorrent
+  namespace: media
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - qbit.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: qbittorrent
+          port: 8090
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: flaresolverr
+  namespace: media
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - flare.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: flaresolverr
+          port: 8191
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: jellyfin
+  namespace: media
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - media.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: jellyfin
+          port: 8096
       filters:
         - type: ExtensionRef
           extensionRef:

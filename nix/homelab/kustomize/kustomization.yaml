@@ -7,13 +7,5 @@ resources:
   - ./traefik/private-networks.yaml
   - ./traefik/chains.yaml
   - ./cert-manager/config.yaml
-  - ./routes/minecraft.yaml
-  - ./routes/gitea/ssh.yaml
-  - ./routes/gitea/http.yaml
-  - ./routes/longhorn.yaml
-  - ./routes/home-assistant.yaml
-  - ./routes/consul-media.yaml
-  - ./routes/consul-vaultwarden.yaml
-  - ./routes/pihole.yaml
-  - ./routes/media/sonarr.yaml
+  - ./routes.yaml
   - ./media/sonarr.yaml

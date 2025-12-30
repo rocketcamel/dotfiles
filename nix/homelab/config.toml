@@ -8,8 +8,21 @@ routes = [
     private = false
   },
   {
+    kind = "TCP",
+    name = "gitea-ssh",
+    namespace = "git",
+    service = "gitea-ssh",
+    port = 22,
+    private = false
+  },
+  {
+    name = "home-assistant",
+    namespace = "home",
+    port = 8123,
+    private = true
+  },
+  {
     name = "sonarr",
-    hostname = "sonarr",
     namespace = "media",
     port = 8787,
     private = true
@@ -24,10 +37,51 @@ routes = [
   },
   {
     name = "pihole",
-    hostname = "pihole",
     namespace = "pihole-system",
     service = "pihole-web",
     port = 80,
     private = true
-  }
+  },
+  {
+    kind = "TCP",
+    name = "minecraft-router",
+    hostname = "minecraft",
+    namespace = "minecraft",
+    service = "minecraft-router-mc-router",
+    port = 25565,
+    private = false
+  },
+  {
+    name = "prowlarr",
+    namespace = "media",
+    port = 9696,
+    private = true
+  },
+  {
+    name = "radarr",
+    namespace = "media",
+    port = 7878,
+    private = true
+  },
+  {
+    name = "qbittorrent",
+    hostname = "qbit",
+    namespace = "media",
+    port = 8090,
+    private = true
+  },
+  {
+    name = "flaresolverr",
+    hostname = "flare",
+    namespace = "media",
+    port = 8191,
+    private = true
+  },
+  {
+    name = "jellyfin",
+    hostname = "media",
+    namespace = "media",
+    port = 8096,
+    private = true
+  },
 ]
