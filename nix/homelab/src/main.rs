@@ -25,6 +25,8 @@ pub enum HelperError {
     ReadFile(#[from] std::io::Error),
     #[error("error parsing config toml")]
     TomlError(#[from] toml::de::Error),
+    #[error("entrypoint required for tcproute: {0:?}")]
+    TCPEntryPoint(String),
 }
 
 #[derive(Serialize, Deserialize)]

@@ -8,4 +8,9 @@ resources:
   - ./traefik/chains.yaml
   - ./cert-manager/config.yaml
   - ./routes.yaml
+
   - ./media/sonarr.yaml
+  - ./media/prowlarr.yaml
+  - ./media/radarr.yaml
+  - ./media/qbittorrent.yaml
+  - ./media/flaresolverr.yaml

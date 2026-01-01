@@ -11,6 +11,7 @@ routes = [
     kind = "TCP",
     name = "gitea-ssh",
     namespace = "git",
+    entrypoint = "ssh",
     service = "gitea-ssh",
     port = 22,
     private = false
@@ -24,7 +25,7 @@ routes = [
   {
     name = "sonarr",
     namespace = "media",
-    port = 8787,
+    port = 8989,
     private = true
   },
   {
@@ -47,6 +48,7 @@ routes = [
     name = "minecraft-router",
     hostname = "minecraft",
     namespace = "minecraft",
+    entrypoint = "minecraft",
     service = "minecraft-router-mc-router",
     port = 25565,
     private = false
@@ -67,7 +69,7 @@ routes = [
     name = "qbittorrent",
     hostname = "qbit",
     namespace = "media",
-    port = 8090,
+    port = 8080,
     private = true
   },
   {

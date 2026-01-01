@@ -56,6 +56,14 @@ releases:
     values:
       - values/pihole.yaml
 
+  # Media
+  - name: jellyfin
+    namespace: media
+    chart: jellyfin/jellyfin
+    version: 2.7.0
+    values:
+      - values/media/jellyfin.yaml
+
   # Minecraft
   - name: minecraft-router
     namespace: minecraft

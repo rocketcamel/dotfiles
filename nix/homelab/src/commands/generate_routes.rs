@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{Config, HelperError};
 
-#[derive(Serialize, Deserialize, Default)]
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Route {
     #[serde(default)]
     kind: RouteKind,
@@ -23,7 +23,7 @@ impl Route {
     }
 }
 
-#[derive(Serialize, Deserialize, Default)]
+#[derive(Serialize, Deserialize, Default, Debug, Clone)]
 enum RouteKind {
     #[default]
     HTTP,
@@ -31,17 +31,16 @@ enum RouteKind {
 }
 
 pub fn generate_routes(config: &Config) -> Result<(), HelperError> {
-    let routes = config
-        .routes
-        .iter()
-        .enumerate()
-        .fold(String::new(), |mut acc, (i, r)| {
+    let routes = config.routes.iter().enumerate().try_fold(
+        String::new(),
+        |mut acc, (i, r)| -> Result<_, HelperError> {
             if i > 0 {
                 acc.push_str("\n---\n");
             }
-            acc.push_str(&generate_route(r));
-            acc
-        });
+            acc.push_str(&generate_route(r)?);
+            Ok(acc)
+        },
+    )?;
     let chains = generate_chains(&config.routes);
     std::fs::write("kustomize/routes.yaml", &routes)?;
     std::fs::write("kustomize/traefik/chains.yaml", &chains)?;
@@ -50,11 +49,11 @@ pub fn generate_routes(config: &Config) -> Result<(), HelperError> {
     Ok(())
 }
 
-fn generate_route(route: &Route) -> String {
-    match route.kind {
+fn generate_route(route: &Route) -> Result<String, HelperError> {
+    Ok(match route.kind {
         RouteKind::HTTP => generate_http_route(route),
-        RouteKind::TCP => generate_tcp_route(route),
-    }
+        RouteKind::TCP => generate_tcp_route(route)?,
+    })
 }
 
 fn generate_chains(routes: &[Route]) -> String {
@@ -133,7 +132,7 @@ spec:
     .to_string()
 }
 
-fn generate_tcp_route(route: &Route) -> String {
+fn generate_tcp_route(route: &Route) -> Result<String, HelperError> {
     let mut middlewares_section = String::new();
     if route.private {
         middlewares_section = format!(
@@ -143,7 +142,7 @@ fn generate_tcp_route(route: &Route) -> String {
         );
     }
 
-    format!(
+    Ok(format!(
         r#"apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
@@ -159,11 +158,14 @@ spec:
           port: {}"#,
         route.name,
         route.namespace,
-        route.entrypoint,
+        route
+            .entrypoint
+            .as_ref()
+            .ok_or(HelperError::TCPEntryPoint(route.name.clone()))?,
         middlewares_section,
         route.service.as_ref().unwrap_or_else(|| &route.name),
         route.port
     )
     .trim_end()
-    .to_string()
+    .to_string())
 }

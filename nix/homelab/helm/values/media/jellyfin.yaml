@@ -1,0 +1,21 @@
+persistence:
+  media:
+    enabled: false
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+  limits:
+    cpu: 1
+    memory: 2Gi
+
+volumeMounts:
+  - name: data
+    mountPath: /mnt/data
+
+volumes:
+  - name: data
+    nfs:
+      server: 192.168.27.2
+      path: /data

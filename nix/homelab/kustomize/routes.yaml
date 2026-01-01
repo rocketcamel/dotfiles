@@ -21,7 +21,7 @@ metadata:
   namespace: git
 spec:
   entryPoints:
-    - gitea-ssh
+    - ssh
   routes:
     - match: HostSNI(`*`)
       services:
@@ -64,7 +64,7 @@ spec:
   rules:
     - backendRefs:
         - name: sonarr
-          port: 8787
+          port: 8989
       filters:
         - type: ExtensionRef
           extensionRef:
@@ -123,7 +123,7 @@ metadata:
   namespace: minecraft
 spec:
   entryPoints:
-    - minecraft-router
+    - minecraft
   routes:
     - match: HostSNI(`*`)
       services:
@@ -188,7 +188,7 @@ spec:
   rules:
     - backendRefs:
         - name: qbittorrent
-          port: 8090
+          port: 8080
       filters:
         - type: ExtensionRef
           extensionRef:

@@ -1,12 +1,7 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: media
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sonarr-config
+  name: flaresolverr-config
   namespace: media
 spec:
   accessModes:
@@ -18,81 +13,64 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sonarr
+  name: flaresolverr
   namespace: media
   labels:
-    app: sonarr
+    app: flaresolverr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sonarr
+      app: flaresolverr
   template:
     metadata:
       labels:
-        app: sonarr
+        app: flaresolverr
     spec:
       containers:
-        - name: sonarr
-          image: lscr.io/linuxserver/sonarr
-          securityContext:
-            runAsUser: 0
-            runAsGroup: 0
+        - name: flaresolverr
+          image: ghcr.io/flaresolverr/flaresolverr
           ports:
-            - containerPort: 8989
+            - containerPort: 8191
               name: http
           env:
-            - name: PUID
-              value: "1000"
-            - name: PGID
-              value: "1000"
             - name: TZ
-              value: "America/Vancouver"
+              value: America/Vancouver
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: data
-              mountPath: /mnt/data
           resources:
             requests:
               cpu: 100m
               memory: 256Mi
             limits:
               cpu: 1
-              memory: 1Gi
+              memory: 4Gi
           livenessProbe:
             httpGet:
-              path: /ping
-              port: 8989
+              path: /health
+              port: 8191
             initialDelaySeconds: 30
             periodSeconds: 30
           readinessProbe:
             httpGet:
-              path: /ping
-              port: 8989
-            initialDelaySeconds: 10
-            periodSeconds: 10
+              path: /health
+              port: 8191
+            initialDelaySeconds: 5
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: sonarr-config
-        - name: data
-          nfs:
-            server: 192.168.27.2
-            path: /data
+            claimName: flaresolverr-config
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: sonarr
+  name: flaresolverr
   namespace: media
-  labels:
-    app: sonarr
 spec:
   selector:
-    app: sonarr
+    app: flaresolverr
   ports:
-    - port: 8989
-      targetPort: 8989
-      protocol: TCP
+    - port: 8191
+      targetPort: 8191
       name: http
