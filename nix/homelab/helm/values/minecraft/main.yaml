@@ -3,7 +3,7 @@ resources:
     cpu: 1
     memory: 500Mi
   limits:
-    memory: 6Gi
+    memory: 7Gi
     cpu: 2500m
 
 minecraftServer:
@@ -12,7 +12,7 @@ minecraftServer:
   version: "1.21.11"
   difficulty: hard
   motd: "A Minecraft Server."
-  memory: 6G
+  memory: 7G
   rcon:
     enabled: true
     withGeneratedPassword: false
