@@ -13,6 +13,8 @@ gitea:
   config:
     repository:
       ROOT: /mnt/git-data/git/repositories
+    server:
+      ROOT_URL: https://git.lucalise.ca
     database:
       DB_TYPE: sqlite3
     session:
