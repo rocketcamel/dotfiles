@@ -86,4 +86,11 @@ routes = [
     port = 8096,
     private = true
   },
+  {
+    name = "grafana",
+    namespace = "monitoring",
+    service = "prometheus-stack-grafana",
+    port = 80,
+    private = true
+  },
 ]

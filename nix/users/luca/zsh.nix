@@ -23,8 +23,6 @@ in
     export PATH="$GOBIN:$PATH"
     export PATH="$HOME/.cache/.bun/bin:$PATH"
     alias cat="bat"
-    alias k="kubectl"
-    alias ka="kubectl get --all-namespaces"
   ''
   + "\n"
   + aliases;
@@ -32,6 +30,9 @@ in
     enable = true;
     plugins = [
       "git"
+      "rust"
+      "kubectl"
+      "helm"
     ];
   };
   plugins = [
