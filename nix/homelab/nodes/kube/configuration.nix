@@ -20,12 +20,6 @@
 
   networking.hostName = meta.hostname;
   networking.networkmanager.enable = true;
-  networking.firewall.extraCommands = ''
-    iptables -I INPUT -d 192.168.27.10/32 -s 10.0.0.0/8 -j ACCEPT
-    iptables -I INPUT -d 192.168.27.10/32 -s 172.16.0.0/12 -j ACCEPT
-    iptables -I INPUT -d 192.168.27.10/32 -s 192.168.0.0/16 -j ACCEPT
-    iptables -I INPUT -d 192.168.27.10/32 -j DROP
-  '';
 
   time.timeZone = "America/Vancouver";
 
