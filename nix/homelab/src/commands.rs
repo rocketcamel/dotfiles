@@ -6,4 +6,6 @@ use clap::Subcommand;
 pub enum Commands {
     /// generate gateway api routes
     GenerateRoutes,
+    /// sync dns records with pi-hole
+    SyncDNS,
 }

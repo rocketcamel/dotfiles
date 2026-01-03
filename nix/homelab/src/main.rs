@@ -1,4 +1,8 @@
 mod commands;
+mod dns;
+mod error;
+mod lease_parser;
+mod transport;
 
 use std::path::Path;
 
@@ -7,9 +11,14 @@ use clap::{CommandFactory, Parser};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
-use crate::commands::{
-    Commands,
-    generate_routes::{Route, generate_routes},
+use crate::{
+    commands::{
+        Commands,
+        generate_routes::{Route, generate_routes},
+    },
+    dns::Router,
+    lease_parser::{BindingState, Lease},
+    transport::SSHTransport,
 };
 
 #[derive(Parser, Debug)]
@@ -49,6 +58,20 @@ fn main() -> anyhow::Result<()> {
         Some(Commands::GenerateRoutes {}) => {
             let config = parse_config("./config.toml")?;
             generate_routes(&config)?;
+        }
+        Some(Commands::SyncDNS {}) => {
+            let r = Router::new(SSHTransport::new("192.168.15.1:22")?);
+            let leases = r
+                .dhcp_leases("/var/dhcpd/var/db/dhcpd.leases")?
+                .into_iter()
+                .filter(|l| {
+                    if !(l.binding_state == BindingState::Active && l.client_hostname.is_some()) {
+                        return false;
+                    }
+                    true
+                })
+                .collect::<Vec<Lease>>();
+            println!("{:#?}", leases);
         }
         None => Cli::command().print_long_help()?,
     }
