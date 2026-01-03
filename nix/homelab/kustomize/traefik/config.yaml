@@ -9,8 +9,6 @@ spec:
       kubernetes.io/hostname: rufus
 
     service:
-      annotations:
-        metallb.universe.tf/address-pool: rufus-pool
       spec:
         externalTrafficPolicy: Local
 

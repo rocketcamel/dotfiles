@@ -8,9 +8,9 @@ resources:
 
 minecraftRouter:
   mappings:
-    - externalHostname: "mc-rocket.duckdns.org"
+    - externalHostname: "mc-rocket.privatedns.org"
       host: "minecraft-main"
       port: 25565
-    - externalHostname: "mc-rocket-creative.duckdns.org"
+    - externalHostname: "mc-rocket-creative.privatedns.org"
       host: "minecraft-creative"
       port: 25565
