@@ -12,7 +12,7 @@ serviceDns:
   type: LoadBalancer
   mixedService: true
   annotations:
-    metallb.universe.tf/loadBalancerIPs: "192.168.18.32"
+    metallb.universe.tf/loadBalancerIPs: "192.168.27.13"
 
 resources:
   requests:

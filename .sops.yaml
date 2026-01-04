@@ -1,5 +1,5 @@
 keys:
-  - &luca age1qu9y0dn5a704dggwmpaaurxqrhxm0qn8czgv5phka56y48sw7u8qkyn637
+  - &luca age13rqgrxh0fm23n3krf6v7yrrlnhhvs8256cusxqfs2l5xz8rgavssdhte4r
 
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$

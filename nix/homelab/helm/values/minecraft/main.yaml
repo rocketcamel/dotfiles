@@ -19,6 +19,9 @@ minecraftServer:
     port: 25575
     existingSecret: rcon-credentials
     secretKey: rcon-password
+  modrinth:
+    projects:
+      - treeminer
 
 nodeSelector:
   kubernetes.io/hostname: kube

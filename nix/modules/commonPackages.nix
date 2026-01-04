@@ -78,13 +78,12 @@
       helmfile
       jless
       fd
+      dig
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
     services.openssh.enable = lib.mkDefault true;
     hardware.enableAllFirmware = true;
-    sops.defaultSopsFile = ../../secrets/sops.yaml;
-    sops.age.sshKeyPaths = [ "/etc/ssh/id_ed25519" ];
     programs.gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -97,6 +96,19 @@
       enable = true;
       defaultEditor = true;
       vimAlias = true;
+    };
+
+    sops = {
+      defaultSopsFile = ../../secrets/secrets.yaml;
+      age.sshKeyPaths = [ "/home/luca/.ssh/id_ed25519" ];
+      secrets = {
+        "pihole_password" = {
+          owner = "luca";
+        };
+        "k3s_token" = {
+          owner = "luca";
+        };
+      };
     };
   };
 }

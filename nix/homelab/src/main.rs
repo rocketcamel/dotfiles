@@ -2,8 +2,10 @@ mod commands;
 mod dns;
 mod error;
 mod lease_parser;
+mod pihole;
 mod transport;
 
+use std::collections::HashSet;
 use std::path::Path;
 
 use anyhow::Context;
@@ -18,6 +20,7 @@ use crate::{
     },
     dns::Router,
     lease_parser::{BindingState, Lease},
+    pihole::PiHoleClient,
     transport::SSHTransport,
 };
 
@@ -41,6 +44,21 @@ pub enum HelperError {
 #[derive(Serialize, Deserialize)]
 pub struct Config {
     routes: Vec<Route>,
+    pihole: Option<PiHoleConfig>,
+    router: Option<RouterConfig>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct PiHoleConfig {
+    url: String,
+    password_file: String,
+    extra_hosts: Option<HashSet<String>>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct RouterConfig {
+    host: String,
+    lease_file: String,
 }
 
 pub fn parse_config<T: AsRef<Path>>(path: T) -> anyhow::Result<Config> {
@@ -51,7 +69,8 @@ pub fn parse_config<T: AsRef<Path>>(path: T) -> anyhow::Result<Config> {
     Ok(toml::from_slice::<Config>(&bytes)?)
 }
 
-fn main() -> anyhow::Result<()> {
+#[tokio::main(flavor = "current_thread")]
+async fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
 
     match &cli.command {
@@ -60,18 +79,58 @@ fn main() -> anyhow::Result<()> {
             generate_routes(&config)?;
         }
         Some(Commands::SyncDNS {}) => {
-            let r = Router::new(SSHTransport::new("192.168.15.1:22")?);
-            let leases = r
-                .dhcp_leases("/var/dhcpd/var/db/dhcpd.leases")?
+            let config = parse_config("./config.toml")?;
+            let pihole_config = config
+                .pihole
+                .context("pihole configuration is necessary for syncing dns")?;
+            let router_config = config
+                .router
+                .context("router configuration is necessary for syncing dns")?;
+
+            let password = std::fs::read_to_string(&pihole_config.password_file)
+                .context(format!(
+                    "failed to read pihole password from {}",
+                    pihole_config.password_file
+                ))?
+                .trim()
+                .to_string();
+
+            let leases = tokio::task::spawn_blocking(move || -> anyhow::Result<Vec<Lease>> {
+                let r = Router::new(SSHTransport::new(&router_config.host)?);
+                let leases = r
+                    .dhcp_leases(&router_config.lease_file)?
+                    .into_iter()
+                    .filter(|l| {
+                        l.binding_state == BindingState::Active && l.client_hostname.is_some()
+                    })
+                    .collect();
+                Ok(leases)
+            })
+            .await??;
+
+            let mut desired = leases
                 .into_iter()
-                .filter(|l| {
-                    if !(l.binding_state == BindingState::Active && l.client_hostname.is_some()) {
-                        return false;
-                    }
-                    true
+                .map(|l| {
+                    format!(
+                        "{} {}",
+                        l.ip,
+                        l.client_hostname.expect("filtered for Some above")
+                    )
                 })
-                .collect::<Vec<Lease>>();
-            println!("{:#?}", leases);
+                .collect::<HashSet<String>>();
+            if let Some(extra_hosts) = pihole_config.extra_hosts {
+                desired.extend(extra_hosts);
+            }
+
+            println!("Found {} active leases with hostnames", desired.len());
+
+            let client = PiHoleClient::new(&pihole_config.url, &password).await?;
+
+            let stats = client.sync_hosts(desired).await?;
+            println!(
+                "Sync complete: added {}, removed {}",
+                stats.added, stats.removed
+            );
         }
         None => Cli::command().print_long_help()?,
     }

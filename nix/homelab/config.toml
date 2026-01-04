@@ -94,3 +94,17 @@ routes = [
     private = true
   },
 ]
+
+[pihole]
+url = "https://pihole.lucalise.ca"
+password_file = "/run/secrets/pihole_password"
+extra_hosts = [
+  "192.168.27.12 mc-rocket.privatedns.org",
+  "192.168.27.12 mc-rocket-creative.privatedns.org",
+  "192.168.27.12 mc-rocket-creative.duckdns.org",
+  "192.168.27.12 git.lucalise.ca"
+]
+
+[router]
+host = "192.168.15.1:22"
+lease_file = "/var/dhcpd/var/db/dhcpd.leases"
