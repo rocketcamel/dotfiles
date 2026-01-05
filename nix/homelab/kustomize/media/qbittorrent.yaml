@@ -17,8 +17,6 @@ metadata:
   namespace: media
   labels:
     app: qbittorrent
-  annotations:
-    kubectl.kubernetes.io/default-container: qbittorrent
 spec:
   replicas: 1
   selector:
@@ -28,6 +26,8 @@ spec:
     metadata:
       labels:
         app: qbittorrent
+      annotations:
+        kubectl.kubernetes.io/default-container: qbittorrent
     spec:
       containers:
         - name: gluetun

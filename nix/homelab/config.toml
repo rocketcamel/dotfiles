@@ -102,7 +102,9 @@ extra_hosts = [
   "192.168.27.12 mc-rocket.privatedns.org",
   "192.168.27.12 mc-rocket-creative.privatedns.org",
   "192.168.27.12 mc-rocket-creative.duckdns.org",
-  "192.168.27.12 git.lucalise.ca"
+  "192.168.27.12 git.lucalise.ca",
+  "192.168.27.2 rufus",
+  "192.168.27.11 kube"
 ]
 
 [router]

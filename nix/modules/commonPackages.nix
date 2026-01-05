@@ -59,7 +59,6 @@
       sops
       yubikey-personalization
       yubikey-manager
-      gnupg
       (pass.withExtensions (exts: with exts; [ pass-import ]))
       python3
       jdt-language-server
@@ -86,11 +85,15 @@
     hardware.enableAllFirmware = true;
     programs.gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
+      enableSSHSupport = false;
       pinentryPackage = pkgs.pinentry-gtk2;
     };
     services.pcscd.enable = true;
-    services.udev.packages = with pkgs; [ yubikey-personalization ];
+    services.udev.packages = with pkgs; [
+      yubikey-personalization
+      yubikey-manager
+    ];
+    programs.ssh.startAgent = true;
 
     programs.neovim = lib.mkDefault {
       enable = true;
