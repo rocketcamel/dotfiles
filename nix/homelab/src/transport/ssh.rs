@@ -9,7 +9,7 @@ pub struct SSHTransport {
 }
 
 impl SSHTransport {
-    pub fn new(host: &str) -> Result<Self> {
+    pub fn new(host: &str, user: &str, key_path: &Path) -> Result<Self> {
         let stream = TcpStream::connect(host)?;
 
         let mut s = Self {
@@ -17,12 +17,7 @@ impl SSHTransport {
         };
         s.session.set_tcp_stream(stream);
         s.session.handshake()?;
-        s.session.userauth_pubkey_file(
-            "luca",
-            None,
-            Path::new("/home/luca/.ssh/id_ed25519"),
-            None,
-        )?;
+        s.session.userauth_pubkey_file(user, None, key_path, None)?;
         Ok(s)
     }
 }

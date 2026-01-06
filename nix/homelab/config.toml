@@ -92,7 +92,7 @@ routes = [
     service = "prometheus-stack-grafana",
     port = 80,
     private = true
-  },
+  }
 ]
 
 [pihole]
@@ -109,4 +109,6 @@ extra_hosts = [
 
 [router]
 host = "192.168.15.1:22"
+user = "luca"
+key_path = "/home/luca/.ssh/id_ed25519"
 lease_file = "/var/dhcpd/var/db/dhcpd.leases"

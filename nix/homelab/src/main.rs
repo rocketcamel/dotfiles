@@ -5,8 +5,8 @@ mod lease_parser;
 mod pihole;
 mod transport;
 
-use std::collections::HashSet;
-use std::path::Path;
+use std::path::{Path, PathBuf};
+use std::{collections::HashSet, env};
 
 use anyhow::Context;
 use clap::{CommandFactory, Parser};
@@ -58,6 +58,8 @@ pub struct PiHoleConfig {
 #[derive(Serialize, Deserialize)]
 pub struct RouterConfig {
     host: String,
+    user: String,
+    key_path: PathBuf,
     lease_file: String,
 }
 
@@ -67,6 +69,10 @@ pub fn parse_config<T: AsRef<Path>>(path: T) -> anyhow::Result<Config> {
         path.as_ref().display()
     ))?;
     Ok(toml::from_slice::<Config>(&bytes)?)
+}
+
+fn env_or<S: Into<String>>(key: &str, fallback: S) -> String {
+    env::var(key).unwrap_or_else(|_| fallback.into())
 }
 
 #[tokio::main(flavor = "current_thread")]
@@ -79,7 +85,8 @@ async fn main() -> anyhow::Result<()> {
             generate_routes(&config)?;
         }
         Some(Commands::SyncDNS {}) => {
-            let config = parse_config("./config.toml")?;
+            let config_path = env_or("CONFIG_PATH", "./config.toml");
+            let config = parse_config(config_path)?;
             let pihole_config = config
                 .pihole
                 .context("pihole configuration is necessary for syncing dns")?;
@@ -96,7 +103,11 @@ async fn main() -> anyhow::Result<()> {
                 .to_string();
 
             let leases = tokio::task::spawn_blocking(move || -> anyhow::Result<Vec<Lease>> {
-                let r = Router::new(SSHTransport::new(&router_config.host)?);
+                let r = Router::new(SSHTransport::new(
+                    &router_config.host,
+                    &router_config.user,
+                    &router_config.key_path,
+                )?);
                 let leases = r
                     .dhcp_leases(&router_config.lease_file)?
                     .into_iter()
