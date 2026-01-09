@@ -1,4 +1,5 @@
 mod commands;
+mod config;
 mod dns;
 mod error;
 mod lease_parser;
@@ -13,6 +14,7 @@ use clap::{CommandFactory, Parser};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
+use crate::config::parse_config;
 use crate::{
     commands::{
         Commands,
@@ -35,17 +37,8 @@ struct Cli {
 pub enum HelperError {
     #[error("error reading file")]
     ReadFile(#[from] std::io::Error),
-    #[error("error parsing config toml")]
-    TomlError(#[from] toml::de::Error),
     #[error("entrypoint required for tcproute: {0:?}")]
     TCPEntryPoint(String),
-}
-
-#[derive(Serialize, Deserialize)]
-pub struct Config {
-    routes: Vec<Route>,
-    pihole: Option<PiHoleConfig>,
-    router: Option<RouterConfig>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -63,30 +56,20 @@ pub struct RouterConfig {
     lease_file: String,
 }
 
-pub fn parse_config<T: AsRef<Path>>(path: T) -> anyhow::Result<Config> {
-    let bytes = std::fs::read(&path).context(format!(
-        "failed to read config file: {}",
-        path.as_ref().display()
-    ))?;
-    Ok(toml::from_slice::<Config>(&bytes)?)
-}
-
-fn env_or<S: Into<String>>(key: &str, fallback: S) -> String {
-    env::var(key).unwrap_or_else(|_| fallback.into())
-}
-
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> anyhow::Result<()> {
     let cli = Cli::parse();
 
     match &cli.command {
         Some(Commands::GenerateRoutes {}) => {
-            let config = parse_config("./config.toml")?;
-            generate_routes(&config)?;
+            let config = parse_config()?;
+            let routes = config
+                .routes
+                .context("routes in config are required for generating route manifests")?;
+            generate_routes(&routes)?;
         }
         Some(Commands::SyncDNS {}) => {
-            let config_path = env_or("CONFIG_PATH", "./config.toml");
-            let config = parse_config(config_path)?;
+            let config = parse_config()?;
             let pihole_config = config
                 .pihole
                 .context("pihole configuration is necessary for syncing dns")?;

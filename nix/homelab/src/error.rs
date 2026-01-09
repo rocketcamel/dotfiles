@@ -14,6 +14,12 @@ pub enum Error {
     Http(#[from] reqwest::Error),
     #[error("Pi-hole API error: {0}")]
     PiHole(String),
+    #[cfg(not(feature = "file-config"))]
+    #[error("missing environment variables: {0}")]
+    MissingEnvVars(String),
+    #[cfg(feature = "file-config")]
+    #[error("error parsing toml: {0}")]
+    TomlParse(#[from] toml::de::Error),
 }
 
 pub type Result<T> = std::result::Result<T, Error>;

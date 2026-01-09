@@ -2,7 +2,7 @@ use std::collections::BTreeSet;
 
 use serde::{Deserialize, Serialize};
 
-use crate::{Config, HelperError};
+use crate::{HelperError, config::Config};
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone)]
 pub struct Route {
@@ -30,8 +30,8 @@ enum RouteKind {
     TCP,
 }
 
-pub fn generate_routes(config: &Config) -> Result<(), HelperError> {
-    let routes = config.routes.iter().enumerate().try_fold(
+pub fn generate_routes(routes: &Vec<Route>) -> Result<(), HelperError> {
+    let routes_content = routes.iter().enumerate().try_fold(
         String::new(),
         |mut acc, (i, r)| -> Result<_, HelperError> {
             if i > 0 {
@@ -41,10 +41,10 @@ pub fn generate_routes(config: &Config) -> Result<(), HelperError> {
             Ok(acc)
         },
     )?;
-    let chains = generate_chains(&config.routes);
-    std::fs::write("kustomize/routes.yaml", &routes)?;
+    let chains = generate_chains(&routes);
+    std::fs::write("kustomize/routes.yaml", &routes_content)?;
     std::fs::write("kustomize/traefik/chains.yaml", &chains)?;
-    println!("Wrote: {}", routes);
+    println!("Wrote: {}", routes_content);
 
     Ok(())
 }
