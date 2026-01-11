@@ -12,6 +12,7 @@ return {
 				tsx = { "prettier" },
 				nix = { "nixfmt" },
 				go = { "gofmt" },
+				svelte = { "prettier" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()

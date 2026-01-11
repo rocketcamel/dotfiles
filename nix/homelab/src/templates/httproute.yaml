@@ -1,0 +1,23 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - {{ hostname }}.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: {{ service }}
+          port: {{ port }}
+{%- if private %}
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+{%- endif %}

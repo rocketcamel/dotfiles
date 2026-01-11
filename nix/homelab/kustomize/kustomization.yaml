@@ -5,6 +5,7 @@ resources:
   - ./metallb/pool.yaml
   - ./traefik/config.yaml
   - ./traefik/private-networks.yaml
+  - ./traefik/private-networks-tcp.yaml
   - ./traefik/chains.yaml
   - ./cert-manager/config.yaml
   - ./routes.yaml

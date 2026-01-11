@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1.0.100"
+askama = "0.15.1"
 clap = { version = "4.5.53", features = ["derive"] }
 nom = "8.0.0"
 reqwest = { version = "0.13.1", features = ["json"] }

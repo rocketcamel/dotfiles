@@ -130,6 +130,23 @@ spec:
         - name: minecraft-router-mc-router
           port: 25565
 ---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: minecraft-rcon
+  namespace: minecraft
+spec:
+  entryPoints:
+    - rcon
+  routes:
+    - match: HostSNI(`*`)
+      middlewares:
+        - name: private-networks-tcp
+          namespace: kube-system
+      services:
+        - name: minecraft-main-rcon
+          port: 25575
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:

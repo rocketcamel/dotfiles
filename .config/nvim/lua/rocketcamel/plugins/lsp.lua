@@ -69,6 +69,12 @@ local function setup_java()
 	})
 end
 
+local function setup_svelte()
+	require("lspconfig").svelte.setup({
+		root_dir = require("lspconfig.util").root_pattern("svelte.config.js", "svelte.config.ts", "package.json"),
+	})
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -101,14 +107,16 @@ return {
 					"jdtls",
 					"clangd",
 					"cmake",
+					"cssls",
 				},
-				automatic_enable = { exclude = { "luau_lsp", "lua_ls" } },
+				automatic_enable = { exclude = { "luau_lsp", "lua_ls", "svelte" } },
 			})
 			setup_luau()
 			setup_lua()
 			setup_ts()
 			setup_nix()
 			setup_java()
+			setup_svelte()
 		end,
 	},
 }

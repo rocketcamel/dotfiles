@@ -36,6 +36,12 @@ spec:
           default: true
         exposedPort: 25565
         protocol: TCP
+      rcon:
+        port: 25575
+        expose:
+          default: true
+        exposedPort: 25575
+        protocol: TCP
 
     persistence:
         enabled: true

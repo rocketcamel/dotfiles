@@ -54,6 +54,15 @@ routes = [
     private = false
   },
   {
+    kind = "TCP",
+    name = "minecraft-rcon",
+    namespace = "minecraft",
+    entrypoint = "rcon",
+    service = "minecraft-main-rcon",
+    port = 25575,
+    private = true
+  },
+  {
     name = "prowlarr",
     namespace = "media",
     port = 9696,

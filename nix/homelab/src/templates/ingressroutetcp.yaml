@@ -1,0 +1,18 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: {{ name }}
+  namespace: {{ namespace }}
+spec:
+  entryPoints:
+    - {{ entrypoint }}
+  routes:
+    - match: HostSNI(`*`)
+{%- if private %}
+      middlewares:
+        - name: private-networks-tcp
+          namespace: kube-system
+{%- endif %}
+      services:
+        - name: {{ service }}
+          port: {{ port }}

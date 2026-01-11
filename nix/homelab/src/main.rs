@@ -39,6 +39,8 @@ pub enum HelperError {
     ReadFile(#[from] std::io::Error),
     #[error("entrypoint required for tcproute: {0:?}")]
     TCPEntryPoint(String),
+    #[error("template rendering error: {0}")]
+    Template(#[from] askama::Error),
 }
 
 #[derive(Serialize, Deserialize)]
