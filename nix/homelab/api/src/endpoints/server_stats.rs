@@ -1,14 +1,19 @@
 use actix_web::{HttpResponse, web};
 use serde::Serialize;
 
-use crate::{AppState, error::Result, rcon::parse_online_list};
+use crate::{
+    AppState,
+    endpoints::server_uptime::{PodUptime, get_pod_uptime},
+    error::Result,
+    rcon::parse_online_list,
+};
 
 #[derive(Serialize)]
-pub struct ServerStats {
+struct ServerStats {
     pub status: String,
     pub players_online: u16,
     pub max_players: u16,
-    pub uptime: Option<String>,
+    pub uptime: PodUptime,
     pub world_size: Option<String>,
 }
 
@@ -17,12 +22,13 @@ pub async fn get_server_stats(app_state: web::Data<AppState>) -> Result<HttpResp
 
     let (_, (players_online, max_players)) =
         parse_online_list(&list_response).map_err(|e| crate::error::Error::Parse(e.to_string()))?;
+    let uptime = get_pod_uptime(&app_state.kube, "main").await?;
 
     let stats = ServerStats {
         status: "Online".to_string(),
         players_online,
         max_players,
-        uptime: None,
+        uptime,
         world_size: None,
     };
 
