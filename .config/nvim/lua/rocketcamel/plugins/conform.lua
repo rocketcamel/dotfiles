@@ -6,13 +6,13 @@ return {
 				lua = { "stylua" },
 				luau = { "stylua" },
 				rust = { "rustfmt", lsp_format = "fallback" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				json = { "prettier" },
-				tsx = { "prettier" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				json = { "prettierd" },
+				tsx = { "prettierd" },
 				nix = { "nixfmt" },
 				go = { "gofmt" },
-				svelte = { "prettier" },
+				svelte = { "prettierd" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()

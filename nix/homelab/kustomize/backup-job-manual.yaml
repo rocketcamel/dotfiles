@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minecraft-backup-manual
+  namespace: minecraft
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: backup
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              set -e
+              BACKUP_FILE=/backups/manual/minecraft-main-manual.tar.gz
+              echo "creating backup: ${BACKUP_FILE}"
+              tar -czf "${BACKUP_FILE}" -C /data .
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: backups
+              mountPath: /backups
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: minecraft-main-datadir
+        - name: backups
+          nfs:
+            server: 192.168.27.2
+            path: /backup/minecraft
