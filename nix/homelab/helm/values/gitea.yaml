@@ -15,10 +15,11 @@ gitea:
       ROOT: /mnt/git-data/git/repositories
     server:
       ROOT_URL: https://git.lucalise.ca
+      SSH_DOMAIN: git.lucalise.ca
     database:
       DB_TYPE: sqlite3
     session:
-      PROVIDER: memory
+      PROVIDER: db
     cache:
       ADAPTER: memory
     queue:
