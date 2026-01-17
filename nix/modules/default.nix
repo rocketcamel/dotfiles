@@ -21,5 +21,6 @@
     ./dns.nix
     ./mounts.nix
     ./nfs-mesh.nix
+    ./rust.nix
   ];
 }

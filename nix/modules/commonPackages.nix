@@ -50,7 +50,6 @@
       gnumake
       watchman
       bat
-      rustup
       emote
       pkg-config
       openssl
