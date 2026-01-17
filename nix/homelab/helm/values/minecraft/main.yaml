@@ -22,6 +22,7 @@ minecraftServer:
   modrinth:
     projects:
       - treeminer
+      - fast-leaf-decay
 
 nodeSelector:
   kubernetes.io/hostname: kube
