@@ -21,6 +21,7 @@
       roboto
       roboto-mono
       open-sans
+      comic-relief
     ];
     fonts.fontDir.enable = true;
     commonPackages = with pkgs; [

@@ -26,6 +26,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -75,6 +79,7 @@
               inherit inputs;
               meta = {
                 hostname = host.name;
+                architecture = host.architecture;
               };
               pkgs-before = import inputs.nixpkgs-before { system = host.architecture; };
             };

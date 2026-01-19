@@ -75,6 +75,10 @@ local function setup_svelte()
 	})
 end
 
+local function setup_qml()
+	require("lspconfig").qmlls.setup({})
+end
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -108,6 +112,7 @@ return {
 					"clangd",
 					"cmake",
 					"cssls",
+					"qmlls",
 				},
 				automatic_enable = { exclude = { "luau_lsp", "lua_ls", "svelte" } },
 			})
@@ -117,6 +122,7 @@ return {
 			setup_nix()
 			setup_java()
 			setup_svelte()
+			setup_qml()
 		end,
 	},
 }

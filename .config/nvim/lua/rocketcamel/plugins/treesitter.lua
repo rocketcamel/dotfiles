@@ -20,6 +20,7 @@ return {
 					"html",
 					"templ",
 					"go",
+					"qmljs",
 				},
 				auto_install = true,
 				highlight = {

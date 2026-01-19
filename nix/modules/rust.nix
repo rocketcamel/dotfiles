@@ -36,6 +36,9 @@
     programs.nix-ld.libraries = with pkgs; [
       openssl
       zlib
+      brotli
+      unixODBC
+      glib
     ];
   };
 }

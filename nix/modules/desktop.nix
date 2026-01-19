@@ -3,6 +3,8 @@
   lib,
   config,
   pkgs-before,
+  inputs,
+  meta,
   ...
 }:
 
@@ -50,6 +52,7 @@
       lm_sensors
       fanctl
       waypipe
+      inputs.quickshell.packages.${meta.architecture}.default
     ];
     boot.kernelModules = [
       "iptables"
@@ -202,6 +205,8 @@
             "$mod, k, movefocus, u"
             "$mod, j, movefocus, d"
             "$mod, Space, togglesplit"
+            "$mod SHIFT, h, movewindow, l"
+            "$mod SHIFT, l, movewindow, r"
             "$mod SHIFT, v, exec, bash -c ~/dotfiles/scripts/copy.sh"
             "$mod SHIFT, s, exec, bash -c ~/dotfiles/scripts/screenshot.sh"
             "$mod, p, exec, bash -c ~/dotfiles/scripts/project.sh"
@@ -235,14 +240,14 @@
             ",XF86MonBrightnessDown, exec, bash -c 'brightnessctl s 5%- && perc=$(( \$(brightnessctl get) * 100 / \$(brightnessctl max) )) && notify-send \"Brightness\" -h int:value:\$perc -h string:synchronous:brightness -u low'"
           ];
           general = {
-            gaps_in = 0;
+            gaps_in = 5;
             gaps_out = 10;
           };
           dwindle = {
             preserve_split = true;
           };
           decoration = {
-            rounding = 0;
+            rounding = 10;
             blur = {
               enabled = false;
             };
