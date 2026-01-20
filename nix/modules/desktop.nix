@@ -259,7 +259,8 @@
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
           ];
           exec-once = [
-            "status-bar"
+            # "status-bar"
+            "qs"
             "wl-clip-persist --clipboard regular"
           ];
           monitor = [
