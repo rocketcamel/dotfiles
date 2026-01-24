@@ -1,5 +1,6 @@
 mod commands;
 mod error;
+mod reporter;
 
 use std::{ops::Deref, sync::Arc};
 
@@ -48,7 +49,7 @@ async fn main() -> anyhow::Result<()> {
     let app_state = State::new(AppState::new().await?);
 
     match cli.command {
-        Some(Commands::Minecraft(cmd)) => cmd.run(app_state.clone()).await,
+        Some(Commands::Minecraft(cmd)) => cmd.run(app_state.clone()).await?,
         _ => Cli::command().print_long_help()?,
     };
 
