@@ -1,0 +1,15 @@
+[package]
+name = "homelab-cli"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.54", features = ["derive"] }
+dialoguer = "0.12.0"
+k8s-openapi = { version = "0.27.0", features = ["latest", "schemars", "v1_35"] }
+kube = { version = "3.0.0", features = ["runtime", "derive"] }
+schemars = "1.2.0"
+thiserror = "2.0.18"
+thiserror-ext = "0.3.0"
+tokio = { version = "1.49.0", features = ["macros", "rt"] }
