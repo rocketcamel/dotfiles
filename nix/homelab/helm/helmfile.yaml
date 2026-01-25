@@ -95,6 +95,13 @@ releases:
     values:
       - values/minecraft/creative.yaml
 
+  - name: minecraft-old
+    namespace: minecraft
+    chart: minecraft-charts/minecraft
+    version: 5.0.0
+    values:
+      - values/minecraft/old.yaml
+
   - name: home-assistant
     namespace: home
     chart: home-assistant/home-assistant

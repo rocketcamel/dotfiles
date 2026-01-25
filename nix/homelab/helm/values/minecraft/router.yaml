@@ -14,3 +14,6 @@ minecraftRouter:
     - externalHostname: "mc-rocket-creative.duckdns.org"
       host: "minecraft-creative"
       port: 25565
+    - externalHostname: "mc-rocket-old.privatedns.org"
+      host: "minecraft-old"
+      port: 25565

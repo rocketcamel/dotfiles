@@ -1,16 +1,22 @@
+use std::fmt::Display;
+
 use indicatif::{ProgressBar, ProgressStyle};
 
 pub struct Reporter {
     spinner: ProgressBar,
 }
 
+pub const TICK_CHARS: &str = "⣷⣯⣟⡿⢿⣻⣽⣾";
+
 impl Reporter {
     pub fn new() -> Self {
         let spinner = ProgressBar::new_spinner();
         spinner.set_style(
-            ProgressStyle::default_spinner()
-                .template("{spinner:.cyan} {msg}")
-                .unwrap(),
+            ProgressStyle::with_template(
+                "{prefix:.dim}{msg:>8.214/yellow} {spinner} [{elapsed_precise}]",
+            )
+            .unwrap()
+            .tick_chars(TICK_CHARS),
         );
         spinner.enable_steady_tick(std::time::Duration::from_millis(100));
         Self { spinner }
@@ -20,10 +26,14 @@ impl Reporter {
         self.spinner.set_message(msg.into());
     }
 
-    pub fn log(&self, line: &str) {
+    pub fn log_event(&self, line: &str) {
         self.spinner.suspend(|| {
             println!("  │ {}", line);
         });
+    }
+
+    pub fn log<T: Display>(&self, text: T) {
+        self.spinner.suspend(|| println!("{}", text))
     }
 
     pub fn success(&self, msg: &str) {

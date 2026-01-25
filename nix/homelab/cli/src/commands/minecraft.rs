@@ -48,7 +48,7 @@ pub async fn backup_world(state: State, world: &str) -> Result<()> {
     let reporter = Reporter::new();
     let job_name = format!("minecraft-{}-backup", world);
 
-    reporter.status(format!("Scaling deployment minecraft-{world}"));
+    reporter.log(format!("Scaling deployment minecraft-{world}"));
     scale_deployment(&state.client, NAMESPACE, &format!("minecraft-{world}"), 0).await?;
 
     reporter.status("Creating backup job...");
@@ -71,7 +71,7 @@ pub async fn backup_world(state: State, world: &str) -> Result<()> {
     let succeeded = status.and_then(|s| s.succeeded).unwrap_or(0);
     let failed = status.and_then(|s| s.failed).unwrap_or(0);
 
-    reporter.status(format!("Scaling deployment minecraft-{world}, replicas: 1"));
+    reporter.log(format!("Scaling deployment minecraft-{world}, replicas: 1"));
     scale_deployment(&state.client, NAMESPACE, &format!("minecraft-{world}"), 1).await?;
     if succeeded > 0 {
         reporter.success("Backup complete");
@@ -137,7 +137,7 @@ async fn stream_pod_logs(pods: &Api<Pod>, pod_name: &str, reporter: &Reporter) -
     let mut lines = stream.lines();
 
     while let Some(line) = lines.try_next().await? {
-        reporter.log(&line);
+        reporter.log_event(&line);
     }
 
     Ok(())

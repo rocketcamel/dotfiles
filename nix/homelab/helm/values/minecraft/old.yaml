@@ -1,0 +1,29 @@
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    memory: 2Gi
+    cpu: 1
+
+minecraftServer:
+  eula: "TRUE"
+  type: "VANILLA"
+  version: "1.7.10"
+  difficulty: hard
+  motd: "A Minecraft Server."
+  memory: 4G
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    port: 25575
+    existingSecret: rcon-credentials
+    secretKey: rcon-password
+
+nodeSelector:
+  kubernetes.io/hostname: rufus
+
+persistence:
+  dataDir:
+    enabled: true
+    Size: 2Gi
