@@ -229,6 +229,8 @@
             "$mod, p, exec, bash -c ~/dotfiles/scripts/project.sh"
             "$mod SHIFT, k, exec, bash -c ~/dotfiles/scripts/layout.sh"
             "$mod SHIFT, j, exec, fcitx5-remote -t"
+            "$mod CTRL, h, focusmonitor, l"
+            "$mod CTRL, l, focusmonitor, r"
 
             "$mod, 0, workspace, 10"
             "$mod SHIFT, 0, movetoworkspacesilent, 10"

@@ -26,6 +26,7 @@ minecraftServer:
       - lithium
       - servux
       - ferrite-core
+      - carpet
 
 nodeSelector:
   kubernetes.io/hostname: kube

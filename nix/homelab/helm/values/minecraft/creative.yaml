@@ -8,7 +8,7 @@ resources:
 
 minecraftServer:
   eula: "TRUE"
-  type: "PAPER"
+  type: "FABRIC"
   version: "1.21.11"
   difficulty: hard
   motd: "A Minecraft Server."
@@ -20,6 +20,15 @@ minecraftServer:
     port: 25575
     existingSecret: rcon-credentials
     secretKey: rcon-password
+  modrinth:
+    projects:
+      - fabric-api
+      - tree-vein-miner
+      - lithium
+      - servux
+      - ferrite-core
+      - carpet
+
 
 nodeSelector:
   kubernetes.io/hostname: kube
