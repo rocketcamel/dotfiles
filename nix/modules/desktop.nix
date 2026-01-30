@@ -14,6 +14,15 @@
   };
 
   config = lib.mkIf config.desktop.enable {
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
+
     environment.systemPackages = with pkgs; [
       vscode-fhs
       pavucontrol
@@ -111,6 +120,14 @@
       };
       xdg.configFile = {
         "hypr/hyprlock.conf".source = ../../custom/hyprlock/hyprlock.conf;
+        "fcitx5/config".text = ''
+          [Hotkey]
+          TriggerKeys=
+          EnumerateWithTriggerKeys=True
+          EnumerateForwardKeys=
+          EnumerateBackwardKeys=
+          EnumerateSkipFirst=False
+        '';
       };
       services.dunst = {
         enable = true;
@@ -210,6 +227,8 @@
             "$mod SHIFT, v, exec, bash -c ~/dotfiles/scripts/copy.sh"
             "$mod SHIFT, s, exec, bash -c ~/dotfiles/scripts/screenshot.sh"
             "$mod, p, exec, bash -c ~/dotfiles/scripts/project.sh"
+            "$mod SHIFT, k, exec, bash -c ~/dotfiles/scripts/layout.sh"
+            "$mod SHIFT, j, exec, fcitx5-remote -t"
 
             "$mod, 0, workspace, 10"
             "$mod SHIFT, 0, movetoworkspacesilent, 10"
@@ -257,17 +276,21 @@
             "XCURSOR_SIZE,24"
             "LIBVA_DRIVER_NAME,nvidia"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+            # "GTK_IM_MODULE,fcitx"
+            # "QT_IM_MODULE,fcitx"
+            "XMODIFIERS,@im=fcitx"
           ];
           exec-once = [
             # "status-bar"
             "qs"
             "wl-clip-persist --clipboard regular"
+            "fcitx5 -d"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"
           ];
           input = {
-            kb_layout = "us";
+            kb_layout = "us,jp";
             touchpad = {
               natural_scroll = true;
             };
