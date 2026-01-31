@@ -27,6 +27,8 @@ minecraftServer:
       - servux
       - ferrite-core
       - carpet
+      - elytra-trims
+      - fabric-language-kotlin
 
 nodeSelector:
   kubernetes.io/hostname: kube
