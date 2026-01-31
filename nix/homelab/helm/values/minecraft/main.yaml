@@ -29,6 +29,8 @@ minecraftServer:
       - carpet
       - elytra-trims
       - fabric-language-kotlin
+      - c2me-fabric
+      - scalablelux
 
 nodeSelector:
   kubernetes.io/hostname: kube

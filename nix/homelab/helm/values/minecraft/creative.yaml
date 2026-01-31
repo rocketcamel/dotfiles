@@ -28,6 +28,10 @@ minecraftServer:
       - servux
       - ferrite-core
       - carpet
+      - elytra-trims
+      - fabric-language-kotlin
+      - c2me-fabric
+      - scalablelux
 
 
 nodeSelector:
