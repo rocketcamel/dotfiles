@@ -3,7 +3,7 @@ resources:
     cpu: 1
     memory: 500Mi
   limits:
-    memory: 4Gi
+    memory: 5Gi
     cpu: 2000m
 
 minecraftServer:
