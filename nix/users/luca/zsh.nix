@@ -33,6 +33,7 @@ in
       "rust"
       "kubectl"
       "helm"
+      "jj"
     ];
   };
   plugins = [
