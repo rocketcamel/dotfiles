@@ -17,6 +17,7 @@
     eza = import ./eza.nix;
     mise = import ./mise.nix;
     bacon.enable = true;
+    jujutsu = import ./jj.nix;
   };
   xdg.mimeApps = import ./mime.nix;
 
