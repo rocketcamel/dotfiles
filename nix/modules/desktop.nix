@@ -62,6 +62,7 @@
       fanctl
       waypipe
       inputs.quickshell.packages.${meta.architecture}.default
+      alacritty
     ];
     boot.kernelModules = [
       "iptables"

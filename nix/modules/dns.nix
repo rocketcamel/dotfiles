@@ -29,7 +29,7 @@
       ];
       extraConfig = ''
         [Resolve]
-        DNS=192.168.27.13:53
+        DNS=192.168.27.13:53 1.1.1.1 1.0.0.1
         ResolveUnicastSingleLabel=yes
       '';
     };
