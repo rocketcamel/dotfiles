@@ -65,9 +65,10 @@ in
       };
     };
 
-    # networking.firewall = {
-    #   allowedUDPPorts = [ 51820 ];
-    # };
+    networking.firewall = {
+      allowedUDPPorts = [ 51820 ];
+      trustedInterfaces = [ "wg0" ];
+    };
 
     systemd.tmpfiles.rules = [
       "d /etc/wireguard 0700 root root -"
