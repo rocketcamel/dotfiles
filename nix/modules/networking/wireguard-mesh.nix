@@ -30,6 +30,7 @@ let
       isRouter = true;
       ip = "10.100.0.250";
       routes = [
+        "10.100.0.0/24"
         "192.168.15.0/27"
         "192.168.20.0/26"
         "192.168.27.0/24"
@@ -50,7 +51,10 @@ let
   };
 
   mkPeersFor =
-    selfName: lib.mapAttrsToList mkPeer (lib.filterAttrs (name: _: name != selfName) meshHosts);
+    selfName:
+    lib.mapAttrsToList mkPeer (
+      lib.filterAttrs (name: host: name != selfName && (host.isRouter or false)) meshHosts
+    );
 
   selfConfig = meshHosts.${config.networking.hostName} or null;
 in
