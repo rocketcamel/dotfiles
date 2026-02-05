@@ -1,0 +1,5 @@
+enabled: true
+statefulset:
+  nodeSelector:
+    kubernetes.io/hostname: rufus
+giteaRootURL: https://git.lucalise.ca

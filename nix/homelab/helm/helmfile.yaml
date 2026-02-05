@@ -45,6 +45,13 @@ releases:
     values:
       - values/gitea.yaml
 
+  - name: gitea-runners
+    namespace: git
+    chart: gitea-charts/actions
+    version: 0.0.2
+    values:
+      - values/gitea-runners.yaml
+
   # Storage
   - name: longhorn
     namespace: longhorn-system
