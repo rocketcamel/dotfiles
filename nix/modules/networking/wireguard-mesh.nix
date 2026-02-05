@@ -20,7 +20,7 @@ let
     };
     tux = {
       address = "tux";
-      publicKey = "TUX_PUBLIC_KEY_HERE=";
+      publicKey = "Z17ci3Flk1eDAhJ8QZSUgtmlw6BVu4XqvpqLKLWTYWw=";
       isRouter = false;
       ip = "10.100.0.3";
     };
