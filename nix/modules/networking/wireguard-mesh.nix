@@ -36,6 +36,15 @@ let
         "192.168.27.0/24"
       ];
     };
+    pearce-udm = {
+      endpoint = "pearce.lucalise.ca:51823";
+      publicKey = "hDb2DzI+isaqXLdxwAF1hc5Nid8TK/M1SQ+zDpf9QxY=";
+      isRouter = true;
+      ip = "10.100.0.251";
+      routes = [
+        "192.168.18.0/27"
+      ];
+    };
   };
 
   getEndpoint =
