@@ -37,7 +37,7 @@ let
       ];
     };
     pearce-udm = {
-      endpoint = "pearce.lucalise.ca:51823";
+      endpoint = "pearce.kisame.ca:51823";
       publicKey = "hDb2DzI+isaqXLdxwAF1hc5Nid8TK/M1SQ+zDpf9QxY=";
       isRouter = true;
       ip = "10.100.0.251";
