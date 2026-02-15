@@ -101,6 +101,13 @@ routes = [
     service = "prometheus-stack-grafana",
     port = 80,
     private = true
+  },
+  {
+    name = "mesh",
+    namespace = "networking",
+    service = "headscale",
+    port = 8080,
+    private = false
   }
 ]
 

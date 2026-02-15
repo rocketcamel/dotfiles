@@ -22,6 +22,6 @@
     ./mounts.nix
     ./nfs-mesh.nix
     ./rust.nix
-    ./networking/wireguard-mesh.nix
+    # ./networking/wireguard-mesh.nix
   ];
 }
