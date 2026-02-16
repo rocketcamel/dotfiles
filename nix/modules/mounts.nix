@@ -15,10 +15,22 @@
     boot.supportedFilesystems = [ "nfs" ];
     services.rpcbind.enable = true;
 
-    systemd.tmpfiles.rules = [ "d /mnt/data 0755 luca users -" ];
+    systemd.tmpfiles.rules = [
+      "d /mnt/data 0755 luca users -"
+      "d /mnt/backup 0755 luca users -"
+    ];
     fileSystems = {
       "/mnt/data" = {
         device = "rufus:/data";
+        fsType = "nfs";
+        options = [
+          "x-systemd.automount"
+          "noauto"
+          "x-systemd.idle-timeout=600"
+        ];
+      };
+      "/mnt/backup" = {
+        device = "rufus:/backup";
         fsType = "nfs";
         options = [
           "x-systemd.automount"

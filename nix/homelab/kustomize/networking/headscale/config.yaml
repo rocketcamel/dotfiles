@@ -12,7 +12,7 @@ data:
       "acls": [
         {"action": "accept", "src": ["tag:personal"], "dst": ["tag:personal:*"]},
         {"action": "accept", "src": ["tag:personal"], "dst": ["autogroup:internet:*"]},
-        {"action": "accept", "src": ["tag:personal"], "dst": ["192.168.15.0/27:*", "192.168.27.0/24:*", "192.168.20.0/26:*"]}
+        {"action": "accept", "src": ["tag:personal"], "dst": ["192.168.15.0/27:*", "192.168.27.0/24:*", "192.168.20.0/26:*", "192.168.8.0/24:*"]}
       ]
     }
   config.yaml: |
