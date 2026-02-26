@@ -46,5 +46,13 @@
     "video/x-m4v" = "vlc.desktop";
     "video/vnd.rn-realvideo" = "vlc.desktop";
     "video/x-flic" = "vlc.desktop";
+
+    "image/png" = "swappy.desktop";
+    "image/jpeg" = "swappy.desktop";
+    "image/gif" = "swappy.desktop";
+    "image/webp" = "swappy.desktop";
+    "image/tiff" = "swappy.desktop";
+    "image/bmp" = "swappy.desktop";
+    "image/svg+xml" = "swappy.desktop";
   };
 }

@@ -56,7 +56,10 @@
     printing.enable = true;
 
     home-manager.users.luca = {
-      home.packages = with pkgs; [ webcord ];
+      home.packages = with pkgs; [
+        webcord
+        blueberry
+      ];
       programs = {
         ghostty = {
           enable = true;

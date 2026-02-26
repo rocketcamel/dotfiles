@@ -113,6 +113,22 @@
               enabled = false;
             };
           };
+          windowrule = [
+            "float, class:^(org.prismlauncher.PrismLauncher)$"
+            "size 900 600, class:^(org.prismlauncher.PrismLauncher)$, title:^(Prism Launcher)(.*)"
+
+            "float, class:.*pavucontrol*."
+            "size 800 600, class:.*pavucontrol*."
+            "float, class:^(thunar)$"
+            "size 1000 600, class:^(thunar)$"
+
+            "float, class:^(xdg-desktop-portal-gtk)$"
+            "size 1000 600, class:^(xdg-desktop-portal-gtk)$"
+
+            "float, class:^(steam)$"
+            "float, class:^(blueberry.py)$"
+            "size 800 600, class:^(blueberry.py)$"
+          ];
           env = [
             "XCURSOR_THEME,Adwaita"
             "XCURSOR_SIZE,24"
