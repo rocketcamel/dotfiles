@@ -13,7 +13,7 @@
     ./pipewire.nix
     ./keys.nix
     ./rofi.nix
-    ./desktop.nix
+    ./desktop/default.nix
     ./zed-editor.nix
     ./virtualization.nix
     ./printing.nix
@@ -22,6 +22,5 @@
     ./mounts.nix
     ./nfs-mesh.nix
     ./rust.nix
-    # ./networking/wireguard-mesh.nix
   ];
 }

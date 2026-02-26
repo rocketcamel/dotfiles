@@ -2,94 +2,35 @@
   pkgs,
   lib,
   config,
-  pkgs-before,
-  inputs,
-  meta,
   ...
 }:
 
 {
+  imports = [
+    ./custom.nix
+    ./idle.nix
+    ./programs.nix
+    ./services.nix
+    ./theme.nix
+    ./wallpaper.nix
+  ];
   options.desktop = {
     enable = lib.mkEnableOption "enable desktop";
   };
 
   config = lib.mkIf config.desktop.enable {
-    i18n.inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
-    };
-
-    environment.systemPackages = with pkgs; [
-      vscode-fhs
-      pavucontrol
-      vlc
-      wine64
-      vesktop
-      firefox
-      brightnessctl
-      pkgs-before.jellyfin-media-player
-      anki-bin
-      mpv
-      prismlauncher
-      feh
-      dconf
-      papirus-icon-theme
-      libnotify
-      adwaita-icon-theme
-      gnome-themes-extra
-      wl-clipboard
-      wl-clip-persist
-      wdisplays
-      efibootmgr
-      xfce.thunar
-      altserver-linux
-      xdg-desktop-portal
-      microsoft-edge
-      libadwaita
-      grim
-      grimblast
-      slurp
-      swappy
-      termscp
-      awscli2
-      gitui
-      htop
-      lm_sensors
-      fanctl
-      waypipe
-      inputs.quickshell.packages.${meta.architecture}.default
-      alacritty
-    ];
     boot.kernelModules = [
       "iptables"
       "iptable_nat"
       "bluetooth"
       "btusb"
     ];
+
     virtualisation.docker = {
       enable = true;
       rootless.enable = true;
     };
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
-    programs.steam.enable = true;
-    programs.obs-studio.enable = true;
-    services.tumbler.enable = true;
-    services.displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
-    rofi.enable = true;
-    services.upower.enable = true;
-    zed.enable = true;
-    virt.enable = true;
-    printing.enable = true;
+
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
@@ -97,109 +38,8 @@
         default = "gtk";
       };
     };
-    services.tailscale = {
-      enable = true;
-      useRoutingFeatures = "client";
-    };
 
     home-manager.users.luca = {
-      programs = {
-        ghostty = {
-          enable = true;
-          settings = {
-            "shell-integration-features" = "no-cursor";
-            "background-opacity" = 0.85;
-            "cursor-style" = "block";
-            "cursor-style-blink" = false;
-            "font-size" = 15;
-          };
-        };
-        hyprlock = {
-          enable = true;
-        };
-        ranger.enable = true;
-      };
-      xdg.configFile = {
-        "hypr/hyprlock.conf".source = ../../custom/hyprlock/hyprlock.conf;
-        "fcitx5/config".text = ''
-          [Hotkey]
-          TriggerKeys=
-          EnumerateWithTriggerKeys=True
-          EnumerateForwardKeys=
-          EnumerateBackwardKeys=
-          EnumerateSkipFirst=False
-        '';
-      };
-      services.dunst = {
-        enable = true;
-        configFile = ../../custom/dunst/dunstrc;
-      };
-      services.hyprpolkitagent.enable = true;
-      services.cliphist.enable = true;
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          ipc = "on";
-          splash = false;
-          preload = [ "~/dotfiles/.config/wallpaper/bg.jpg" ];
-          wallpaper = [
-            ",~/dotfiles/.config/wallpaper/bg.jpg"
-          ];
-        };
-      };
-      services.hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            lock_cmd = "pidof hyprlock || hyprlock";
-            before_sleep_cmd = "loginctl lock-session";
-            after_sleep_cmd = "hyprctl dispatch dpms on";
-          };
-          listener = [
-            {
-              timeout = 150;
-              on-timeout = "brightnessctl -s set 10";
-              on-resume = "brightnessctl -r";
-            }
-            {
-              timeout = 330;
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
-            }
-          ];
-        };
-      };
-      services.hyprsunset = {
-        enable = true;
-        settings = {
-          profile = [
-            {
-              time = "6:00";
-              identity = true;
-            }
-            {
-              time = "21:00";
-              temperature = 3500;
-              gamma = 0.8;
-            }
-          ];
-        };
-      };
-      gtk = {
-        enable = true;
-        theme.name = "Adwaita-dark";
-        gtk4.extraConfig = {
-          gtk-application-prefer-dark-theme = true;
-        };
-        gtk3.extraConfig = {
-          gtk-application-prefer-dark-theme = true;
-        };
-      };
-      qt = {
-        enable = true;
-        style.name = "adwaita-dark";
-      };
-
       wayland.windowManager.hyprland = {
         enable = true;
         xwayland.enable = true;
@@ -229,7 +69,6 @@
             "$mod SHIFT, s, exec, bash -c ~/dotfiles/scripts/screenshot.sh"
             "$mod, p, exec, bash -c ~/dotfiles/scripts/project.sh"
             "$mod SHIFT, k, exec, bash -c ~/dotfiles/scripts/layout.sh"
-            "$mod SHIFT, j, exec, fcitx5-remote -t"
             "$mod CTRL, h, focusmonitor, l"
             "$mod CTRL, l, focusmonitor, r"
 
@@ -279,15 +118,10 @@
             "XCURSOR_SIZE,24"
             "LIBVA_DRIVER_NAME,nvidia"
             "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-            # "GTK_IM_MODULE,fcitx"
-            # "QT_IM_MODULE,fcitx"
-            "XMODIFIERS,@im=fcitx"
           ];
           exec-once = [
-            # "status-bar"
             "qs"
             "wl-clip-persist --clipboard regular"
-            "fcitx5 -d"
           ];
           monitor = [
             "eDP-1, 1920x1080, 0x0, 1"

@@ -42,23 +42,8 @@
     let
       hosts = [
         {
-          name = "wsl-kumatani";
-          architecture = "x86_64-linux";
-          isWSL = true;
-        }
-        {
-          name = "wsl-usahara";
-          architecture = "x86_64-linux";
-          isWSL = true;
-        }
-        {
           name = "tux";
           architecture = "x86_64-linux";
-        }
-        {
-          name = "tux-wsl";
-          architecture = "x86_64-linux";
-          isWSL = true;
         }
         {
           name = "kumatani";

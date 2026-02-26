@@ -39,7 +39,6 @@
       wireguard-tools
       fzf
       awscli2
-      # deno
       jq
       nfs-utils
       bluetui
@@ -49,7 +48,6 @@
       air
       tailwindcss_4
       gnumake
-      watchman
       bat
       emote
       pkg-config
@@ -61,8 +59,6 @@
       yubikey-manager
       (pass.withExtensions (exts: with exts; [ pass-import ]))
       python3
-      jdt-language-server
-      gradle
       cmake
       doppler
       wayland
@@ -80,6 +76,7 @@
       dig
       just
       httpie
+      lm_sensors
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;

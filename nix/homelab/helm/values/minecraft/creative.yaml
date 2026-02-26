@@ -28,6 +28,7 @@ minecraftServer:
       - servux
       - ferrite-core
       - carpet
+      - carpet-tis-addition
       - elytra-trims
       - fabric-language-kotlin
       - c2me-fabric
