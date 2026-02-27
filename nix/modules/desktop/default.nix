@@ -120,7 +120,7 @@
             "float, class:.*pavucontrol*."
             "size 800 600, class:.*pavucontrol*."
             "float, class:^(thunar)$"
-            "size 1000 600, class:^(thunar)$"
+            # "size 1000 600, class:^(thunar)$"
 
             "float, class:^(xdg-desktop-portal-gtk)$"
             "size 1000 600, class:^(xdg-desktop-portal-gtk)$"
