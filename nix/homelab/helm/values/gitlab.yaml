@@ -96,12 +96,13 @@ gitlab:
       kubernetes.io/hostname: kube
     minReplicas: 1
     maxReplicas: 1
+    workerProcesses: 1
     resources:
       requests:
         cpu: 200m
         memory: 1Gi
       limits:
-        memory: 2Gi
+        memory: 3Gi
 
   sidekiq:
     nodeSelector:
@@ -134,7 +135,7 @@ gitlab:
           path: /data/gitlab/repositories
     extraVolumeMounts: |
       - name: repositories
-        mountPath: /var/opt/gitlab/git-data
+        mountPath: /home/git/repositories
 
   gitlab-shell:
     minReplicas: 1
