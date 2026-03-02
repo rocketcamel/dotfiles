@@ -1,0 +1,26 @@
+garage:
+  replicationFactor: 1
+  
+  s3:
+    api:
+      region: garage
+
+persistence:
+  enabled: true
+  meta:
+    size: 100Mi
+  data:
+    storageClass: nfs-client
+    size: 100Mi
+    
+
+deployment:
+  replicaCount: 1
+
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 100m
+  limits:
+    memory: 1Gi
+    cpu: 100m

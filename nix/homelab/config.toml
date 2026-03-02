@@ -1,18 +1,18 @@
 routes = [
   {
-    name = "gitea",
+    name = "gitlab",
     hostname = "git",
-    namespace = "git",
-    service = "gitea-http",
-    port = 3000,
+    namespace = "gitlab",
+    service = "gitlab-webservice-default",
+    port = 8181,
     private = false
   },
   {
     kind = "TCP",
-    name = "gitea-ssh",
-    namespace = "git",
+    name = "gitlab-ssh",
+    namespace = "gitlab",
     entrypoint = "ssh",
-    service = "gitea-ssh",
+    service = "gitlab-gitlab-shell",
     port = 22,
     private = false
   },

@@ -1,0 +1,11 @@
+nfs:
+  server: 192.168.27.2
+  path: /data/k3s-storage/
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 256Mi

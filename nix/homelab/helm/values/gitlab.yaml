@@ -1,0 +1,194 @@
+global:
+  edition: ce
+
+  registry:
+    enabled: false
+
+  hosts:
+    domain: lucalise.ca
+    gitlab:
+      name: git.lucalise.ca
+      https: true
+    ssh: git.lucalise.ca
+
+  ingress:
+    enabled: false
+    configureCertmanager: false
+
+  psql:
+    host: postgresql.database.svc.cluster.local
+    port: 5432
+    database: lucalise_prod
+    username: admin
+    password:
+      useSecret: true
+      secret: gitlab-postgres
+      key: password
+
+  redis:
+    host: valkey-primary.database.svc.cluster.local
+    port: 6379
+    auth:
+      enabled: true
+      secret: gitlab-redis
+      key: password
+
+  minio:
+    enabled: false
+
+  appConfig:
+    object_store:
+      enabled: true
+      proxy_download: true
+      connection:
+        secret: gitlab-object-storage
+        key: connection
+    lfs:
+      enabled: true
+      bucket: gitlab-lfs
+    artifacts:
+      enabled: true
+      bucket: gitlab-artifacts
+    uploads:
+      enabled: true
+      bucket: gitlab-uploads
+    packages:
+      enabled: true
+      bucket: gitlab-packages
+    backups:
+      bucket: gitlab-backups
+
+  shell:
+    port: 22
+
+  gitaly:
+    authToken:
+      secret: gitlab-gitaly
+      key: token
+
+  kas:
+    enabled: false
+
+  railsSecrets:
+    secret: gitlab-rails
+
+postgresql:
+  install: false
+redis:
+  install: false
+minio:
+  install: false
+nginx-ingress:
+  enabled: false
+  install: false
+prometheus:
+  install: false
+grafana:
+  install: false
+registry:
+  enabled: false
+
+installCertmanager: false
+
+gitlab:
+  webservice:
+    nodeSelector:
+      kubernetes.io/hostname: kube
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      requests:
+        cpu: 200m
+        memory: 1Gi
+      limits:
+        memory: 2Gi
+
+  sidekiq:
+    nodeSelector:
+      kubernetes.io/hostname: kube
+    minReplicas: 1
+    maxReplicas: 1
+    concurrency: 10
+    resources:
+      requests:
+        cpu: 100m
+        memory: 1Gi
+      limits:
+        memory: 2Gi
+    memoryKiller:
+      maxRss: 1500000
+
+  gitaly:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 1Gi
+    persistence:
+      enabled: false
+    extraVolumes: |
+      - name: repositories
+        nfs:
+          server: 192.168.27.2
+          path: /data/gitlab/repositories
+    extraVolumeMounts: |
+      - name: repositories
+        mountPath: /var/opt/gitlab/git-data
+
+  gitlab-shell:
+    minReplicas: 1
+    maxReplicas: 1
+    resources:
+      requests:
+        cpu: 50m
+        memory: 32Mi
+      limits:
+        memory: 128Mi
+    # service:
+    #   type: LoadBalancer
+    #   loadBalancerIP: ""
+
+  toolbox:
+    enabled: true
+    nodeSelector:
+      kubernetes.io/hostname: kube
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        memory: 2Gi
+
+  migrations:
+    nodeSelector:
+      kubernetes.io/hostname: kube
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 1Gi
+
+  gitlab-pages:
+    enabled: false
+
+  kas:
+    enabled: false
+
+gitlab-runner:
+  install: true
+  gitlabUrl: http://gitlab-webservice-default.gitlab.svc.cluster.local:8181
+  runners:
+    privileged: false
+    config: |
+      [[runners]]
+        [runners.kubernetes]
+          image = "ubuntu:22.04"
+          privileged = false
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      memory: 256Mi
