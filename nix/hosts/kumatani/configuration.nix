@@ -46,7 +46,8 @@
     wheelNeedsPassword = false;
   };
 
-  desktop.enable = true;
+  desktop.enable = false;
+  niri-desktop.enable = true;
   kanata.enable = true;
   kanata.apple = true;
 

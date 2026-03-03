@@ -8,7 +8,7 @@
   ...
 }:
 {
-  config = lib.mkIf config.desktop.enable {
+  config = lib.mkIf config.niri-desktop.enable {
     environment.systemPackages = with pkgs; [
       vscode-fhs
       pavucontrol
@@ -39,14 +39,13 @@
       swappy
       fanctl
       waypipe
-      inputs.quickshell.packages.${meta.architecture}.default
+      inputs.qml-niri.packages.${meta.architecture}.quickshell
       alacritty
+      swaybg
+      swaylock
+      swayidle
     ];
 
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
     programs.steam.enable = true;
     programs.obs-studio.enable = true;
 
@@ -84,9 +83,6 @@
             "cursor-style-blink" = false;
             "font-size" = 15;
           };
-        };
-        hyprlock = {
-          enable = true;
         };
         ranger.enable = true;
       };

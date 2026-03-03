@@ -41,7 +41,9 @@ PanelWindow {
             }
         }
 
-        Workspaces {}
+        Workspaces {
+            outputName: root.screen.name
+        }
 
         Item {
             Layout.fillWidth: true

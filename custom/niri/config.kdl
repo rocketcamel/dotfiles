@@ -1,0 +1,147 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,jp"
+        }
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+prefer-no-csd
+
+layout {
+    gaps 10
+    focus-ring { width 2; }
+    default-column-width { proportion 0.5; }
+    always-center-single-column
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 24
+}
+
+environment {
+    "XCURSOR_THEME" "Adwaita"
+    "XCURSOR_SIZE" "24"
+    "LIBVA_DRIVER_NAME" "nvidia"
+    "__GLX_VENDOR_LIBRARY_NAME" "nvidia"
+}
+
+spawn-at-startup "qs"
+spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
+
+binds {
+    Mod+Return { spawn "ghostty"; }
+    Mod+D { spawn "rofi" "-show" "drun"; }
+    Mod+Shift+Q { close-window; }
+    Mod+Shift+E { quit; }
+    Mod+F { maximize-column; }
+
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+
+    Mod+Ctrl+H { move-column-left; }
+    Mod+Ctrl+L { move-column-right; }
+
+    Mod+P { spawn "bash" "/home/luca/dotfiles/scripts/project.sh"; }
+
+    Mod+Shift+Space { toggle-window-floating; }
+    Mod+T { switch-focus-between-floating-and-tiling; }
+
+    Mod+BracketLeft { consume-window-into-column; }
+    Mod+BracketRight { expel-window-from-column; }
+    Mod+R { switch-preset-column-width; }
+
+    Mod+Shift+H { focus-monitor-left; }
+    Mod+Shift+L { focus-monitor-right; }
+    Mod+Ctrl+Shift+H { move-window-to-monitor-left; }
+    Mod+Ctrl+Shift+L { move-window-to-monitor-right; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+    Mod+Shift+0 { move-window-to-workspace 10; }
+
+    Mod+Shift+S { screenshot; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86MonBrightnessUp { spawn "brightnessctl" "s" "+5%"; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "s" "5%-"; }
+
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+}
+
+window-rule {
+    open-maximized-if-alone true
+}
+
+window-rule {
+    match app-id="^pavucontrol$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^thunar$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^steam$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^blueberry.py$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^org.prismlauncher.PrismLauncher$"
+    open-floating true
+}
+
+window-rule {
+  match app-id="^sober$"
+  open-floating false
+}
+
+animations {
+    workspace-switch { off; }
+    // window-resize {
+    //     custom-shader r"
+    //         vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+    //             vec3 coords_tex_next = niri_geo_to_tex_next * coords_curr_geo;
+    //             vec4 color = texture2D(niri_tex_next, coords_tex_next.st);
+    //             return color;
+    //         }
+    //     "
+    // }
+}

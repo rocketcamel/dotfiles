@@ -14,6 +14,7 @@
     ./keys.nix
     ./rofi.nix
     ./desktop/default.nix
+    ./niri/default.nix
     ./zed-editor.nix
     ./virtualization.nix
     ./printing.nix

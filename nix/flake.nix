@@ -12,10 +12,10 @@
     custom-fonts.url = "path:./fonts";
     custom-fonts.inputs.nixpkgs.follows = "nixpkgs";
 
-    status-bar = {
-      url = "github:rocketcamel/dotfiles-status-bar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # status-bar = {
+    #   url = "github:rocketcamel/dotfiles-status-bar";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -29,6 +29,18 @@
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    qml-niri = {
+      url = "github:imiric/qml-niri/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.niri-stable.url = "git+https://git.lucalise.ca/lucalise/niri?ref=niri-custom";
     };
   };
 
@@ -73,6 +85,7 @@
               ./hosts/${host.name}/configuration.nix
               ./modules/default.nix
               inputs.sops-nix.nixosModules.sops
+              inputs.niri.nixosModules.niri
               home-manager.nixosModules.home-manager
               {
                 nix.settings.experimental-features = [
@@ -80,7 +93,7 @@
                   "flakes"
                 ];
                 environment.systemPackages = [
-                  inputs.status-bar.packages.${host.architecture}.default
+                  # inputs.status-bar.packages.${host.architecture}.default
                 ];
                 fonts.packages = [
                   inputs.custom-fonts.packages.${host.architecture}.default
