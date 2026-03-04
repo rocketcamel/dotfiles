@@ -101,6 +101,8 @@ binds {
 
 window-rule {
     open-maximized-if-alone true
+    geometry-corner-radius 10
+    clip-to-geometry true
 }
 
 window-rule {

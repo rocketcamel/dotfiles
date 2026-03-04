@@ -42,7 +42,6 @@
       inputs.qml-niri.packages.${meta.architecture}.quickshell
       alacritty
       swaybg
-      swaylock
       swayidle
     ];
 
@@ -85,6 +84,9 @@
           };
         };
         ranger.enable = true;
+        hyprlock = {
+          enable = true;
+        };
       };
     };
   };

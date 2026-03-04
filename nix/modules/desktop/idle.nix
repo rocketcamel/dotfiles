@@ -18,8 +18,8 @@
             }
             {
               timeout = 330;
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+              on-timeout = "niri msg action power-off-monitors";
+              on-resume = "niri msg action power-on-monitors && brightnessctl -r";
             }
           ];
         };
