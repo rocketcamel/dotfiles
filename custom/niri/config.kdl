@@ -30,10 +30,12 @@ environment {
     "XCURSOR_SIZE" "24"
     "LIBVA_DRIVER_NAME" "nvidia"
     "__GLX_VENDOR_LIBRARY_NAME" "nvidia"
+    "DISPLAY" ":0"
 }
 
 spawn-at-startup "qs"
 spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
+spawn-at-startup "xwayland-satellite"
 
 binds {
     Mod+Return { spawn "ghostty"; }

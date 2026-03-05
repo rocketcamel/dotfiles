@@ -45,10 +45,13 @@
       swayidle
       vesktop
       freerdp
+      xwayland-satellite
     ];
 
-    programs.steam.enable = true;
-    programs.obs-studio.enable = true;
+    programs = {
+      steam.enable = true;
+      obs-studio.enable = true;
+    };
 
     programs.dconf.profiles = {
       gdm.databases = [
@@ -88,6 +91,7 @@
         hyprlock = {
           enable = true;
         };
+        obsidian.enable = true;
       };
     };
   };

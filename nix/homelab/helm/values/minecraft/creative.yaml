@@ -13,7 +13,7 @@ minecraftServer:
   difficulty: hard
   motd: "A Minecraft Server."
   gameMode: creative
-  memory: 5G
+  memory: 6G
   rcon:
     enabled: true
     withGeneratedPassword: false
