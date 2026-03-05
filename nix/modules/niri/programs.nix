@@ -43,6 +43,8 @@
       alacritty
       swaybg
       swayidle
+      vesktop
+      freerdp
     ];
 
     programs.steam.enable = true;
@@ -69,7 +71,6 @@
 
     home-manager.users.luca = {
       home.packages = with pkgs; [
-        webcord
         blueberry
       ];
       programs = {

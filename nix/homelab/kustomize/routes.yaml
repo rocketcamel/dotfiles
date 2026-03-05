@@ -294,3 +294,25 @@ spec:
     - backendRefs:
         - name: headscale
           port: 8080
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: vaultwarden
+  namespace: security
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - vault.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: vaultwarden
+          port: 80
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks

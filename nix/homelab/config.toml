@@ -108,6 +108,14 @@ routes = [
     service = "headscale",
     port = 8080,
     private = false
+  },
+  {
+    name = "vaultwarden",
+    namespace = "security",
+    hostname = "vault",
+    service = "vaultwarden",
+    port = 80,
+    private = true
   }
 ]
 

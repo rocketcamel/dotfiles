@@ -18,3 +18,5 @@ resources:
 
   - ./networking/headscale/config.yaml
   - ./networking/headscale/headscale.yaml
+
+  - ./security/vaultwarden.yaml
