@@ -30,7 +30,7 @@
   services.k3s = {
     enable = true;
     role = "server";
-    tokenFile = /var/lib/rancher/k3s/server/token;
+    tokenFile = config.sops.secrets.k3s_token.path;
     clusterInit = true;
     extraFlags = toString [
       "--write-kubeconfig-mode \"0644\""
@@ -61,16 +61,11 @@
     openssh.authorizedKeys.keys = config.authorized_ssh;
   };
 
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    curl
-    k3s
-    git
-    helmfile
-    kubernetes-helm
-    nfs-utils
-  ];
+  environment.systemPackages =
+    with pkgs;
+    config.commonPackages
+    ++ [
+    ];
 
   services.openssh.enable = true;
 

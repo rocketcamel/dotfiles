@@ -5,6 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -52,7 +57,9 @@
                 ];
               }
               disko.nixosModules.disko
+              inputs.sops-nix.nixosModules.sops
               ../modules/keys.nix
+              ./modules/default.nix
               ./nodes/${node.name}/configuration.nix
               ./nodes/${node.name}/hardware-configuration.nix
             ];
