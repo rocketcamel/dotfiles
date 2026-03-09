@@ -74,10 +74,12 @@ releases:
     values:
       - defaultSettings:
           defaultReplicaCount: 1
+          defaultDataLocality: best-effort
       - defaultBackupStore:
           backupTarget: nfs://192.168.27.2:/backup/longhorn
       - persistence:
           defaultClassReplicaCount: 1
+          defaultDataLocality: best-effort
 
   - name: nfs
     namespace: nfs-subdir-system
