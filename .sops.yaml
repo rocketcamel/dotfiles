@@ -6,3 +6,7 @@ creation_rules:
     key_groups:
     - age:
       - *luca
+  - path_regex: secrets/k3s/.+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *luca
