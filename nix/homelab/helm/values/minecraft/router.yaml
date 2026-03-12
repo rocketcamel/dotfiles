@@ -17,3 +17,6 @@ minecraftRouter:
     - externalHostname: "mc-rocket-old.privatedns.org"
       host: "minecraft-old"
       port: 25565
+    - externalHostname: "mc-rocket-rlcraft.privatedns.org"
+      host: "minecraft-rlcraft"
+      port: 25565

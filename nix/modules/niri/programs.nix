@@ -46,6 +46,7 @@
       vesktop
       freerdp
       xwayland-satellite
+      r2modman
     ];
 
     programs = {

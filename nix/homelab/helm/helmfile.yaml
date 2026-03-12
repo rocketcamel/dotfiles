@@ -132,6 +132,13 @@ releases:
     values:
       - values/minecraft/old.yaml
 
+  - name: minecraft-rlcraft
+    namespace: minecraft
+    chart: minecraft-charts/minecraft
+    version: 5.0.0
+    values:
+      - values/minecraft/rlcraft.yaml
+
   - name: home-assistant
     namespace: home
     chart: home-assistant/home-assistant

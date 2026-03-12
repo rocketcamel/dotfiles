@@ -1,0 +1,47 @@
+resources:
+  requests:
+    cpu: 1
+    memory: 500Mi
+  limits:
+    memory: 10Gi
+    cpu: 4
+
+image:
+  tag: java8
+
+livenessProbe:
+  initialDelaySeconds: 60
+  failiureThreshold: 50
+
+minecraftServer:
+  eula: "TRUE"
+  type: "AUTO_CURSEFORGE"
+  difficulty: hard
+  motd: "An RLCraft Server."
+  memory: 9G
+  enableCommandBlock: true
+  viewDistance: 7
+  rcon:
+    enabled: true
+    withGeneratedPassword: false
+    port: 25575
+    existingSecret: rcon-credentials
+    secretKey: rcon-password
+  autoCurseForge:
+    apiKey:
+      existingSecret: curseforge-credentials
+      secretKey: key
+    slug: rlcraft
+
+extraEnv:
+  CUSTOM_SERVER_PROPERTIES: |
+    network-compression-threshold=256
+    max-tick-time=60000
+    simulation-distance=8
+  CURSEFORGE_FILES: |
+    ai-improvements
+
+persistence:
+  dataDir:
+    enabled: true
+    Size: 4Gi
