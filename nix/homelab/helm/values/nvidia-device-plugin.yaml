@@ -7,6 +7,4 @@ tolerations:
 affinity: null
 nodeSelector:
   gpu: nvidia
-
-securityContext:
-  privileged: true
+runtimeClassName: nvidia

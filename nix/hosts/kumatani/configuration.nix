@@ -119,6 +119,19 @@
     allowedUDPPorts = [ 8472 ];
   };
 
+  environment.etc."rancher/k3s/agent/etc/containerd/config.toml.tmpl" = {
+    text = ''
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes."nvidia"]
+        privileged_without_host_devices = false
+        runtime_engine = ""
+        runtime_root = ""
+        runtime_type = "io.containerd.runc.v2"
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes."nvidia".options]
+        BinaryName = "${pkgs.nvidia-container-toolkit}/bin/nvidia-container-runtime"
+    '';
+    mode = "0644";
+  };
+
   services.flatpak.enable = true;
   environment.systemPackages =
     with pkgs;
