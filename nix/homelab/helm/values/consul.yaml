@@ -1,0 +1,35 @@
+global:
+  name: consul
+  datacenter: home
+server:
+  replicas: 1
+  storage: 1Gi
+  exposeGossipAndRPCPorts: true
+  exposeService:
+    enabled: true
+    type: LoadBalancer
+    annotations: |
+      metallb.universe.tf/loadBalancerIPs: "192.168.27.14"
+client:
+  enabled: true
+  grpc: true
+  exposeGossipPorts: true
+  affinity: |
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchLabels:
+              app: consul
+              component: server
+          topologyKey: kubernetes.io/hostname
+ui:
+  enabled: true
+  service:
+    type: ClusterIP
+
+connectInject:
+  enabled: false
+controller:
+  enabled: false
+syncCatalog:
+  enabled: false

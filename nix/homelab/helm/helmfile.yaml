@@ -21,6 +21,8 @@ repositories:
     url: https://charts.gitlab.io
   - name: nfs-subdir-external-provisioner
     url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
+  - name: hashicorp
+    url: https://helm.releases.hashicorp.com
 
 releases:
   # Load Balancer
@@ -63,6 +65,13 @@ releases:
               operator: "Equal"
               value: "true"
               effect: "NoSchedule"
+
+  - name: consul
+    namespace: consul
+    chart: hashicorp/consul
+    version: 1.9.5
+    values:
+      - values/consul.yaml
 
   # Git
   - name: gitea

@@ -122,6 +122,13 @@ routes = [
     service = "vaultwarden",
     port = 80,
     private = true
+  },
+  {
+    name = "consul",
+    namespace = "consul",
+    service = "consul-ui",
+    port = 80,
+    private = true
   }
 ]
 

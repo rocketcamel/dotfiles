@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf config.desktop.enable {
     home-manager.users.luca = {
@@ -16,6 +21,13 @@
         enable = true;
         style.name = "adwaita-dark";
       };
+      home.pointerCursor = {
+        name = "Adwaita";
+        size = 24;
+        gtk.enable = true;
+        package = pkgs.gnome-themes-extra;
+      };
+
     };
   };
 }

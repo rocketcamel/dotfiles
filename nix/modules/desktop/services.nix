@@ -20,22 +20,33 @@
         };
         hyprpolkitagent.enable = true;
         cliphist.enable = true;
-        hyprsunset = {
+        gammastep = {
           enable = true;
-          settings = {
-            profile = [
-              {
-                time = "6:00";
-                identity = true;
-              }
-              {
-                time = "21:00";
-                temperature = 3500;
-                gamma = 0.8;
-              }
-            ];
+          provider = "manual";
+          latitude = 49.28;
+          longitude = -123.12;
+          temperature = {
+            day = 6500;
+            night = 3500;
           };
         };
+
+        # hyprsunset = {
+        #   enable = true;
+        #   settings = {
+        #     profile = [
+        #       {
+        #         time = "6:00";
+        #         identity = true;
+        #       }
+        #       {
+        #         time = "21:00";
+        #         temperature = 3500;
+        #         gamma = 0.8;
+        #       }
+        #     ];
+        #   };
+        # };
       };
     };
   };

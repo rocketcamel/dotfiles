@@ -25,7 +25,7 @@
         "1.0.0.1"
       ];
       domains = [
-        "~."
+        "home.local"
       ];
       extraConfig = ''
         [Resolve]

@@ -34,6 +34,7 @@ minecraftServer:
       - c2me-fabric
       - scalablelux
       - axiom
+      - pickup-notifications
 
 
 nodeSelector:

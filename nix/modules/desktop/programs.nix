@@ -41,6 +41,10 @@
       waypipe
       inputs.quickshell.packages.${meta.architecture}.default
       alacritty
+      vesktop
+      freerdp
+      xwayland-satellite
+      r2modman
     ];
 
     programs.hyprland = {
@@ -49,6 +53,10 @@
     };
     programs.steam.enable = true;
     programs.obs-studio.enable = true;
+    # programs.captive-browser = {
+    #   enable = true;
+    #   interface = "wlo1";
+    # };
 
     programs.dconf.profiles = {
       gdm.databases = [
@@ -71,7 +79,6 @@
 
     home-manager.users.luca = {
       home.packages = with pkgs; [
-        webcord
         blueberry
       ];
       programs = {
@@ -89,6 +96,7 @@
           enable = true;
         };
         ranger.enable = true;
+        obsidian.enable = true;
       };
     };
   };

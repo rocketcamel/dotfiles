@@ -32,6 +32,9 @@ minecraftServer:
       - c2me-fabric
       - scalablelux
       - no-chat-reports
+      - pickup-notifications
+      - ct-overhaul-village
+      - lithostitched
 
 nodeSelector:
   kubernetes.io/hostname: kube
@@ -39,7 +42,7 @@ nodeSelector:
 persistence:
   dataDir:
     enabled: true
-    Size: 4Gi
+    Size: 8Gi
 
 sidecarContainers:
   - name: backup
