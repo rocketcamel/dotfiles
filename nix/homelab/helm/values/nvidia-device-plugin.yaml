@@ -1,0 +1,12 @@
+tolerations:
+  - key: "graphics"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+
+affinity: null
+nodeSelector:
+  gpu: nvidia
+
+securityContext:
+  privileged: true
