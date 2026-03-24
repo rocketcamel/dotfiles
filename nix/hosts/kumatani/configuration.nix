@@ -10,15 +10,13 @@
   ...
 }:
 
-let
-  containerdConfigTemplate = pkgs.writeText "config.toml.tmpl" ''
-    {{ template "base" . }}
-
-    [plugins."io.containerd.grpc.v1.cri"]
-      enable_cdi = true
-      cdi_spec_dirs = ["/var/run/cdi", "/etc/cdi"]
-  '';
-in
+# containerdConfigTemplate = pkgs.writeText "config.toml.tmpl" ''
+#   {{ template "base" . }}
+#
+#   [plugins."io.containerd.grpc.v1.cri"]
+#     enable_cdi = true
+#     cdi_spec_dirs = ["/var/run/cdi", "/etc/cdi"]
+# '';
 {
   imports = [
     # Include the results of the hardware scan.
@@ -134,10 +132,10 @@ in
     nvidia-docker
   ];
 
-  systemd.tmpfiles.rules = [
-    "d /var/lib/rancher/k3s/agent/etc/containerd 0755 root root -"
-    "L+ /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl - - - - ${containerdConfigTemplate}"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "d /var/lib/rancher/k3s/agent/etc/containerd 0755 root root -"
+  #   "L+ /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl - - - - ${containerdConfigTemplate}"
+  # ];
 
   services.flatpak.enable = true;
   environment.systemPackages =
