@@ -12,12 +12,10 @@
 
 let
   containerdConfigTemplate = pkgs.writeText "config.toml.tmpl" ''
-    {{ template "base" . }}
-
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
+    [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia]
       runtime_type = "io.containerd.runc.v2"
 
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options]
+    [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia.options]
       BinaryName = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime"
       SystemdCgroup = true
   '';
@@ -130,6 +128,12 @@ in
     ];
     allowedUDPPorts = [ 8472 ];
   };
+  systemd.services.containerd.path = with pkgs; [
+    containerd
+    runc
+    iptables
+    nvidia-docker
+  ];
 
   systemd.tmpfiles.rules = [
     "d /var/lib/rancher/k3s/agent/etc/containerd 0755 root root -"
