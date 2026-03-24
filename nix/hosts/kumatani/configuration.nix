@@ -105,6 +105,7 @@
     enable = true;
     role = "agent";
     tokenFile = config.sops.secrets.k3s_token.path;
+    serverAddr = "https://192.168.27.11:6443";
     extraFlags = [
       "--node-label=gpu=nvidia"
       "--node-taint=graphics=true:NoSchedule"
