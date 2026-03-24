@@ -15,6 +15,7 @@ resources:
   - ./media/radarr.yaml
   - ./media/qbittorrent.yaml
   - ./media/flaresolverr.yaml
+  - ./media/bazarr.yaml
 
   - ./networking/headscale/config.yaml
   - ./networking/headscale/headscale.yaml

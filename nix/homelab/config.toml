@@ -29,6 +29,12 @@ routes = [
     private = true
   },
   {
+    name = "bazarr",
+    namespace = "media",
+    port = 6767,
+    private = true
+  },
+  {
     name = "longhorn",
     hostname = "storage",
     namespace = "longhorn-system",
