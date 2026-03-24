@@ -10,6 +10,16 @@
   ...
 }:
 
+let
+  containerdConfigTemplate = pkgs.writeText "config.toml.tmpl" ''
+    [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia]
+      runtime_type = "io.containerd.runc.v2"
+
+    [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia.options]
+      BinaryName = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime"
+      SystemdCgroup = true
+  '';
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -119,18 +129,10 @@
     allowedUDPPorts = [ 8472 ];
   };
 
-  environment.etc."rancher/k3s/agent/etc/containerd/config.toml.tmpl" = {
-    text = ''
-      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes."nvidia"]
-        privileged_without_host_devices = false
-        runtime_engine = ""
-        runtime_root = ""
-        runtime_type = "io.containerd.runc.v2"
-      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes."nvidia".options]
-        BinaryName = "${pkgs.nvidia-container-toolkit}/bin/nvidia-container-runtime"
-    '';
-    mode = "0644";
-  };
+  systemd.tmpfiles.rules = [
+    "d /var/lib/rancher/k3s/agent/etc/containerd 0755 root root -"
+    "L+ /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl - - - - ${containerdConfigTemplate}"
+  ];
 
   services.flatpak.enable = true;
   environment.systemPackages =

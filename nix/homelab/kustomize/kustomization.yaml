@@ -21,3 +21,4 @@ resources:
   - ./networking/headscale/headscale.yaml
 
   - ./security/vaultwarden.yaml
+  - ./graphics/nvidia-runtime.yaml
