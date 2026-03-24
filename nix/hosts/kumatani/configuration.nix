@@ -14,13 +14,9 @@ let
   containerdConfigTemplate = pkgs.writeText "config.toml.tmpl" ''
     {{ template "base" . }}
 
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
-      runtime_type = "io.containerd.runc.v2"
-
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options]
-
-      BinaryName = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime"
-      SystemdCgroup = true
+    [plugins."io.containerd.grpc.v1.cri"]
+      enable_cdi = true
+      cdi_spec_dirs = ["/var/run/cdi", "/etc/cdi"]
   '';
 in
 {
