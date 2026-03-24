@@ -7,6 +7,5 @@ tolerations:
 affinity: null
 nodeSelector:
   gpu: nvidia
-deviceListStrategy: cdi-annotations
 
-# runtimeClassName: nvidia
+runtimeClassName: nvidia
