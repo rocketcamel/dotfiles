@@ -40,7 +40,8 @@
   };
 
   # i3.enable = true;
-  desktop.enable = true;
+  desktop.enable = false;
+  niri-desktop.enable = true;
   kanata.enable = true;
 
   services.flatpak.enable = true;

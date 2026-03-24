@@ -95,9 +95,27 @@
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
+  hardware.nvidia-container-toolkit.enable = true;
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
+  };
+
+  services.k3s = {
+    enable = true;
+    role = "agent";
+    tokenFile = config.sops.secrets.k3s_token.path;
+    extraFlags = [
+      "--node-label=gpu=nvidia"
+      "--node-taint=graphics=true:NoSchedule"
+    ];
+  };
+  networking.firewall = {
+    allowedTCPPorts = [
+      6443
+      10250
+    ];
+    allowedUDPPorts = [ 8472 ];
   };
 
   services.flatpak.enable = true;

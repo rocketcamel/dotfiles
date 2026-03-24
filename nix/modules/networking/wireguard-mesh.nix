@@ -43,6 +43,7 @@ let
       ip = "10.100.0.251";
       routes = [
         "192.168.18.0/27"
+        "192.168.66.0/24"
       ];
     };
   };
@@ -75,6 +76,7 @@ in
         ips = [ "${selfConfig.ip}/32" ];
         listenPort = 51820;
         peers = mkPeersFor config.networking.hostName;
+        mtu = 1280;
       };
     };
 
