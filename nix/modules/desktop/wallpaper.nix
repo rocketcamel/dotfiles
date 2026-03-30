@@ -8,9 +8,9 @@
           settings = {
             ipc = "on";
             splash = false;
-            preload = [ "~/dotfiles/.config/wallpaper/bg.jpg" ];
+            preload = [ "~/dotfiles/.config/wallpaper/asakusa.png" ];
             wallpaper = [
-              ",~/dotfiles/.config/wallpaper/bg.jpg"
+              ",~/dotfiles/.config/wallpaper/asakusa.png"
             ];
           };
         };
