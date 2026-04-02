@@ -124,9 +124,9 @@ routes = [
     private = true
   },
   {
-    name = "consul",
-    namespace = "consul",
-    service = "consul-ui",
+    name = "headlamp",
+    namespace = "kube-system",
+    hostname = "dashboard",
     port = 80,
     private = true
   }

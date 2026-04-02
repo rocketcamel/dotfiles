@@ -116,7 +116,13 @@ fn generate_route(route: &Route) -> Result<String, HelperError> {
 fn generate_chains(routes: &[Route]) -> Result<String, HelperError> {
     let namespaces = routes
         .iter()
-        .filter_map(|r| r.private.then_some((r.kind.clone(), &r.namespace)))
+        .filter_map(|r| {
+            // edge case: initial middleware exists in this namespace
+            if r.namespace == "kube-system" {
+                return None;
+            }
+            r.private.then_some((r.kind.clone(), &r.namespace))
+        })
         .collect::<BTreeSet<_>>();
 
     namespaces

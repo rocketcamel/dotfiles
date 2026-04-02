@@ -23,6 +23,8 @@ repositories:
     url: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner
   - name: hashicorp
     url: https://helm.releases.hashicorp.com
+  - name: headlamp
+    url: https://kubernetes-sigs.github.io/headlamp
 
 releases:
   # Load Balancer
@@ -46,6 +48,11 @@ releases:
     version: 80.9.2
     values:
       - values/prometheus.yaml
+
+  - name: headlamp
+    chart: headlamp/headlamp
+    namespace: kube-system
+    version: 0.41.0
 
   - name: nvidia-device-plugin
     namespace: nvidia-device-plugin
