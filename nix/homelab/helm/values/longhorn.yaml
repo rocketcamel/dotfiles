@@ -1,0 +1,25 @@
+defaultSettings:
+  defaultReplicaCount: 1
+  defaultDataLocality: best-effort
+  taintToleration: "graphics=true:NoSchedule"
+
+defaultBackupStore:
+  backupTarget: nfs://192.168.27.2:/backup/longhorn
+
+persistence:
+  defaultClassReplicaCount: 1
+  defaultDataLocality: best-effort
+
+longhornManager:
+  tolerations:
+    - key: "graphics"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"
+
+longhornDriver:
+  tolerations:
+    - key: "graphics"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"

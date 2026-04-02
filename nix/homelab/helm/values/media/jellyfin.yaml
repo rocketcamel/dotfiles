@@ -7,15 +7,52 @@ resources:
     cpu: 200m
     memory: 512Mi
   limits:
-    cpu: 1
-    memory: 2Gi
+    cpu: 4
+    memory: 4Gi
+
+securityContext:
+  privileged: true
+
+tolerations:
+  - key: "graphics"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
+
+nodeSelector:
+  gpu: nvidia
+
+jellyfin:
+  env:
+    - name: LD_LIBRARY_PATH
+      value: "/usr/lib/x86_64-linux-gnu/nvidia"
 
 volumeMounts:
   - name: data
     mountPath: /mnt/data
+  - name: dri
+    mountPath: /dev/dri
+  - name: nvidia-libs
+    mountPath: /usr/lib/x86_64-linux-gnu/nvidia
+    readOnly: true
+  - name: nix-store
+    mountPath: /nix/store
+    readOnly: true
 
 volumes:
   - name: data
     nfs:
       server: 192.168.27.2
       path: /data
+  - name: dri
+    hostPath:
+      path: /dev/dri
+      type: Directory
+  - name: nvidia-libs
+    hostPath:
+      path: /run/opengl-driver/lib
+      type: Directory
+  - name: nix-store
+    hostPath:
+      path: /nix/store
+      type: Directory

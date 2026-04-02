@@ -102,14 +102,7 @@ releases:
     chart: longhorn/longhorn
     version: 1.10.1
     values:
-      - defaultSettings:
-          defaultReplicaCount: 1
-          defaultDataLocality: best-effort
-      - defaultBackupStore:
-          backupTarget: nfs://192.168.27.2:/backup/longhorn
-      - persistence:
-          defaultClassReplicaCount: 1
-          defaultDataLocality: best-effort
+      - values/longhorn.yaml
 
   - name: nfs
     namespace: nfs-subdir-system

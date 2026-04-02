@@ -10,18 +10,6 @@
   ...
 }:
 
-let
-  containerdConfigTemplate = pkgs.writeText "config.toml.tmpl" ''
-    {{ template "base" . }}
-
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
-      runtime_type = "io.containerd.runc.v2"
-
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia.options]
-      BinaryName = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime"
-      SystemdCgroup = true
-  '';
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -122,6 +110,14 @@ in
       "--node-taint=graphics=true:NoSchedule"
     ];
   };
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2020-08.org.linux-iscsi.initiatorhost:${meta.hostname}";
+  };
+  systemd.tmpfiles.rules = [
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin"
+  ];
+
   networking.firewall = {
     allowedTCPPorts = [
       6443
@@ -129,47 +125,6 @@ in
     ];
     allowedUDPPorts = [ 8472 ];
   };
-  systemd.services.containerd.path = with pkgs; [
-    containerd
-    runc
-    iptables
-    nvidia-docker
-  ];
-
-  # Configure nvidia-container-runtime to find NixOS paths
-  environment.etc."nvidia-container-runtime/config.toml".text = ''
-    disable-require = false
-    supported-driver-capabilities = "compat32,compute,display,graphics,ngx,utility,video"
-
-    [nvidia-container-cli]
-    ldconfig = "@${pkgs.glibc.bin}/sbin/ldconfig"
-    load-kmods = true
-
-    [nvidia-container-runtime]
-    log-level = "info"
-    mode = "auto"
-    runtimes = ["${pkgs.runc}/bin/runc"]
-
-    [nvidia-container-runtime.modes.cdi]
-    annotation-prefixes = ["cdi.k8s.io/"]
-    default-kind = "nvidia.com/gpu"
-    spec-dirs = ["/etc/cdi", "/var/run/cdi"]
-
-    [nvidia-container-runtime.modes.legacy]
-    cuda-compat-mode = "ldconfig"
-
-    [nvidia-container-runtime-hook]
-    path = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime-hook"
-    skip-mode-detection = false
-
-    [nvidia-ctk]
-    path = "${pkgs.nvidia-container-toolkit}/bin/nvidia-ctk"
-  '';
-
-  systemd.tmpfiles.rules = [
-    "d /var/lib/rancher/k3s/agent/etc/containerd 0755 root root -"
-    "L+ /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl - - - - ${containerdConfigTemplate}"
-  ];
 
   services.flatpak.enable = true;
   environment.systemPackages =
