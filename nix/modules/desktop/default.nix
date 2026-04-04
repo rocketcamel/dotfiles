@@ -9,6 +9,7 @@
   imports = [
     ./custom.nix
     ./idle.nix
+    ./mpris.nix
     ./programs.nix
     ./services.nix
     ./theme.nix
@@ -91,6 +92,11 @@
           bindm = [
             "$mod, mouse:272, movewindow"
             "$mod, mouse:273, resizewindow"
+          ];
+          bindl = [
+            ",XF86AudioPlay, exec, playerctl play-pause"
+            ",XF86AudioNext, exec, playerctl next"
+            ",XF86AudioPrev, exec, playerctl previous"
           ];
           bindel = [
             ",XF86AudioRaiseVolume, exec, bash -c \"wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && vol=\\\$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int(\\\$2 * 100)}') && notify-send -h int:value:\\\$vol -h string:synchronous:volume -u low \\\"Volume\\\"\""

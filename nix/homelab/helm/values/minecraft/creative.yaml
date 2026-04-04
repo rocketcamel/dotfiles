@@ -3,7 +3,7 @@ resources:
     cpu: 1
     memory: 500Mi
   limits:
-    memory: 5Gi
+    memory: 7Gi
     cpu: 2000m
 
 minecraftServer:
@@ -43,4 +43,4 @@ nodeSelector:
 persistence:
   dataDir:
     enabled: true
-    Size: 4Gi
+    Size: 8Gi

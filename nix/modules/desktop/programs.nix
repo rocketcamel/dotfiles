@@ -16,7 +16,7 @@
       wine64
       firefox
       brightnessctl
-      pkgs-before.jellyfin-media-player
+      jellyfin-desktop
       anki-bin
       mpv
       prismlauncher
