@@ -25,8 +25,8 @@
     "inode/directory" = "thunar.desktop";
     "x-scheme-handler/file" = "thunar.desktop";
     "x-scheme-handler/roblox-player" = "org.vinegarhq.Sober.desktop";
-    "x-scheme-handler/https" = "app.zen_browser.zen.desktop";
-    "x-scheme-handler/http" = "app.zen_browser.zen.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/discord" = "vesktop.desktop";
     "video/3gpp" = "vlc.desktop";
     "video/3gpp2" = "vlc.desktop";

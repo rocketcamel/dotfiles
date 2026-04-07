@@ -10,12 +10,7 @@
       gtk = {
         enable = true;
         theme.name = "Adwaita-dark";
-        gtk4.extraConfig = {
-          gtk-application-prefer-dark-theme = true;
-        };
-        gtk3.extraConfig = {
-          gtk-application-prefer-dark-theme = true;
-        };
+        colorScheme = "dark";
       };
       qt = {
         enable = true;
@@ -27,7 +22,6 @@
         gtk.enable = true;
         package = pkgs.gnome-themes-extra;
       };
-
     };
   };
 }
