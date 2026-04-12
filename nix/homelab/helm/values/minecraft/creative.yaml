@@ -36,10 +36,6 @@ minecraftServer:
       - axiom
       - pickup-notifications
 
-
-nodeSelector:
-  kubernetes.io/hostname: kube
-
 persistence:
   dataDir:
     enabled: true

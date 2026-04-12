@@ -42,13 +42,6 @@ releases:
       - crds:
           enabled: true
 
-  - name: prometheus-stack
-    chart: oci://ghcr.io/prometheus-community/charts/kube-prometheus-stack
-    namespace: monitoring
-    version: 80.9.2
-    values:
-      - values/prometheus.yaml
-
   - name: headlamp
     chart: headlamp/headlamp
     namespace: kube-system
