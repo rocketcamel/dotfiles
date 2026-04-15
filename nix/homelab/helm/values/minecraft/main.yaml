@@ -1,9 +1,9 @@
 resources:
   requests:
     cpu: 1
-    memory: 500Mi
-  limits:
     memory: 7Gi
+  limits:
+    memory: 8Gi
     cpu: 2500m
 
 minecraftServer:

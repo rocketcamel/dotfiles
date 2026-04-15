@@ -47,6 +47,12 @@ PanelWindow {
             Layout.fillWidth: true
         }
 
+        ActiveWindow {}
+
+        Item {
+            Layout.fillWidth: true
+        }
+
         Clock {}
     }
 }
