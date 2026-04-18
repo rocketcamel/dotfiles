@@ -20,6 +20,7 @@
       anki-bin
       mpv
       prismlauncher
+      jdk25
       dconf
       papirus-icon-theme
       libnotify

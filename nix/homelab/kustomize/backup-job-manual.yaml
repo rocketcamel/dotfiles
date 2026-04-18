@@ -7,13 +7,15 @@ spec:
   template:
     spec:
       restartPolicy: Never
-      affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchLabels:
-                  app: minecraft-main
-              topologyKey: kubernetes.io/hostname
+      # affinity:
+      #   podAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       - labelSelector:
+      #           matchLabels:
+      #             app: minecraft-main
+      #         topologyKey: kubernetes.io/hostname
+      nodeSelector:
+        kubernetes.io/hostname: kube
       containers:
         - name: backup
           image: busybox
@@ -22,7 +24,7 @@ spec:
             - -c
             - |
               set -e
-              BACKUP_FILE=/backups/manual/minecraft-main-manual.tar.gz
+              BACKUP_FILE=/backups/minecraft-main-manual.tar.gz
               echo "creating backup: ${BACKUP_FILE}"
               tar -czf "${BACKUP_FILE}" -C /data .
           volumeMounts:
