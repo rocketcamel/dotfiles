@@ -35,6 +35,12 @@ routes = [
     private = true
   },
   {
+    name = "shoko",
+    namespace = "media",
+    port = 8111,
+    private = true
+  },
+  {
     name = "longhorn",
     hostname = "storage",
     namespace = "longhorn-system",
@@ -99,13 +105,6 @@ routes = [
     hostname = "media",
     namespace = "media",
     port = 8096,
-    private = true
-  },
-  {
-    name = "grafana",
-    namespace = "monitoring",
-    service = "prometheus-stack-grafana",
-    port = 80,
     private = true
   },
   {

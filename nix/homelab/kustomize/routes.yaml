@@ -97,6 +97,28 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
+  name: shoko
+  namespace: media
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - shoko.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: shoko
+          port: 8111
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
   name: longhorn
   namespace: longhorn-system
 spec:
@@ -272,28 +294,6 @@ spec:
     - backendRefs:
         - name: jellyfin
           port: 8096
-      filters:
-        - type: ExtensionRef
-          extensionRef:
-            group: traefik.io
-            kind: Middleware
-            name: private-networks
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: grafana
-  namespace: monitoring
-spec:
-  parentRefs:
-    - name: traefik-gateway
-      namespace: kube-system
-  hostnames:
-    - grafana.lucalise.ca
-  rules:
-    - backendRefs:
-        - name: prometheus-stack-grafana
-          port: 80
       filters:
         - type: ExtensionRef
           extensionRef:
