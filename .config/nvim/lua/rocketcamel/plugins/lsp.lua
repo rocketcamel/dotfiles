@@ -21,6 +21,7 @@ local function setup_luau()
 			sync = true,
 		},
 	})
+
 	vim.lsp.config("luau-lsp", {
 		settings = {
 			["luau-lsp"] = {
@@ -40,7 +41,7 @@ local function setup_luau()
 end
 
 local function setup_lua()
-	require("lspconfig").lua_ls.setup({
+	vim.lsp.config("lua_ls", {
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -53,30 +54,33 @@ local function setup_lua()
 			},
 		},
 	})
+	vim.lsp.enable("lua_ls")
 end
 
 local function setup_ts()
-	require("lspconfig").ts_ls.setup({})
+	vim.lsp.enable("ts_ls")
 end
 
 local function setup_nix()
-	require("lspconfig").nixd.setup({})
+	vim.lsp.enable("nixd")
 end
 
 local function setup_java()
-	require("lspconfig").jdtls.setup({
+	vim.lsp.config("jdtls", {
 		root_markers = { "mise.toml", ".git", "gradlew", "gradle.properties", "settings.gradle.kts" },
 	})
+	vim.lsp.enable("jdtls")
 end
-
+--
 local function setup_svelte()
-	require("lspconfig").svelte.setup({
+	vim.lsp.config("svelte", {
 		root_dir = require("lspconfig.util").root_pattern("svelte.config.js", "svelte.config.ts", "package.json"),
 	})
+	vim.lsp.enable("svelte")
 end
-
+--
 local function setup_qml()
-	require("lspconfig").qmlls.setup({})
+	vim.lsp.enable("qmlls")
 end
 
 return {
@@ -113,6 +117,7 @@ return {
 					"cmake",
 					"cssls",
 					"qmlls",
+					"tofu_ls",
 				},
 				automatic_enable = { exclude = { "luau_lsp", "lua_ls", "svelte" } },
 			})
