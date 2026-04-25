@@ -126,6 +126,13 @@ releases:
     values:
       - values/media/jellyfin.yaml
 
+  - name: seerr
+    namespace: media
+    chart: oci://ghcr.io/seerr-team/seerr/seerr-chart
+    version: 3.5.1
+    values:
+      - values/media/seerr.yaml
+
   # Minecraft
   - name: minecraft-router
     namespace: minecraft

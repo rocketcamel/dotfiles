@@ -108,6 +108,14 @@ routes = [
     private = true
   },
   {
+    name = "seerr",
+    hostname = "request",
+    namespace = "media",
+    service = "seerr-seerr-chart",
+    port = 80,
+    private = true
+  },
+  {
     name = "mesh",
     namespace = "networking",
     service = "headscale",
