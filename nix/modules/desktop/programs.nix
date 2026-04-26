@@ -46,6 +46,7 @@
       freerdp
       xwayland-satellite
       r2modman
+      gpu-screen-recorder
     ];
 
     programs.hyprland = {

@@ -6,12 +6,12 @@
 }:
 let
   meshHosts = {
-    kumatani = {
-      address = "kumatani";
-      publicKey = "pKkl30tba29FG86wuaC0KrpSHMr1tSOujikHFbx75BM=";
-      isRouter = false;
-      ip = "10.100.0.1";
-    };
+    # kumatani = {
+    #   address = "kumatani";
+    #   publicKey = "pKkl30tba29FG86wuaC0KrpSHMr1tSOujikHFbx75BM=";
+    #   isRouter = false;
+    #   ip = "10.100.0.1";
+    # };
     usahara = {
       address = "usahara";
       publicKey = "4v7GyAIsKfwWjLMVB4eoosJDvLkIDHW0KsEYoQqSnh4=";
