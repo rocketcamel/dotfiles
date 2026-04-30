@@ -47,6 +47,7 @@
       xwayland-satellite
       r2modman
       gpu-screen-recorder
+      gimp
     ];
 
     programs.hyprland = {
