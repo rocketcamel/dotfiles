@@ -7,15 +7,15 @@ routes = [
     port = 8181,
     private = false
   },
-  {
-    kind = "TCP",
-    name = "gitlab-ssh",
-    namespace = "gitlab",
-    entrypoint = "ssh",
-    service = "gitlab-gitlab-shell",
-    port = 22,
-    private = false
-  },
+  # {
+  #   kind = "TCP",
+  #   name = "gitlab-ssh",
+  #   namespace = "gitlab",
+  #   entrypoint = "ssh",
+  #   service = "gitlab-gitlab-shell",
+  #   port = 22,
+  #   private = false
+  # },
   {
     name = "home-assistant",
     namespace = "home",
@@ -142,6 +142,20 @@ routes = [
     namespace = "registry",
     port = 5000,
     private = true
+  },
+  {
+    kind = "TCP",
+    name = "gitolite",
+    namespace = "git",
+    entrypoint = "ssh",
+    port = 22,
+    private = false
+  },
+  {
+    name = "cgit",
+    namespace = "git",
+    port = 80,
+    private = false
   }
 ]
 

@@ -14,20 +14,6 @@ spec:
         - name: gitlab-webservice-default
           port: 8181
 ---
-apiVersion: traefik.io/v1alpha1
-kind: IngressRouteTCP
-metadata:
-  name: gitlab-ssh
-  namespace: gitlab
-spec:
-  entryPoints:
-    - ssh
-  routes:
-    - match: HostSNI(`*`)
-      services:
-        - name: gitlab-gitlab-shell
-          port: 22
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -404,3 +390,33 @@ spec:
             group: traefik.io
             kind: Middleware
             name: private-networks
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: gitolite
+  namespace: git
+spec:
+  entryPoints:
+    - ssh
+  routes:
+    - match: HostSNI(`*`)
+      services:
+        - name: gitolite
+          port: 22
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: cgit
+  namespace: git
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - cgit.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: cgit
+          port: 80

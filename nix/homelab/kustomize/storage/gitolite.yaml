@@ -1,0 +1,87 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: git-repositories
+  namespace: git
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gitolite
+  namespace: git
+  labels:
+    app: gitolite
+spec:
+  serviceName: gitolite
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitolite
+  template:
+    metadata:
+      labels:
+        app: gitolite
+    spec:
+      initContainers:
+        - name: permissions
+          image: registry.lucalise.ca/gitolite:latest
+          command: ["sh", "-c", "chown git:git /var/lib/git && chmod 755 /var/lib/git"]
+          securityContext:
+            runAsUser: 0
+          volumeMounts:
+            - name: repos
+              mountPath: /var/lib/git
+      containers:
+        - name: gitolite
+          image: registry.lucalise.ca/gitolite:latest
+          ports:
+            - containerPort: 22
+              name: ssh
+          volumeMounts:
+            - name: repos
+              mountPath: /var/lib/git
+            - name: admin-key
+              mountPath: /var/lib/git/admin.pub
+              subPath: admin.pub
+            - name: config
+              mountPath: /etc/git/.gitolite.rc.mount
+              subPath: gitolite.rc
+            - name: config
+              mountPath: /etc/gitolite/hooks/post-update
+              subPath: post-update
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: repos
+          persistentVolumeClaim:
+            claimName: git-repositories
+        - name: admin-key
+          secret:
+            secretName: gitolite-admin-key
+        - name: config
+          configMap:
+            name: gitolite-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitolite
+  namespace: git
+spec:
+  selector:
+    app: gitolite
+  ports:
+    - port: 22
+      targetPort: ssh
+      name: ssh

@@ -37,13 +37,15 @@
       "--disable servicelb"
       "--disable local-storage"
     ];
-    registries = {
-      mirrors = {
-        "registry.lucalise.ca" = {
-          endpoint = [ "https://registry.lucalise.ca" ];
-        };
-      };
-    };
+  };
+
+  environment.etc."rancher/k3s/registries.yaml" = {
+    text = ''
+      mirrors:
+        registry.lucalise.ca:
+          endpoint:
+            - "https://registry.lucalise.ca"
+    '';
   };
 
   services.openiscsi = {

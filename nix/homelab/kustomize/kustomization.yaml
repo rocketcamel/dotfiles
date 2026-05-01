@@ -25,3 +25,5 @@ resources:
   - ./graphics/nvidia-runtime.yaml
 
   - ./storage/registry.yaml
+  - ./storage/gitolite.yaml
+  - ./storage/cgit.yaml

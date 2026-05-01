@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cgit
+  namespace: git
+  labels:
+    app: cgit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cgit
+  template:
+    metadata:
+      labels:
+        app: cgit
+    spec:
+      containers:
+        - name: cgit
+          image: registry.lucalise.ca/cgit:latest
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 512Mi
+          volumeMounts:
+            - name: repos
+              mountPath: /var/lib/git
+              readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: repos
+          persistentVolumeClaim:
+            claimName: git-repositories
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cgit
+  namespace: git
+spec:
+  selector:
+    app: cgit
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
