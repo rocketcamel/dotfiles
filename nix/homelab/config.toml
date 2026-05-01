@@ -136,6 +136,12 @@ routes = [
     hostname = "dashboard",
     port = 80,
     private = true
+  },
+  {
+    name = "registry",
+    namespace = "registry",
+    port = 5000,
+    private = true
   }
 ]
 

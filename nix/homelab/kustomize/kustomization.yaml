@@ -23,3 +23,5 @@ resources:
 
   - ./security/vaultwarden.yaml
   - ./graphics/nvidia-runtime.yaml
+
+  - ./storage/registry.yaml

@@ -37,6 +37,13 @@
       "--disable servicelb"
       "--disable local-storage"
     ];
+    registries = {
+      mirrors = {
+        "registry.lucalise.ca" = {
+          endpoint = [ "https://registry.lucalise.ca" ];
+        };
+      };
+    };
   };
 
   services.openiscsi = {
