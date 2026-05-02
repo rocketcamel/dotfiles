@@ -152,6 +152,7 @@
             kb_layout = "us,jp";
             touchpad = {
               natural_scroll = true;
+              disable_while_typing = false;
             };
           };
           animations = {
