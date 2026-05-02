@@ -1,7 +1,7 @@
 routes = [
   {
     name = "gitlab",
-    hostname = "git",
+    hostname = "git-old",
     namespace = "gitlab",
     service = "gitlab-webservice-default",
     port = 8181,
@@ -154,6 +154,7 @@ routes = [
   {
     name = "cgit",
     namespace = "git",
+    hostname = "git",
     port = 80,
     private = false
   }

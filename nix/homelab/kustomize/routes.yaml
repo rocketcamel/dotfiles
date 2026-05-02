@@ -8,7 +8,7 @@ spec:
     - name: traefik-gateway
       namespace: kube-system
   hostnames:
-    - git.lucalise.ca
+    - git-old.lucalise.ca
   rules:
     - backendRefs:
         - name: gitlab-webservice-default
@@ -415,7 +415,7 @@ spec:
     - name: traefik-gateway
       namespace: kube-system
   hostnames:
-    - cgit.lucalise.ca
+    - git.lucalise.ca
   rules:
     - backendRefs:
         - name: cgit
