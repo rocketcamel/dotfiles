@@ -1,0 +1,129 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: mc-dashboard
+  namespace: minecraft
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: mc-dashboard
+  namespace: minecraft
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments", "deployments/scale"]
+    verbs: ["get", "list", "patch"]
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["get", "list", "watch", "create", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: mc-dashboard
+  namespace: minecraft
+subjects:
+  - kind: ServiceAccount
+    name: mc-dashboard
+roleRef:
+  kind: Role
+  name: mc-dashboard
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mc-dashboard
+  namespace: minecraft
+  labels:
+    app: mc-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mc-dashboard
+  template:
+    metadata:
+      labels:
+        app: mc-dashboard
+    spec:
+      serviceAccountName: mc-dashboard
+      containers:
+        - name: mc-dashboard
+          image: registry.lucalise.ca/mc-dashboard:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: TABLE_NAME
+              value: mc-dashboard
+            - name: AWS_REGION
+              value: ca-central-1
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: mc-dashboard-aws
+                  key: access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mc-dashboard-aws
+                  key: secret-access-key
+          volumeMounts:
+            - name: ssh
+              mountPath: /root/.ssh
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+          livenessProbe:
+            httpGet:
+              path: /api/version
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /api/version
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: ssh
+          secret:
+            secretName: mc-dashboard-ssh
+            defaultMode: 0600
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mc-dashboard
+  namespace: minecraft
+spec:
+  selector:
+    app: mc-dashboard
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: mc-dashboard
+  namespace: minecraft
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+      sectionName: mc-rocket
+  hostnames:
+    - mc-rocket.privatedns.org
+  rules:
+    - backendRefs:
+        - name: mc-dashboard
+          port: 80

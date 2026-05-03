@@ -41,6 +41,8 @@ releases:
     values:
       - crds:
           enabled: true
+      - config:
+          enableGatewayAPI: true
 
   - name: headlamp
     chart: headlamp/headlamp
