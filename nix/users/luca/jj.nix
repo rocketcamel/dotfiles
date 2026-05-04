@@ -8,7 +8,7 @@
     ui = {
       pager = "less -FRX";
       default-command = "log";
-      diff.format = "git";
+      diff-formatter = "git";
     };
     signing = {
       behavior = "own";
