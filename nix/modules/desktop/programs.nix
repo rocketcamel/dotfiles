@@ -48,6 +48,7 @@
       r2modman
       gpu-screen-recorder
       gimp
+      zoom-us
     ];
 
     programs.hyprland = {
