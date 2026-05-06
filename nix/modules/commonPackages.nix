@@ -79,6 +79,8 @@
       lm_sensors
       glab
       opentofu
+      cargo-watch
+      overmind
     ];
     programs.nix-ld.enable = lib.mkDefault true;
     programs.zsh.enable = lib.mkDefault true;
