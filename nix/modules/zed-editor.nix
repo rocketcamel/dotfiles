@@ -18,8 +18,14 @@
           "luau"
           "nix"
           "rose-pine-theme"
+          "terraform"
+          "html"
         ];
         userSettings = {
+          cursor_shape = "block";
+          session = {
+            trust_all_worktrees = true;
+          };
           features = {
             edit_prediction_provider = "none";
           };
@@ -27,7 +33,7 @@
           vim_mode = true;
           ui_font_size = 16;
           buffer_font_size = 16;
-          relative_line_numbers = true;
+          relative_line_numbers = "enabled";
           git.inline_blame = {
             enabled = false;
           };
