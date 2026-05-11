@@ -40,6 +40,7 @@ extraEnv:
     simulation-distance=8
   CURSEFORGE_FILES: |
     ai-improvements
+  CF_EXCLUDE_MODS: "realistic-torches"
 
 persistence:
   dataDir:
