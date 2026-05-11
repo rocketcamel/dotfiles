@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  meta,
   pkgs,
   ...
 }:
@@ -12,8 +14,14 @@
   };
 
   config = lib.mkIf config.hm.enable {
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.users.luca = import ../users/luca/home.nix;
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      users.luca = import ../users/luca/home.nix;
+      extraSpecialArgs = {
+        inherit inputs;
+        inherit meta;
+      };
+    };
   };
 }

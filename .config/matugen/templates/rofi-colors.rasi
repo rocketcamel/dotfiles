@@ -1,0 +1,8 @@
+* {
+    selected: {{colors.primary.default.hex}};
+    active: {{colors.secondary.default.hex}};
+    urgent: {{colors.error.default.hex}};
+    background: {{colors.surface.default.hex}};
+    foreground: {{colors.on_surface.default.hex}};
+    background-alt: {{colors.on_surface_variant.default.hex}};
+}

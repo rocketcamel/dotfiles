@@ -94,6 +94,7 @@
             "cursor-style" = "block";
             "cursor-style-blink" = false;
             "font-size" = 15;
+            "theme" = "Matugen";
           };
         };
         hyprlock = {

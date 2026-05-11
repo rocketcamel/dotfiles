@@ -31,16 +31,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    qml-niri = {
-      url = "github:imiric/qml-niri/main";
+    matugen = {
+      url = "github:/InioX/Matugen?ref=v4.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.quickshell.follows = "quickshell";
-    };
-
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.niri-stable.url = "git+https://git.lucalise.ca/lucalise/niri?ref=niri-custom";
     };
   };
 
@@ -85,7 +78,6 @@
               ./hosts/${host.name}/configuration.nix
               ./modules/default.nix
               inputs.sops-nix.nixosModules.sops
-              inputs.niri.nixosModules.niri
               home-manager.nixosModules.home-manager
               {
                 nix.settings.experimental-features = [

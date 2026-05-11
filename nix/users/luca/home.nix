@@ -2,6 +2,8 @@
   config,
   pkgs,
   lib,
+  inputs,
+  meta,
   ...
 }:
 
@@ -24,6 +26,7 @@
   home.packages = with pkgs; [
     nodejs_22
     pnpm
+    inputs.matugen.packages.${meta.architecture}.default
   ];
 
   home.stateVersion = "24.11";
