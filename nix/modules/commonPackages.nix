@@ -83,7 +83,12 @@
       overmind
       yazi
     ];
-    programs.nix-ld.enable = lib.mkDefault true;
+    programs.nix-ld = {
+      enable = lib.mkDefault true;
+      libraries = with pkgs; [
+        dbus
+      ];
+    };
     programs.zsh.enable = lib.mkDefault true;
     services.openssh.enable = lib.mkDefault true;
     hardware.enableAllFirmware = true;
