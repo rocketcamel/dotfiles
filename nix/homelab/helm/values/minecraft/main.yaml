@@ -9,7 +9,7 @@ resources:
 minecraftServer:
   eula: "TRUE"
   type: "FABRIC"
-  version: "26.1"
+  version: "26.1.2"
   difficulty: hard
   motd: "A Minecraft Server."
   memory: 7G
@@ -21,12 +21,12 @@ minecraftServer:
     secretKey: rcon-password
   modUrls:
     - https://github.com/gnembon/fabric-carpet/releases/download/v26.1/fabric-carpet-26.1+v260402.jar
-    - https://modrinth.com/mod/elytra-trims/version/NLOF6eKu
-    - https://modrinth.com/mod/c2me-fabric/version/0.3.7+alpha.0.61+26.1
+    - https://cdn.modrinth.com/data/XpzGz7KD/versions/kJxyTnJz/elytratrims-fabric-4.8.0%2B26.1.2.jar?mr_download_reason=standalone
+    - https://cdn.modrinth.com/data/VSNURh3q/versions/utLSz8Lf/c2me-fabric-mc26.1.2-0.3.7%2Balpha.0.68.jar?mr_download_reason=standalone
+    - https://cdn.modrinth.com/data/wEhW4ceB/versions/7g49TsaL/tree-vein-miner-26.1.jar?mr_download_reason=standalone
   modrinth:
     projects:
       - fabric-api
-      - tree-vein-miner
       - lithium
       - servux
       - ferrite-core
