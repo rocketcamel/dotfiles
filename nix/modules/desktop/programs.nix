@@ -49,6 +49,7 @@
       gpu-screen-recorder
       gimp
       zoom-us
+      neovide
     ];
 
     programs.hyprland = {
