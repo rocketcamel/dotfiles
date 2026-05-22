@@ -25,3 +25,11 @@ vim.g.neovide_cursor_animate_in_insert_mode = false
 vim.g.neovide_cursor_animate_command_line = false
 vim.g.neovide_scroll_animation_far_lines = 0
 vim.g.neovide_scroll_animation_length = 0.00
+
+if vim.g.neovide then
+	local function paste()
+		vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
+	end
+
+	vim.keymap.set({ "n", "i", "v", "c" }, "C-v", paste, { silent = true })
+end

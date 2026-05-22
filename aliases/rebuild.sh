@@ -1,6 +1,7 @@
-if [ -z "$1" ]; then
-  echo "Usage: rebuild <mode>"
-  exit 1
+mode="switch"
+
+if [ "$1" ]; then
+  mode="$1"
 fi
 
-sudo nixos-rebuild $1 --flake ~/dotfiles/nix
+sudo nixos-rebuild $mode --flake ~/dotfiles/nix
