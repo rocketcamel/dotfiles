@@ -1,5 +1,5 @@
 local terminal = "ghostty"
-local file_manager = "yazi"
+local file_manager = "ghostty -e yazi"
 
 hl.config({
 	general = {
