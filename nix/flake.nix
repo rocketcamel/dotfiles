@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    nixpkgs-before.url = "github:nixos/nixpkgs?ref=nixos-25.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     home-manager.url = "github:nix-community/home-manager?ref=release-25.11";
@@ -11,11 +10,6 @@
 
     custom-fonts.url = "path:./fonts";
     custom-fonts.inputs.nixpkgs.follows = "nixpkgs";
-
-    # status-bar = {
-    #   url = "github:rocketcamel/dotfiles-status-bar";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -35,6 +29,8 @@
       url = "github:/InioX/Matugen?ref=v4.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs =
@@ -71,7 +67,6 @@
                 hostname = host.name;
                 architecture = host.architecture;
               };
-              pkgs-before = import inputs.nixpkgs-before { system = host.architecture; };
             };
             system = host.architecture;
             modules = [
@@ -80,13 +75,15 @@
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
-                nix.settings.experimental-features = [
-                  "nix-command"
-                  "flakes"
-                ];
-                environment.systemPackages = [
-                  # inputs.status-bar.packages.${host.architecture}.default
-                ];
+                nix.settings = {
+                  experimental-features = [
+                    "nix-command"
+                    "flakes"
+                  ];
+                  substituters = [ "https://hyprland.cachix.org" ];
+                  trusted-substituters = [ "https://hyprland.cachix.org" ];
+                  trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+                };
                 fonts.packages = [
                   inputs.custom-fonts.packages.${host.architecture}.default
                 ];

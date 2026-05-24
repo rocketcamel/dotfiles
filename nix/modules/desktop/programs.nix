@@ -54,6 +54,7 @@
 
     programs.hyprland = {
       enable = true;
+      package = inputs.hyprland.packages.${meta.architecture}.hyprland;
       withUWSM = true;
     };
     programs.steam.enable = true;
