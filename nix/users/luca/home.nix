@@ -8,14 +8,15 @@
 }:
 
 {
+  imports = [
+    ./shell/default.nix
+  ];
   home.username = "luca";
   home.homeDirectory = "/home/luca";
 
   programs = {
     git = import ./git.nix;
-    zsh = import ./zsh.nix { inherit pkgs; };
     tmux = import ./tmux.nix { inherit pkgs; };
-    oh-my-posh = import ./omp.nix;
     eza = import ./eza.nix;
     mise = import ./mise.nix;
     bacon.enable = true;

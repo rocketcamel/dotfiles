@@ -11,7 +11,6 @@ fi
 
 NAMESPACE="$1"
 
-# Verify namespace exists
 if ! kubectl get namespace "$NAMESPACE" &>/dev/null; then
     echo "Error: Namespace '$NAMESPACE' does not exist"
     echo ""
@@ -20,7 +19,6 @@ if ! kubectl get namespace "$NAMESPACE" &>/dev/null; then
     exit 1
 fi
 
-# Set namespace for current context
 kubectl config set-context --current --namespace="$NAMESPACE"
 
 echo "Switched to namespace: $NAMESPACE"

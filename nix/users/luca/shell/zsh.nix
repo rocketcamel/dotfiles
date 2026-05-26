@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  scripts = builtins.attrNames (builtins.readDir ../../../aliases);
+  scripts = builtins.attrNames (builtins.readDir ../../../../aliases);
   aliases = builtins.concatStringsSep "\n" (
     map (
       name:
