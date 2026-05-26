@@ -39,7 +39,6 @@
     wheelNeedsPassword = false;
   };
 
-  # i3.enable = true;
   desktop.enable = true;
   niri-desktop.enable = false;
   kanata.enable = true;

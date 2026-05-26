@@ -10,7 +10,9 @@
 {
   imports = [
     ./shell/default.nix
+    ./notifications.nix
   ];
+
   home.username = "luca";
   home.homeDirectory = "/home/luca";
 

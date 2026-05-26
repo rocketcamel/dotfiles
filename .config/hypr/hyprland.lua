@@ -66,6 +66,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 local modifier = "SUPER"
 local menu = "rofi -show drun"
 local bluetooth = "blueberry"
+local notifications = "swaync-client -t"
 
 local function concat(bind)
 	return modifier .. " + " .. bind
@@ -83,6 +84,7 @@ hl.bind(concat("SHIFT + S"), hl.dsp.exec_cmd("~/dotfiles/scripts/screenshot.sh")
 hl.bind(concat("P"), hl.dsp.exec_cmd("~/dotfiles/scripts/project.sh"))
 hl.bind(concat("B"), hl.dsp.exec_cmd(bluetooth))
 hl.bind(concat("F"), hl.dsp.window.fullscreen())
+hl.bind(concat("N"), hl.dsp.exec_cmd(notifications))
 
 hl.bind(concat("H"), hl.dsp.focus({ direction = "left" }))
 hl.bind(concat("L"), hl.dsp.focus({ direction = "right" }))
@@ -102,17 +104,17 @@ for i = 1, 10 do
 	local key = i % 10
 
 	hl.bind(concat(key), hl.dsp.focus({ workspace = i }))
-	hl.bind(concat(key), hl.dsp.window.move({ workspace = i }))
+	hl.bind(concat("SHIFT + " .. key), hl.dsp.window.move({ workspace = i }))
 end
 
 --stylua: ignore start
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
-hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("swayosd-client --brightness raise"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("swayosd-client --brightness lower"),                  { locked = true, repeating = true })
 
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
 hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })

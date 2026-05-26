@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf config.desktop.enable {
     services.tumbler.enable = true;
@@ -14,10 +19,6 @@
 
     home-manager.users.luca = {
       services = {
-        dunst = {
-          enable = true;
-          configFile = ../../custom/dunst/dunstrc;
-        };
         hyprpolkitagent.enable = true;
         cliphist.enable = true;
         gammastep = {
