@@ -40,11 +40,30 @@
   };
 
   desktop.enable = true;
-  niri-desktop.enable = false;
   kanata.enable = true;
   wireguard-layer.enable = true;
 
   services.flatpak.enable = true;
+
+  home-manager.users.luca = {
+    services.kanshi = {
+      enable = true;
+      settings = [
+        {
+          profile.name = "main";
+          profile.outputs = [
+            {
+              status = "enable";
+              criteria = "eDP-1";
+              position = "0,0";
+              mode = "1920x1080";
+              scale = 1.0;
+            }
+          ];
+        }
+      ];
+    };
+  };
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
