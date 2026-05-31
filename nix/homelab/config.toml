@@ -157,6 +157,13 @@ routes = [
     hostname = "git",
     port = 80,
     private = false
+  },
+  {
+    name = "immich",
+    namespace = "immich",
+    port = 2283,
+    service = "immich-server",
+    private = true
   }
 ]
 

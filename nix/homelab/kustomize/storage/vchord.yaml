@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: immich-db
+  namespace: immich
+spec:
+  serviceName: immich-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: immich-db
+  template:
+    metadata:
+      labels:
+        app: immich-db
+    spec:
+      containers:
+        - name: db
+          image: tensorchord/vchord-postgres:pg18-v1.1.1
+          ports:
+            - containerPort: 5432
+              name: tcp
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
+            - name: POSTGRES_DB
+              value: immich
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: 1
+              memory: 2Gi
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "postgres"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "postgres"]
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: immich-db
+  namespace: immich
+  labels:
+    app: immich-db
+spec:
+  selector:
+    app: immich-db
+  ports:
+    - port: 5432
+      targetPort: tcp

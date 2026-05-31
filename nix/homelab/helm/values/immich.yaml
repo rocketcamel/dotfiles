@@ -1,0 +1,31 @@
+controllers:
+  main:
+    containers:
+      main:
+       image:
+         tag: v2.7.5
+       env:
+         DB_HOSTNAME: immich-db
+         DB_DATABASE_NAME: immich
+         DB_USERNAME: postgres
+         DB_PASSWORD:
+           valueFrom:
+             secretKeyRef:
+               name: db-credentials
+               key: password
+
+immich:
+  persistence:
+    library:
+      existingClaim: "immich-library"
+
+valkey:
+  enabled: true
+  persistence:
+    data:
+      type: persistentVolumeClaim
+
+machine-learning:
+  persistence:
+    cache:
+      type: persistentVolumeClaim

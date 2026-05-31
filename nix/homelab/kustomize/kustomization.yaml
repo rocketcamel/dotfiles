@@ -27,3 +27,4 @@ resources:
   - ./storage/registry.yaml
   - ./storage/gitolite.yaml
   - ./storage/cgit.yaml
+  - ./storage/vchord.yaml
