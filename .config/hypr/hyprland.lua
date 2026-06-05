@@ -67,6 +67,7 @@ local modifier = "SUPER"
 local menu = "rofi -show drun"
 local bluetooth = "blueberry"
 local notifications = "swaync-client -t"
+local lock_screen = "loginctl lock-session"
 
 local function concat(bind)
 	return modifier .. " + " .. bind
@@ -85,6 +86,8 @@ hl.bind(concat("P"), hl.dsp.exec_cmd("~/dotfiles/scripts/project.sh"))
 hl.bind(concat("B"), hl.dsp.exec_cmd(bluetooth))
 hl.bind(concat("F"), hl.dsp.window.fullscreen())
 hl.bind(concat("N"), hl.dsp.exec_cmd(notifications))
+hl.bind(concat("Space"), hl.dsp.layout("togglesplit"))
+hl.bind(concat("U"), hl.dsp.exec_cmd(lock_screen))
 
 hl.bind(concat("H"), hl.dsp.focus({ direction = "left" }))
 hl.bind(concat("L"), hl.dsp.focus({ direction = "right" }))
