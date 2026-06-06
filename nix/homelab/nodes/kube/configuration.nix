@@ -11,11 +11,10 @@
     ./disk-config.nix
   ];
 
-  boot.loader.grub = {
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot = {
     enable = true;
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-    device = "/dev/nvme0n1";
+    editor = false;
   };
 
   networking.hostName = meta.hostname;

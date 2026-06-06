@@ -34,7 +34,7 @@
       ripgrep
       git
       gcc
-      nixfmt-rfc-style
+      nixfmt
       asciiquarium
       wireguard-tools
       fzf

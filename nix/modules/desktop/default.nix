@@ -40,12 +40,12 @@
       };
     };
 
-    home-manager.users.luca = {
-      wayland.windowManager.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-        systemd.enable = true;
-      };
-    };
+    # home-manager.users.luca = {
+    #   wayland.windowManager.hyprland = {
+    #     enable = true;
+    #     xwayland.enable = true;
+    #     systemd.enable = true;
+    #   };
+    # };
   };
 }

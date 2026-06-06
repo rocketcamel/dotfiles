@@ -7,9 +7,9 @@
 {
   config = lib.mkIf config.desktop.enable {
     services.tumbler.enable = true;
-    services.displayManager.gdm = {
+    services.displayManager.sddm = {
       enable = true;
-      wayland = true;
+      wayland.enable = true;
     };
     services.upower.enable = true;
     services.tailscale = {
@@ -21,6 +21,7 @@
       services = {
         hyprpolkitagent.enable = true;
         cliphist.enable = true;
+        awww.enable = true;
         gammastep = {
           enable = true;
           provider = "manual";

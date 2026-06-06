@@ -37,7 +37,7 @@
       openssl
       zlib
       brotli
-      unixODBC
+      unixodbc
       glib
     ];
   };

@@ -16,13 +16,6 @@
     ./hardware-configuration.nix
   ];
 
-  # boot.loader.grub = {
-  #   enable = true;
-  #   efiSupport = true;
-  #   device = "nodev";
-  #   efiInstallAsRemovable = true;
-  #   useOSProber = true;
-  # };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot = {
     enable = true;

@@ -65,7 +65,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 
 local modifier = "SUPER"
 local menu = "rofi -show drun"
-local bluetooth = "blueberry"
+local bluetooth = "blueman-manager"
 local notifications = "swaync-client -t"
 local lock_screen = "loginctl lock-session"
 
@@ -141,6 +141,8 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 local autostart_apps = {
 	"qs",
 	"wl-clip-persist --clipboard regular",
+	"kanshi",
+	"awww img ~/.config/wallpaper/asakusa.png",
 }
 
 hl.on("hyprland.start", function()
@@ -179,8 +181,8 @@ local window_rules = {
 		float = true,
 	},
 	{
-		name = "blueberry",
-		match = { class = "blueberry.py" },
+		name = "blueman",
+		match = { class = ".blueman-manager-wrapped" },
 		float = true,
 		size = { 800, 600 },
 	},

@@ -30,7 +30,7 @@
       wl-clip-persist
       wdisplays
       efibootmgr
-      xfce.thunar
+      thunar
       xdg-desktop-portal
       microsoft-edge
       libadwaita
@@ -85,7 +85,7 @@
 
     home-manager.users.luca = {
       home.packages = with pkgs; [
-        blueberry
+        blueman
       ];
       programs = {
         ghostty = {
