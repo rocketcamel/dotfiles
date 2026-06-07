@@ -442,3 +442,25 @@ spec:
             group: traefik.io
             kind: Middleware
             name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: syncthing
+  namespace: sync
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - syncthing.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: syncthing
+          port: 8384
+      filters:
+        - type: ExtensionRef
+          extensionRef:
+            group: traefik.io
+            kind: Middleware
+            name: private-networks

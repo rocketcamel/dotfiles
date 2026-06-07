@@ -164,6 +164,13 @@ routes = [
     port = 2283,
     service = "immich-server",
     private = true
+  },
+  {
+    name = "syncthing",
+    namespace = "sync",
+    port = 8384,
+    service = "syncthing",
+    private = true
   }
 ]
 
