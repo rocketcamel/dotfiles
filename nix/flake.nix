@@ -32,6 +32,11 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+
+    silent-sddm = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -2,15 +2,25 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 {
+  imports = [ inputs.silent-sddm.nixosModules.default ];
+
   config = lib.mkIf config.desktop.enable {
     services.tumbler.enable = true;
+
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true;
     };
+
+    programs.silentSDDM = {
+      enable = true;
+      theme = "default";
+    };
+
     services.upower.enable = true;
     services.tailscale = {
       enable = true;
