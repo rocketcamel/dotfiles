@@ -88,6 +88,7 @@ hl.bind(concat("F"), hl.dsp.window.fullscreen())
 hl.bind(concat("N"), hl.dsp.exec_cmd(notifications))
 hl.bind(concat("Space"), hl.dsp.layout("togglesplit"))
 hl.bind(concat("U"), hl.dsp.exec_cmd(lock_screen))
+hl.bind(concat("Period"), hl.dsp.exec_cmd("emote"))
 
 hl.bind(concat("H"), hl.dsp.focus({ direction = "left" }))
 hl.bind(concat("L"), hl.dsp.focus({ direction = "right" }))
@@ -143,6 +144,7 @@ local autostart_apps = {
 	"wl-clip-persist --clipboard regular",
 	"kanshi",
 	"awww img ~/.config/wallpaper/asakusa.png",
+	"emote",
 }
 
 hl.on("hyprland.start", function()
@@ -185,6 +187,11 @@ local window_rules = {
 		match = { class = ".blueman-manager-wrapped" },
 		float = true,
 		size = { 800, 600 },
+	},
+	{
+		name = "emote",
+		match = { class = "emote" },
+		stay_focused = true,
 	},
 }
 
