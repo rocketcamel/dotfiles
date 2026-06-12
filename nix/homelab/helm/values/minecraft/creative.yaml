@@ -43,4 +43,4 @@ nodeSelector:
 persistence:
   dataDir:
     enabled: true
-    Size: 14Gi
+    Size: 50Gi
