@@ -16,14 +16,12 @@
     ./hardware-configuration.nix
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.grub = {
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot = {
     enable = true;
-    efiSupport = true;
-    useOSProber = true;
-    efiInstallAsRemovable = true;
-    device = "nodev";
+    editor = false;
   };
+  boot.blacklistedKernelModules = [ "hid_logitech_hidpp" ];
 
   networking.hostName = meta.hostname;
   hardware.bluetooth.enable = true;
@@ -105,7 +103,9 @@
     with pkgs;
     config.commonPackages
     ++ [
+      solaar
     ];
+  services.udev.packages = with pkgs; [ solaar ];
 
   services.openssh.enable = true;
 
