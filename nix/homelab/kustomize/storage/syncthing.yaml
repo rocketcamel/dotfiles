@@ -8,6 +8,18 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
+      storage: 4Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: syncthing-config
+  namespace: sync
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
       storage: 1Gi
 ---
 apiVersion: apps/v1
@@ -64,11 +76,16 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+            - name: config
+              mountPath: /config
 
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: syncthing-data
+        - name: config
+          persistentVolumeClaim:
+            claimName: syncthing-config
 ---
 apiVersion: v1
 kind: Service
