@@ -15,12 +15,20 @@
   config = lib.mkIf config.rust.enable {
     nixpkgs.overlays = [ inputs.fenix.overlays.default ];
     environment.systemPackages = with pkgs; [
-      (pkgs.fenix.stable.withComponents [
-        "cargo"
-        "clippy"
-        "rust-src"
-        "rustc"
-        "rustfmt"
+      # (pkgs.fenix.stable.withComponents [
+      #   "cargo"
+      #   "clippy"
+      #   "rust-src"
+      #   "rustc"
+      #   "rustfmt"
+      # ])
+      (pkgs.fenix.combine [
+        pkgs.fenix.stable.cargo
+        pkgs.fenix.stable.clippy
+        pkgs.fenix.stable.rust-src
+        pkgs.fenix.stable.rustc
+        pkgs.fenix.stable.rustfmt
+        pkgs.fenix.targets.wasm32-unknown-unknown.stable.rust-std
       ])
       openssl
       pkgconf

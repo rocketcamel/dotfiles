@@ -82,6 +82,7 @@
       cargo-watch
       overmind
       yazi
+      trunk
     ];
     programs.nix-ld = {
       enable = lib.mkDefault true;

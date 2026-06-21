@@ -9,7 +9,7 @@ resources:
 minecraftServer:
   eula: "TRUE"
   type: "FABRIC"
-  version: "26.1.2"
+  version: "26.2"
   difficulty: hard
   motd: "A Minecraft Server."
   memory: 7G
@@ -20,10 +20,7 @@ minecraftServer:
     existingSecret: rcon-credentials
     secretKey: rcon-password
   modUrls:
-    - https://github.com/gnembon/fabric-carpet/releases/download/v26.1/fabric-carpet-26.1+v260402.jar
-    - https://cdn.modrinth.com/data/XpzGz7KD/versions/kJxyTnJz/elytratrims-fabric-4.8.0%2B26.1.2.jar?mr_download_reason=standalone
-    - https://cdn.modrinth.com/data/VSNURh3q/versions/utLSz8Lf/c2me-fabric-mc26.1.2-0.3.7%2Balpha.0.68.jar?mr_download_reason=standalone
-    - https://cdn.modrinth.com/data/wEhW4ceB/versions/7g49TsaL/tree-vein-miner-26.1.jar?mr_download_reason=standalone
+    - https://cdn.modrinth.com/data/VSNURh3q/versions/XFuLpTDt/c2me-fabric-mc26.2-0.4.2-alpha.0.8.jar?mr_download_reason=standalone
   modrinth:
     projects:
       - fabric-api
@@ -32,6 +29,11 @@ minecraftServer:
       - ferrite-core
       - fabric-language-kotlin
       - scalablelux
+
+      - carpet
+      - elytra-trims
+      - tree-vein-miner
+
       - no-chat-reports
       - pickup-notifications
       # - ct-overhaul-village

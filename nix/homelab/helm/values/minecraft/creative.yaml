@@ -9,7 +9,7 @@ resources:
 minecraftServer:
   eula: "TRUE"
   type: "FABRIC"
-  version: "26.1"
+  version: "26.2"
   difficulty: hard
   motd: "A Minecraft Server."
   gameMode: creative
@@ -21,21 +21,25 @@ minecraftServer:
     existingSecret: rcon-credentials
     secretKey: rcon-password
   modUrls:
-    - https://github.com/gnembon/fabric-carpet/releases/download/v26.1/fabric-carpet-26.1+v260402.jar
-    - https://modrinth.com/mod/elytra-trims/version/NLOF6eKu
-    - https://modrinth.com/mod/c2me-fabric/version/0.3.7+alpha.0.61+26.1
+    - https://cdn.modrinth.com/data/VSNURh3q/versions/XFuLpTDt/c2me-fabric-mc26.2-0.4.2-alpha.0.8.jar?mr_download_reason=standalone
   modrinth:
     projects:
       - fabric-api
-      - tree-vein-miner
       - lithium
       - servux
       - ferrite-core
-      - carpet-tis-addition
       - fabric-language-kotlin
       - scalablelux
+
+      - carpet
+      - elytra-trims
+      - tree-vein-miner
       - axiom
+
+      - no-chat-reports
       - pickup-notifications
+      # - ct-overhaul-village
+      # - lithostitched
 
 nodeSelector:
   kubernetes.io/hostname: kube
