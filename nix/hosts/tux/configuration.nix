@@ -18,11 +18,9 @@
     ./hardware-configuration.nix
   ];
 
-  boot.loader.grub = {
-    device = "nodev";
-    efiSupport = true;
-    useOSProber = true;
-    efiInstallAsRemovable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
   };
 
   networking.networkmanager.enable = true;
