@@ -21,6 +21,7 @@
     enable = true;
     editor = false;
   };
+  # fix for mx master 2s
   boot.blacklistedKernelModules = [ "hid_logitech_hidpp" ];
 
   networking.hostName = meta.hostname;
@@ -103,9 +104,7 @@
     with pkgs;
     config.commonPackages
     ++ [
-      solaar
     ];
-  services.udev.packages = with pkgs; [ solaar ];
 
   services.openssh.enable = true;
 

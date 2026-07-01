@@ -29,6 +29,8 @@ minecraftServer:
       - ferrite-core
       - fabric-language-kotlin
       - scalablelux
+      - clumps
+      - ore-vein-miner
 
       - carpet
       - elytra-trims

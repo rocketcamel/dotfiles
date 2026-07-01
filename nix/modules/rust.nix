@@ -15,13 +15,6 @@
   config = lib.mkIf config.rust.enable {
     nixpkgs.overlays = [ inputs.fenix.overlays.default ];
     environment.systemPackages = with pkgs; [
-      # (pkgs.fenix.stable.withComponents [
-      #   "cargo"
-      #   "clippy"
-      #   "rust-src"
-      #   "rustc"
-      #   "rustfmt"
-      # ])
       (pkgs.fenix.combine [
         pkgs.fenix.stable.cargo
         pkgs.fenix.stable.clippy
@@ -33,6 +26,7 @@
       openssl
       pkgconf
     ];
+
     environment.variables = {
       PKG_CONFIG_PATH =
         with pkgs;
@@ -41,6 +35,7 @@
         ];
       LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
     };
+
     programs.nix-ld.libraries = with pkgs; [
       openssl
       zlib

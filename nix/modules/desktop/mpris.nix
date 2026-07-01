@@ -15,7 +15,7 @@
 
       systemd.user.services.mpris-proxy = {
         Unit = {
-          Description = "mpris-proxy - Bluetooth AVRCP to MPRIS bridge";
+          Description = "mpris-proxy - bluetooth AVRCP to MPRIS bridge";
           After = [
             "sound.target"
           ];

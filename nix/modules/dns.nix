@@ -18,22 +18,6 @@
       dns = "systemd-resolved";
     };
 
-    # services.resolved = {
-    #   enable = true;
-    #   fallbackDns = [
-    #     "1.1.1.1"
-    #     "1.0.0.1"
-    #   ];
-    #   domains = [
-    #     "home.local"
-    #   ];
-    #   extraConfig = ''
-    #     [Resolve]
-    #     DNS=192.168.27.13:53 1.1.1.1 1.0.0.1
-    #     ResolveUnicastSingleLabel=yes
-    #   '';
-    # };
-
     services.resolved = {
       enable = true;
       settings.Resolve = {
