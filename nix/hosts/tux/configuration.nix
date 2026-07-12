@@ -23,6 +23,9 @@
     editor = false;
   };
 
+  # fix for mx master 2s
+  boot.blacklistedKernelModules = [ "hid_logitech_hidpp" ];
+
   networking.networkmanager.enable = true;
   nix.settings.experimental-features = [
     "nix-command"

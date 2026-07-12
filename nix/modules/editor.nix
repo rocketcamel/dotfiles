@@ -1,0 +1,78 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  options.editor = {
+    enable = lib.mkOption {
+      default = config.desktop.enable;
+      description = "enable editor";
+      type = lib.types.bool;
+    };
+  };
+
+  config = lib.mkIf config.editor.enable {
+    home-manager.users.luca = {
+      programs.vscodium = {
+        enable = true;
+        profiles.default = {
+          extensions =
+            (with pkgs.vscode-extensions; [
+              rust-lang.rust-analyzer
+              mvllow.rose-pine
+              vscodevim.vim
+              usernamehw.errorlens
+            ])
+            ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+              {
+                name = "luau-lsp";
+                publisher = "JohnnyMorganz";
+                version = "1.68.1";
+                sha256 = "sha256-WwyLMzIvVJo1r7x7cs2XIwe6WCx0eIWTzc8gbfvA/KU=";
+              }
+            ];
+
+          userSettings = {
+            "vim.leader" = "<space>";
+            "vim.useSystemClipboard" = true;
+
+            "workbench.colorTheme" = "Rosé Pine (no italics)";
+            "editor.inlayHints.enabled" = "offUnlessPressed";
+            "editor.lineNumbers" = "relative";
+
+            "luau-lsp.fflags.enableNewSolver" = true;
+            "rust-analyzer.lens.implementations.enable" = false;
+
+            "vim.normalModeKeyBindingsNonRecursive" = [
+              {
+                before = "<C-p>";
+                commands = [ "workbench.action.quickOpen" ];
+              }
+              {
+                before = [ "K" ];
+                commands = [ "editor.action.showHover" ];
+              }
+              {
+                before = [
+                  "<leader>"
+                  "f"
+                  "g"
+                ];
+                commands = [ "workbench.action.findInFiles" ];
+              }
+              {
+                before = [
+                  "<leader>"
+                  "e"
+                ];
+                commands = [ "workbench.action.toggleSidebarVisibility" ];
+              }
+            ];
+          };
+        };
+      };
+    };
+  };
+}
