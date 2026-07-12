@@ -24,6 +24,7 @@
               mvllow.rose-pine
               vscodevim.vim
               usernamehw.errorlens
+              bradlc.vscode-tailwindcss
             ])
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
               {
@@ -34,6 +35,14 @@
               }
             ];
 
+          keybindings = [
+            {
+              key = "shift+d";
+              command = "deleteFile";
+              when = "filesExplorerFocus && !inputFocus";
+            }
+          ];
+
           userSettings = {
             "vim.leader" = "<space>";
             "vim.useSystemClipboard" = true;
@@ -41,9 +50,19 @@
             "workbench.colorTheme" = "Rosé Pine (no italics)";
             "editor.inlayHints.enabled" = "offUnlessPressed";
             "editor.lineNumbers" = "relative";
+            "editor.formatOnSave" = true;
+            "editor.cursorBlinking" = "solid";
+            "editor.fontSize" = 15;
+
+            "vim.cursorStylePerMode" = {
+              insert = "block";
+            };
 
             "luau-lsp.fflags.enableNewSolver" = true;
             "rust-analyzer.lens.implementations.enable" = false;
+            "tailwindCSS.includeLanguages" = {
+              rust = "html";
+            };
 
             "vim.normalModeKeyBindingsNonRecursive" = [
               {
