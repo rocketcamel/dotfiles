@@ -46,6 +46,7 @@
           userSettings = {
             "vim.leader" = "<space>";
             "vim.useSystemClipboard" = true;
+            "security.workspace.trust.enabled" = false;
 
             "workbench.colorTheme" = "Rosé Pine (no italics)";
             "editor.inlayHints.enabled" = "offUnlessPressed";
