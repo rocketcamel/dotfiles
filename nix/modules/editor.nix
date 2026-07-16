@@ -41,6 +41,11 @@
               command = "deleteFile";
               when = "filesExplorerFocus && !inputFocus";
             }
+            {
+              key = "a";
+              command = "explorer.newFile";
+              when = "filesExplorerFocus && !inputFocus";
+            }
           ];
 
           userSettings = {
@@ -76,11 +81,19 @@
               }
               {
                 before = [
+                  "g"
+                  "r"
+                  "n"
+                ];
+                commands = [ "editor.action.rename" ];
+              }
+              {
+                before = [
                   "<leader>"
                   "f"
                   "g"
                 ];
-                commands = [ "workbench.action.findInFiles" ];
+                commands = [ "search.action.openNewEditor" ];
               }
               {
                 before = [
