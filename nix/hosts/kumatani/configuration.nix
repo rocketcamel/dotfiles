@@ -49,6 +49,11 @@
   kanata.enable = true;
   kanata.apple = true;
 
+  fileSystems."/mnt/extra-block" = {
+    fsType = "btrfs";
+    device = "/dev/extra-storage/extra-block";
+  };
+
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [
