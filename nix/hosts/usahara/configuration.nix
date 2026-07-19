@@ -21,6 +21,7 @@
     enable = true;
     editor = false;
   };
+
   # fix for mx master 2s
   boot.blacklistedKernelModules = [ "hid_logitech_hidpp" ];
 
