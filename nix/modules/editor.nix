@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  meta,
   ...
 }:
 {
@@ -15,12 +16,17 @@
 
   config = lib.mkIf config.editor.enable {
     home-manager.users.luca = {
+      home.packages = with pkgs; [
+        nil
+      ];
+
       programs.vscodium = {
         enable = true;
         profiles.default = {
           extensions =
             (with pkgs.vscode-extensions; [
               rust-lang.rust-analyzer
+              jnoortheen.nix-ide
               mvllow.rose-pine
               vscodevim.vim
               usernamehw.errorlens
@@ -103,6 +109,32 @@
                 commands = [ "workbench.action.toggleSidebarVisibility" ];
               }
             ];
+
+            "nix.enableLanguageServer" = true;
+            "nix.serverPath" = "nixd";
+            "nix.serverSettings" = {
+              nil = {
+                formatting = {
+                  command = [ "nixfmt" ];
+                };
+              };
+
+              nixd = {
+                formatting = {
+                  command = [ "nixfmt" ];
+                };
+
+                options = {
+                  nixos = {
+                    expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${meta.hostname}.options";
+                  };
+                  home-manager = {
+                    expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${meta.hostname}.options.home-manager.users.type.getSubOptions []";
+                  };
+                };
+
+              };
+            };
           };
         };
       };
