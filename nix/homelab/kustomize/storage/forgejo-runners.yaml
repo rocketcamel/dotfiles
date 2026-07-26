@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: forgejo-runner
+  namespace: git
+spec:
+  serviceName: forgejo-runner
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forgejo-runner
+  template:
+    metadata:
+      labels:
+        app: forgejo-runner
+    spec:
+      containers:
+        - name: forgejo-runner
+          image: data.forgejo.org/forgejo/runner:12
+          env:
+            - name: DOCKER_HOST
+              value: tcp://localhost:2375
+          command: ["/bin/sh", "-ec"]
+          args:
+            - |
+              forgejo-runner daemon \
+                --url https://git.lucalise.ca \
+                --uuid a9855b8d-0862-46e4-b7f6-ea5294c6d506 \
+                --label slim:docker://node:20-bookworm-slim \
+                --token-url file:///config/token
+          volumeMounts:
+            - name: runner-config
+              mountPath: /config
+              readOnly: true
+            - name: runner-data
+              mountPath: /data
+
+        - name: dind
+          image: docker:28-dind
+          securityContext:
+            privileged: true
+          env:
+            - name: DOCKER_TLS_CERTDIR
+              value: ""
+          args: ["--host=tcp://0.0.0.0:2375", "--tls=false"]
+          volumeMounts:
+            - name: dind-storage
+              mountPath: /var/lib/docker
+
+      volumes:
+        - name: runner-config
+          secret:
+            secretName: forgejo-runner-token
+            items:
+              - key: token
+                path: token
+
+  volumeClaimTemplates:
+    - metadata:
+        name: runner-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+    - metadata:
+        name: dind-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 50Gi
