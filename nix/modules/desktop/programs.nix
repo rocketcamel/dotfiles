@@ -79,7 +79,7 @@
     };
 
     rofi.enable = true;
-    zed.enable = true;
+    # zed.enable = true;
     virt.enable = true;
     printing.enable = true;
 
