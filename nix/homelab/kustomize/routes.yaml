@@ -394,7 +394,7 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: gitolite
+  name: forgejo
   namespace: git
 spec:
   entryPoints:
@@ -402,7 +402,7 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: gitolite
+        - name: forgejo-ssh
           port: 22
 ---
 apiVersion: gateway.networking.k8s.io/v1
@@ -415,7 +415,7 @@ spec:
     - name: traefik-gateway
       namespace: kube-system
   hostnames:
-    - git.lucalise.ca
+    - cgit.lucalise.ca
   rules:
     - backendRefs:
         - name: cgit
@@ -464,3 +464,19 @@ spec:
             group: traefik.io
             kind: Middleware
             name: private-networks
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: git
+  namespace: git
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - git.lucalise.ca
+  rules:
+    - backendRefs:
+        - name: forgejo-http
+          port: 3000

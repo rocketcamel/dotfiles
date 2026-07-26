@@ -1,0 +1,25 @@
+persistence:
+  enabled: true
+  claimName: forgejo-storage
+
+gitea:
+  config:
+    APP_NAME: 'Git repositories'
+
+    server:
+      ROOT_URL: https://git.lucalise.ca
+      DOMAIN: git.lucalise.ca
+      SSH_DOMAIN: git.lucalise.ca
+      LANDING_PAGE: explore
+
+    repository:
+      ROOT: /data/repositories
+
+    service:
+      DISABLE_REGISTRATION: true
+      REQUIRE_SIGNIN_VIEW: false
+
+    repository.pull-request:
+      WORK_IN_PROGRESS_PREFIXES: 'WIP:,[WIP]:'
+  admin:
+    existingSecret: forgejo-admin-credentials

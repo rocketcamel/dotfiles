@@ -145,8 +145,9 @@ routes = [
   },
   {
     kind = "TCP",
-    name = "gitolite",
+    name = "forgejo",
     namespace = "git",
+    service = "forgejo-ssh",
     entrypoint = "ssh",
     port = 22,
     private = false
@@ -154,7 +155,6 @@ routes = [
   {
     name = "cgit",
     namespace = "git",
-    hostname = "git",
     port = 80,
     private = false
   },
@@ -171,6 +171,13 @@ routes = [
     port = 8384,
     service = "syncthing",
     private = true
+  },
+  {
+    name = "git",
+    namespace = "git",
+    port = 3000,
+    service = "forgejo-http",
+    private = false
   }
 ]
 

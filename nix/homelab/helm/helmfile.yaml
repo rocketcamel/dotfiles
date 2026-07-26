@@ -83,6 +83,13 @@ releases:
     values:
       - values/gitea.yaml
 
+  - name: forgejo
+    namespace: git
+    chart: oci://code.forgejo.org/forgejo-helm/forgejo
+    version: 17.1.3
+    values:
+      - values/forgejo.yaml
+
   # - name: gitea-runners
   #   namespace: git
   #   chart: gitea-charts/actions
