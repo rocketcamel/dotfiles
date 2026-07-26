@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forgejo-runner-config
+  namespace: git
+data:
+  config.yml: |
+    runner:
+      envs:
+        DOCKER_HOST: tcp://host.docker.internal:2375
+    container:
+      docker_host: tcp://localhost:2375
+      options: --add-host=host.docker.internal:host-gateway
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -14,8 +28,18 @@ spec:
       labels:
         app: forgejo-runner
     spec:
+      securityContext:
+        fsGroup: 1001
+        fsGroupChangePolicy: OnRootMismatch
+
       containers:
         - name: forgejo-runner
+          securityContext:
+            runAsUser: 1001
+            runAsGroup: 1001
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+
           image: data.forgejo.org/forgejo/runner:12
           env:
             - name: DOCKER_HOST
@@ -24,6 +48,7 @@ spec:
           args:
             - |
               forgejo-runner daemon \
+                --config /config/config.yml \
                 --url https://git.lucalise.ca \
                 --uuid a9855b8d-0862-46e4-b7f6-ea5294c6d506 \
                 --label slim:docker://node:20-bookworm-slim \
@@ -49,11 +74,18 @@ spec:
 
       volumes:
         - name: runner-config
-          secret:
-            secretName: forgejo-runner-token
-            items:
-              - key: token
-                path: token
+          projected:
+            sources:
+              - secret:
+                  name: forgejo-runner-token
+                  items:
+                    - key: token
+                      path: token
+              - configMap:
+                  name: forgejo-runner-config
+                  items:
+                    - key: config.yml
+                      path: config.yml
 
   volumeClaimTemplates:
     - metadata:
