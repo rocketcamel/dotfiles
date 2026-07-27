@@ -30,4 +30,3 @@ resources:
   - ./storage/cgit.yaml
   - ./storage/vchord.yaml
   - ./storage/syncthing.yaml
-  - ./storage/forgejo-runners.yaml
