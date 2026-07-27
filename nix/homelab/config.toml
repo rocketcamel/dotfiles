@@ -178,6 +178,12 @@ routes = [
     port = 3000,
     service = "forgejo-http",
     private = false
+  },
+  {
+    name = "jenkins",
+    namespace = "git",
+    port = 8080,
+    private = true
   }
 ]
 

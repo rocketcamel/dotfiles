@@ -1,0 +1,17 @@
+controller:
+  admin:
+    createSecret: false
+    existingSecret: jenkins-admin
+    userKey: username
+    passwordKey: password
+
+  additionalPlugins:
+    - gitea:273.vb_78d13f6d9a_d
+  additionalExistingSecrets:
+    - name: forgejo-ci
+      keyName: token
+persistence:
+  enabled: true
+  size: 20Gi
+agent:
+  websocket: true

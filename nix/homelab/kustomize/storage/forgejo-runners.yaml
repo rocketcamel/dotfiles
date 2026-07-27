@@ -31,6 +31,8 @@ spec:
       securityContext:
         fsGroup: 1001
         fsGroupChangePolicy: OnRootMismatch
+      nodeSelector:
+        kubernetes.io/hostname: kube
 
       containers:
         - name: forgejo-runner

@@ -9,6 +9,7 @@ resources:
   - ./traefik/chains.yaml
   - ./cert-manager/config.yaml
   - ./routes.yaml
+  - ./temp-routes.yaml
 
   - ./media/sonarr.yaml
   - ./media/prowlarr.yaml

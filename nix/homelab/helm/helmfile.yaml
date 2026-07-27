@@ -25,6 +25,8 @@ repositories:
     url: https://helm.releases.hashicorp.com
   - name: headlamp
     url: https://kubernetes-sigs.github.io/headlamp
+  - name: jenkins
+    url: https://charts.jenkins.io
 
 releases:
   # Load Balancer
@@ -89,6 +91,14 @@ releases:
     version: 17.1.3
     values:
       - values/forgejo.yaml
+
+  # CI
+  - name: jenkins
+    namespace: git
+    chart: jenkins/jenkins
+    version: 5.9.45
+    values:
+      - values/jenkins.yaml
 
   # - name: gitea-runners
   #   namespace: git

@@ -1,0 +1,27 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: jenkins-webhooks
+  namespace: git
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+      sectionName: https
+  hostnames:
+    - jenkins-webhook.lucalise.ca
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /gitea-webhook
+      backendRefs:
+        - name: jenkins
+          port: 8080
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /github-webhook
+      backendRefs:
+        - name: jenkins
+          port: 8080
