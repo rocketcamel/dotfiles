@@ -17,9 +17,11 @@
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot = {
+  boot.loader.grub = {
     enable = true;
-    editor = false;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
   };
 
   # fix for mx master 2s
