@@ -43,6 +43,32 @@
     wheelNeedsPassword = false;
   };
 
+  networking.firewall.enable = false;
+  # services.samba = {
+  #   enable = true;
+  #   usershares = {
+  #     enable = true;
+  #     group = "users";
+  #   };
+  #   openFirewall = true;
+  #   settings = {
+  #     global = {
+  #       "workgroup" = "WORKGROUP";
+  #       "server string" = "tux";
+  #       "security" = "user";
+  #     };
+  #     temp = {
+  #       path = "/home/luca/temp";
+  #       browseable = "yes";
+  #       "read only" = "no";
+  #       "valid users" = "luca";
+  #       "force user" = "luca";
+  #       "create mask" = "0644";
+  #       "directory mask" = "0755";
+  #     };
+  #   };
+  # };
+  #
   desktop.enable = true;
   kanata.enable = true;
   wireguard-layer.enable = true;

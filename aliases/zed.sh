@@ -1,5 +1,5 @@
 if [ -z "$@" ]; then
-    zeditor .
+    zeditor -n .
 else
     zeditor "$@"
 fi
