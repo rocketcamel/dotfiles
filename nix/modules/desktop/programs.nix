@@ -64,6 +64,10 @@
     #   interface = "wlo1";
     # };
 
+    programs.kdeconnect = {
+      enable = true;
+    };
+
     programs.dconf.profiles = {
       gdm.databases = [
         {
