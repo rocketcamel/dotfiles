@@ -23,6 +23,7 @@
       kubernetes-helm
       nfs-utils
       jj
+      stow
     ];
 
     programs.zsh.enable = true;
