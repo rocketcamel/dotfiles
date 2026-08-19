@@ -2,7 +2,7 @@
   enable = true;
   settings = {
     user = {
-      email = "luca_lise@icloud.com";
+      email = "luca@lucalise.ca";
       name = "lucalise";
     };
     ui = {
