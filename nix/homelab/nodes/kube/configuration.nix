@@ -76,6 +76,7 @@
     with pkgs;
     config.commonPackages
     ++ [
+      zed-editor
     ];
 
   services.openssh.enable = true;

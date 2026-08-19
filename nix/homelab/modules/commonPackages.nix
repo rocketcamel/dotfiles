@@ -26,6 +26,8 @@
       stow
       ripgrep
       gcc
+      busybox
+      bat
     ];
 
     programs.zsh.enable = true;
