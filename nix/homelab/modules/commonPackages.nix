@@ -27,6 +27,11 @@
     ];
 
     programs.zsh.enable = true;
+    programs.neovim = lib.mkDefault {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+    };
 
     sops = {
       defaultSopsFile = ../../../secrets/secrets.yaml;
