@@ -1,16 +1,12 @@
 {
-  config,
   pkgs,
-  lib,
-  inputs,
-  meta,
   ...
 }:
 
 {
   imports = [
     ./shell/default.nix
-    ./notifications.nix
+    ./editor.nix
   ];
 
   home.username = "luca";
@@ -24,12 +20,10 @@
     bacon.enable = true;
     jujutsu = import ./jj.nix;
   };
-  xdg.mimeApps = import ./mime.nix;
 
   home.packages = with pkgs; [
     nodejs_22
     pnpm
-    inputs.matugen.packages.${meta.architecture}.default
   ];
 
   services.syncthing = {

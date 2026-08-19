@@ -7,7 +7,6 @@
 
 {
   imports = [
-    ./custom.nix
     ./idle.nix
     ./mpris.nix
     ./programs.nix

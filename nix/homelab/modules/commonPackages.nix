@@ -24,6 +24,9 @@
       nfs-utils
       jj
     ];
+
+    programs.zsh.enable = true;
+
     sops = {
       defaultSopsFile = ../../../secrets/secrets.yaml;
       age.sshKeyPaths = [ "/home/luca/.ssh/id_ed25519" ];

@@ -62,6 +62,7 @@
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       tree
     ];
@@ -69,11 +70,12 @@
     openssh.authorizedKeys.keys = config.authorized_ssh;
   };
 
+  hm.enable = true;
+
   environment.systemPackages =
     with pkgs;
     config.commonPackages
     ++ [
-      zed-editor
     ];
 
   services.openssh.enable = true;

@@ -23,6 +23,5 @@
     ./networking/wireguard-mesh.nix
     ./networking/wireguard-layer.nix
     ./i18n.nix
-    ./editor.nix
   ];
 }

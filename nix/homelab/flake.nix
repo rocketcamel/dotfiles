@@ -10,12 +10,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager = {
+      url = "github:nix-community/home-manager?ref=release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       nixpkgs,
       disko,
+      home-manager,
       ...
     }:
     let
@@ -45,6 +50,7 @@
             specialArgs = {
               meta = {
                 hostname = node.name;
+                architecture = node.architecture;
               };
               inherit inputs;
             };
@@ -58,6 +64,7 @@
               }
               disko.nixosModules.disko
               inputs.sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
               ../modules/keys.nix
               ./modules/default.nix
               ./nodes/${node.name}/configuration.nix

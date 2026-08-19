@@ -87,28 +87,28 @@
     virt.enable = true;
     printing.enable = true;
 
-    home-manager.users.luca = {
-      home.packages = with pkgs; [
-        blueman
-      ];
-      programs = {
-        ghostty = {
-          enable = true;
-          settings = {
-            "shell-integration-features" = "no-cursor";
-            "background-opacity" = 0.85;
-            "cursor-style" = "block";
-            "cursor-style-blink" = false;
-            "font-size" = 15;
-            "theme" = "Matugen";
-          };
-        };
-        hyprlock = {
-          enable = true;
-        };
-        ranger.enable = true;
-        obsidian.enable = true;
-      };
-    };
+    # home-manager.users.luca = {
+    #   home.packages = with pkgs; [
+    #     blueman
+    #   ];
+    #   programs = {
+    #     ghostty = {
+    #       enable = true;
+    #       settings = {
+    #         "shell-integration-features" = "no-cursor";
+    #         "background-opacity" = 0.85;
+    #         "cursor-style" = "block";
+    #         "cursor-style-blink" = false;
+    #         "font-size" = 15;
+    #         "theme" = "Matugen";
+    #       };
+    #     };
+    #     hyprlock = {
+    #       enable = true;
+    #     };
+    #     ranger.enable = true;
+    #     obsidian.enable = true;
+    #   };
+    # };
   };
 }

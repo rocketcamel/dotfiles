@@ -1,6 +1,6 @@
 {
-  lib,
   config,
+  lib,
   inputs,
   meta,
   ...
@@ -18,9 +18,8 @@
       useUserPackages = true;
       users.luca = {
         imports = [
-          ../users/luca/home.nix
-        ]
-        ++ lib.optionals config.desktop.enable [ ../users/luca/desktop/default.nix ];
+          ../../users/luca/home.nix
+        ];
       };
       extraSpecialArgs = {
         inherit inputs;
