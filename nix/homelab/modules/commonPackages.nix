@@ -24,6 +24,8 @@
       nfs-utils
       jj
       stow
+      ripgrep
+      gcc
     ];
 
     programs.zsh.enable = true;
