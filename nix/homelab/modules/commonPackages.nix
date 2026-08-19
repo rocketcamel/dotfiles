@@ -28,7 +28,17 @@
       gcc
       busybox
       bat
+      just
+      nixfmt
+      nixd
     ];
+
+    programs.nix-ld = {
+      enable = lib.mkDefault true;
+      libraries = with pkgs; [
+        dbus
+      ];
+    };
 
     programs.zsh.enable = true;
     programs.neovim = lib.mkDefault {
