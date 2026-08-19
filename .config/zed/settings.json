@@ -1,4 +1,23 @@
 {
+  "ssh_connections": [
+    {
+      "host": "192.168.27.11",
+      "username": "luca",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/luca/dotfiles"
+          ]
+        },
+        {
+          "paths": [
+            "/home/luca/src/elementium-v2"
+          ]
+        }
+      ]
+    }
+  ],
   "buffer_font_family": ".ZedMono",
   "terminal": {
     "font_size": 16.0
