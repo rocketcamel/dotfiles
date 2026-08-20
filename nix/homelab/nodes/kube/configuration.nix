@@ -77,6 +77,7 @@
     config.commonPackages
     ++ [
       zed-editor
+      ghostty
     ];
 
   services.openssh.enable = true;
