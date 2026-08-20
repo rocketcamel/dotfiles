@@ -31,6 +31,7 @@
       just
       nixfmt
       nixd
+      xfsprogs
     ];
 
     programs.nix-ld = {

@@ -59,6 +59,11 @@
 
   security.sudo.wheelNeedsPassword = false;
 
+  fileSystems."/mnt/bulk-1" = {
+    device = "/dev/disk/by-uuid/28d9a715-4509-45a5-bb85-f80238d58052";
+    fsType = "xfs";
+  };
+
   users.users.luca = {
     isNormalUser = true;
     extraGroups = [ "wheel" ];
