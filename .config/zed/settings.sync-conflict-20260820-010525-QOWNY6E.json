@@ -1,23 +1,4 @@
 {
-  "ssh_connections": [
-    {
-      "host": "kube",
-      "username": "luca",
-      "args": [],
-      "projects": [
-        {
-          "paths": [
-            "/home/luca/dotfiles"
-          ]
-        },
-        {
-          "paths": [
-            "/home/luca/src/elementium-v2"
-          ]
-        }
-      ]
-    }
-  ],
   "buffer_font_family": ".ZedMono",
   "terminal": {
     "font_size": 16.0

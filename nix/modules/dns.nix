@@ -27,7 +27,7 @@
           "1.0.0.1"
         ];
         Domains = [
-          "home.local"
+          "home.lan"
         ];
       };
     };
