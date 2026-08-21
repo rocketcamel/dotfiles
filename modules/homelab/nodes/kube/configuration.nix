@@ -1,0 +1,92 @@
+{
+  config,
+  lib,
+  pkgs,
+  meta,
+  ...
+}:
+
+{
+  imports = [
+    ./disk-config.nix
+  ];
+
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    editor = false;
+  };
+
+  networking.hostName = meta.hostname;
+  networking.networkmanager.enable = true;
+
+  time.timeZone = "America/Vancouver";
+
+  systemd.tmpfiles.rules = [
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin"
+  ];
+
+  services.k3s = {
+    enable = true;
+    role = "server";
+    tokenFile = config.sops.secrets.k3s_token.path;
+    clusterInit = true;
+    extraFlags = toString [
+      "--write-kubeconfig-mode \"0644\""
+      "--disable servicelb"
+      "--disable local-storage"
+    ];
+  };
+
+  environment.etc."rancher/k3s/registries.yaml" = {
+    text = ''
+      mirrors:
+        registry.lucalise.ca:
+          endpoint:
+            - "https://registry.lucalise.ca"
+    '';
+  };
+
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2020-08.org.linux-iscsi.initiatorhost:${meta.hostname}";
+  };
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
+
+  security.sudo.wheelNeedsPassword = false;
+
+  fileSystems."/mnt/bulk-1" = {
+    device = "/dev/disk/by-uuid/28d9a715-4509-45a5-bb85-f80238d58052";
+    fsType = "xfs";
+  };
+
+  users.users.luca = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+      tree
+    ];
+    hashedPassword = config.hashedPassword;
+    openssh.authorizedKeys.keys = config.authorized_ssh;
+  };
+
+  hm.enable = true;
+
+  environment.systemPackages =
+    with pkgs;
+    config.common_packages
+    ++ [
+      zed-editor
+      ghostty
+    ];
+
+  services.openssh.enable = true;
+
+  system.stateVersion = "25.11";
+
+}

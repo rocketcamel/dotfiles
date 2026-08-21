@@ -1,0 +1,158 @@
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+
+{
+  config,
+  pkgs,
+  meta,
+  ...
+}:
+
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
+
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
+  };
+
+  # fix for mx master 2s
+  boot.blacklistedKernelModules = [ "hid_logitech_hidpp" ];
+
+  networking.networkmanager.enable = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  networking.hostName = meta.hostname;
+  hardware.bluetooth.enable = true;
+
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+  };
+
+  networking.firewall.enable = false;
+  # services.samba = {
+  #   enable = true;
+  #   usershares = {
+  #     enable = true;
+  #     group = "users";
+  #   };
+  #   openFirewall = true;
+  #   settings = {
+  #     global = {
+  #       "workgroup" = "WORKGROUP";
+  #       "server string" = "tux";
+  #       "security" = "user";
+  #     };
+  #     temp = {
+  #       path = "/home/luca/temp";
+  #       browseable = "yes";
+  #       "read only" = "no";
+  #       "valid users" = "luca";
+  #       "force user" = "luca";
+  #       "create mask" = "0644";
+  #       "directory mask" = "0755";
+  #     };
+  #   };
+  # };
+  #
+  desktop.enable = true;
+  kanata.enable = true;
+  wireguard-layer.enable = true;
+
+  services.flatpak.enable = true;
+
+  home-manager.users.luca = {
+    services.kanshi = {
+      enable = true;
+      settings = [
+        {
+          profile.name = "main";
+          profile.outputs = [
+            {
+              status = "enable";
+              criteria = "eDP-1";
+              position = "0,0";
+              mode = "1920x1080";
+              scale = 1.0;
+            }
+          ];
+        }
+      ];
+    };
+  };
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common = {
+      default = [ "gtk" ];
+    };
+  };
+
+  time.timeZone = "America/Vancouver";
+
+  # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkb.options in tty.
+  # };
+
+  # Enable CUPS to print documents.
+  # services.printing.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  hardware = {
+    graphics.enable = true;
+  };
+
+  users.users.luca = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
+    shell = pkgs.zsh;
+    hashedPassword = config.hashedPassword;
+    openssh.authorizedKeys.keys = config.authorized_ssh;
+  };
+
+  environment.systemPackages =
+    with pkgs;
+    config.common_packages
+    ++ [
+    ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  system.stateVersion = "24.11";
+}
