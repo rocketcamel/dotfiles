@@ -30,3 +30,5 @@ resources:
   - ./storage/cgit.yaml
   - ./storage/vchord.yaml
   - ./storage/syncthing.yaml
+  - ./storage/bulk.yaml
+  - ./storage/storage_classes.yaml

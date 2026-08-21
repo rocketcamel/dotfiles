@@ -14,6 +14,11 @@
           "paths": [
             "/home/luca/src/elementium-v2"
           ]
+        },
+        {
+          "paths": [
+            "/home/luca/src/k3s-util"
+          ]
         }
       ]
     }
