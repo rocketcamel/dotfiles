@@ -31,6 +31,22 @@
       gnupg
       nixd
       sops
+      ghostty-bin
     ];
+
+    home-manager.users.luca = {
+      programs.ghostty = {
+        enable = true;
+        package = pkgs.ghostty-bin;
+        settings = {
+          "shell-integration-features" = "no-cursor";
+          "background-opacity" = 0.85;
+          "cursor-style" = "block";
+          "cursor-style-blink" = false;
+          "font-size" = 15;
+          "theme" = "Matugen";
+        };
+      };
+    };
   };
 }

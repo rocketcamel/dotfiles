@@ -1,4 +1,4 @@
-{ pkgs, meta, ... }: {
+{ config, pkgs, meta, ... }: {
   networking.hostName = meta.hostname;
 
   services.openssh = {
@@ -10,6 +10,8 @@
     home = "/Users/luca";
     shell = pkgs.zsh;
   };
+
+  environment.systemPackages = with pkgs; config.common_packages ++ [];
 
   system.stateVersion = 7;
 }
