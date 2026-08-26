@@ -88,6 +88,10 @@
       enable = lib.mkDefault true;
       libraries = with pkgs; [
         dbus
+        libadwaita
+        gtk4
+        libx11
+        libxtst
       ];
     };
     programs.zsh.enable = lib.mkDefault true;

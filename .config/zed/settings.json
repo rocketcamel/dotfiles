@@ -1,4 +1,5 @@
 {
+  "cli_default_open_behavior": "existing_window",
   "ssh_connections": [
     {
       "host": "kube",
@@ -18,6 +19,18 @@
         {
           "paths": [
             "/home/luca/src/k3s-util"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "sao",
+      "username": "luca",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/Users/luca/dotfiles"
           ]
         }
       ]
