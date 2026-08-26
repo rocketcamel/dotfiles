@@ -83,6 +83,7 @@
     ++ [
       zed-editor
       ghostty
+      bun
     ];
 
   services.openssh.enable = true;

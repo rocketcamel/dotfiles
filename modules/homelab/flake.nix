@@ -67,7 +67,7 @@
               disko.nixosModules.disko
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
-              ../modules/keys.nix
+              ../shared/keys.nix
               ./modules/default.nix
               ./nodes/${node.name}/configuration.nix
               ./nodes/${node.name}/hardware-configuration.nix

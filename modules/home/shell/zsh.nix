@@ -22,6 +22,7 @@ in
     export GOBIN="$HOME/go/bin"
     export PATH="$GOBIN:$PATH"
     export PATH="$HOME/.cache/.bun/bin:$PATH"
+    export PATH="$HOME/.bun/bin:$PATH"
     export PATH="$HOME/.cargo/bin:$PATH"
     export LD_LIBRARY_PATH=/run/current-system/sw/share/nix-ld/lib
     alias cat="bat"

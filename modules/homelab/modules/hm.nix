@@ -18,12 +18,14 @@
       useUserPackages = true;
       users.luca = {
         imports = [
-          ../../users/luca/home.nix
+          ../../home/home.nix
         ];
       };
       extraSpecialArgs = {
         inherit inputs;
-        inherit meta;
+        meta = meta // {
+          homeDirectory = "/home/luca";
+        };
       };
     };
   };
