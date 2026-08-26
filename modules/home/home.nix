@@ -1,5 +1,6 @@
 {
   pkgs,
+  meta,
   ...
 }:
 
@@ -10,7 +11,7 @@
   ];
 
   home.username = "luca";
-  home.homeDirectory = "/home/luca";
+  home.homeDirectory = meta.homeDirectory;
 
   programs = {
     git = import ./git.nix;

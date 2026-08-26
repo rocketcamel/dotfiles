@@ -40,12 +40,18 @@
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin?ref=nix-darwin-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
       nixpkgs,
       home-manager,
+      nix-darwin,
       ...
     }:
     let
@@ -61,6 +67,13 @@
         {
           name = "usahara";
           architecture = "x86_64-linux";
+        }
+      ];
+
+      darwin_hosts = [
+        {
+          name = "sao";
+          architecture = "aarch64-darwin";
         }
       ];
     in
@@ -105,6 +118,38 @@
             ];
           };
         }) hosts
+      );
+
+      darwinConfigurations = builtins.listToAttrs (
+        map (host: {
+          name = host.name;
+          value = nix-darwin.lib.darwinSystem {
+            specialArgs = {
+              inherit inputs;
+              meta = {
+                hostname = host.name;
+                architecture = host.architecture;
+              };
+            };
+
+            system = host.architecture;
+
+            modules = [
+              ./modules/machines/${host.name}/configuration.nix
+              ./modules/darwin/default.nix
+              home-manager.darwinModules.home-manager
+
+              {
+                nix.settings = {
+                  experimental-features = [
+                    "nix-command"
+                    "flakes"
+                  ];
+                };
+              }
+            ];
+          };
+        }) darwin_hosts
       );
     };
 }

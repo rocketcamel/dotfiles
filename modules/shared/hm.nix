@@ -23,10 +23,10 @@
         ++ lib.optionals config.desktop.enable [ ../home/desktop/default.nix ];
       };
       extraSpecialArgs = {
-        inherit
-          inputs
-          meta
-          ;
+        inherit inputs;
+        meta = meta // {
+          homeDirectory = "/home/luca";
+        };
       };
     };
   };
