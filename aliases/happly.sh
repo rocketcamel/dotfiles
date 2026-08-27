@@ -1,1 +1,1 @@
-helmfile apply -f ~/dotfiles/nix/homelab/helm "$@"
+helmfile apply -f ~/dotfiles/modules/homelab/helm "$@"

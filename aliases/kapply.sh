@@ -1,1 +1,1 @@
-kubectl apply -k ~/dotfiles/nix/homelab/kustomize
+kubectl apply -k ~/dotfiles/modules/homelab/kustomize
