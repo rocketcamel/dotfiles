@@ -5,6 +5,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Widgets
+import Quickshell.Services.SystemTray
 import "components"
 
 PanelWindow {
@@ -52,6 +54,54 @@ PanelWindow {
 
         Item {
             Layout.fillWidth: true
+        }
+
+        RowLayout {
+            spacing: 6
+
+            Layout.rightMargin: 2
+
+            Repeater {
+                model: SystemTray.items
+
+                MouseArea {
+                    id: trayItem
+                    required property var modelData
+
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                    property bool hidden: trayId.includes("spotify") || trayId.includes("blueman")
+                    visible: !hidden
+
+                    Layout.preferredWidth: hidden ? 0 : 22
+                    Layout.preferredHeight: hidden ? 0 : 22
+                    Layout.alignment: Qt.AlignVCenter
+
+                    property string trayId: modelData.id.toLowerCase()
+
+                    QsMenuAnchor {
+                           id: menuAnchor
+                           menu: trayItem.modelData.menu
+                           anchor.window: root
+                           anchor.item: trayItem
+                           anchor.edges: Edges.Bottom
+                           anchor.gravity: Edges.Bottom
+                           anchor.adjustment: PopupAdjustment.Flip
+                    }
+
+                    onClicked: mouse => {
+                        if (mouse.button === Qt.LeftButton) modelData.onlyMenu ? menuAnchor.open() : modelData.activate()
+
+                        else if (mouse.button === Qt.RightButton && modelData.hasMenu)
+                            menuAnchor.open()
+                    }
+
+                    IconImage {
+                        anchors.fill: parent
+                        source: parent.modelData.icon
+                    }
+                }
+            }
         }
 
         Clock {}

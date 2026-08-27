@@ -9,7 +9,7 @@ Item {
     property string dateTime: ""
 
     function updateTime() {
-        dateTime = Qt.formatDateTime(new Date(), "ddd, MMM dd | HH:mm:ss");
+        dateTime = Qt.formatDateTime(new Date(), "ddd, MMM dd | HH:mm");
     }
 
     Timer {
@@ -25,8 +25,8 @@ Item {
         text: clockRoot.dateTime
         color: "#a9b1d6"
         font {
-            pixelSize: 16
-            family: "Comic Relief"
+            pixelSize: 15
+            family: "JetbrainsMono Nerd Font"
             bold: true
         }
         anchors.centerIn: parent

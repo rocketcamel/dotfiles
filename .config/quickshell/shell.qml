@@ -1,3 +1,4 @@
+//@ pragma UseQApplication
 //qmllint disable unqualified
 //qmllint disable unused-imports
 //qmllint disable uncreatable-type
