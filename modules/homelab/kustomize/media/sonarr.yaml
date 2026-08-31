@@ -51,10 +51,10 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: data
-              mountPath: /mnt/data
             - name: media
               mountPath: /mnt/media
+            - name: meta
+              mountPath: /mnt/meta
           resources:
             requests:
               cpu: 100m
@@ -78,13 +78,12 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: sonarr-config
-        - name: data
-          nfs:
-            server: 192.168.27.2
-            path: /data
         - name: media
           persistentVolumeClaim:
             claimName: media
+        - name: meta
+          persistentVolumeClaim:
+            claimName: meta
 ---
 apiVersion: v1
 kind: Service

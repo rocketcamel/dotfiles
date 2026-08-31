@@ -1,6 +1,8 @@
 persistence:
   media:
     enabled: false
+  config:
+    size: 10Gi
 
 resources:
   requests:
@@ -28,8 +30,8 @@ jellyfin:
       value: "/usr/lib/x86_64-linux-gnu/nvidia"
 
 volumeMounts:
-  - name: data
-    mountPath: /mnt/data
+  - name: library
+    mountPath: /mnt/data/media
   - name: dri
     mountPath: /dev/dri
   - name: nvidia-libs
@@ -40,10 +42,9 @@ volumeMounts:
     readOnly: true
 
 volumes:
-  - name: data
-    nfs:
-      server: 192.168.27.2
-      path: /data
+  - name: library
+    persistentVolumeClaim:
+      claimName: media
   - name: dri
     hostPath:
       path: /dev/dri

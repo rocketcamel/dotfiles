@@ -10,6 +10,18 @@ spec:
     requests:
       storage: 1Gi
 ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: meta
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -72,9 +84,9 @@ spec:
               path: /v1/vpn/status
               port: 8000
             initialDelaySeconds: 30
-            periodSeconds: 60
+            periodSeconds: 30
             timeoutSeconds: 10
-            failureThreshold: 3
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /v1/vpn/status
@@ -100,8 +112,10 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: data
-              mountPath: /mnt/data
+            - name: meta
+              mountPath: /mnt/meta
+            - name: media
+              mountPath: /mnt/media
           resources:
             requests:
               cpu: 100m
@@ -114,10 +128,12 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: qbittorrent-config
-        - name: data
-          nfs:
-            server: 192.168.27.2
-            path: /data
+        - name: meta
+          persistentVolumeClaim:
+            claimName: meta
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
         - name: wireguard-config
           secret:
             secretName: wireguard-config
