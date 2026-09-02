@@ -64,7 +64,7 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 --stylua: ignore end
 
 local modifier = "SUPER"
-local menu = "rofi -show drun"
+local menu = "walker"
 local bluetooth = "blueman-manager"
 local notifications = "swaync-client -t"
 local lock_screen = "loginctl lock-session"
@@ -145,6 +145,7 @@ local autostart_apps = {
 	"kanshi",
 	"awww img ~/.config/wallpaper/asakusa.png",
 	"emote",
+	"walker --gapplication-service"
 }
 
 hl.on("hyprland.start", function()

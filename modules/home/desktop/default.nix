@@ -47,6 +47,11 @@
         night = 3500;
       };
     };
+
+    elephant.enable = true;
+    walker = {
+      enable = true;
+    };
   };
 
   xdg.mimeApps = import ./mime.nix;
