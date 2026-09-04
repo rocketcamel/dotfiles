@@ -39,8 +39,8 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /home/shoko/.shoko
-            - name: data
-              mountPath: /mnt/data
+            - name: media
+              mountPath: /mnt/media
           resources:
             requests:
               cpu: 200m
@@ -64,10 +64,9 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: shoko-config
-        - name: data
-          nfs:
-            server: 192.168.27.2
-            path: /data
+        - name: media
+          persistentVolumeClaim:
+            claimName: media
 ---
 apiVersion: v1
 kind: Service

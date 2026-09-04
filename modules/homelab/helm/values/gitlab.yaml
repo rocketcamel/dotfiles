@@ -128,11 +128,11 @@ gitlab:
         memory: 1Gi
     persistence:
       enabled: false
-    extraVolumes: |
-      - name: repositories
-        nfs:
-          server: 192.168.27.2
-          path: /data/gitlab/repositories
+    # extraVolumes: |
+    #   - name: repositories
+    #     nfs:
+    #       server: 192.168.27.2
+    #       path: /data/gitlab/repositories
     extraVolumeMounts: |
       - name: repositories
         mountPath: /home/git/repositories
