@@ -54,6 +54,14 @@
     };
   };
 
+  systemd.user.services.elephant.Unit = {
+    After = [
+      "wayland-session-waitenv.service"
+      "wayland-session@hyprland.desktop.target"
+    ];
+    PartOf = [ "graphical-session.target" ];
+  };
+
   xdg.mimeApps = import ./mime.nix;
   xdg.configFile = {
     "hypr/hyprlock.conf".source = ../../../custom/hyprlock/hyprlock.conf;

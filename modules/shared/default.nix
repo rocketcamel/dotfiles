@@ -12,8 +12,7 @@
     ./printing.nix
     ./sensors.nix
     ./dns.nix
-    ./mounts.nix
-    ./nfs-mesh.nix
+    # ./mounts.nix
     ./rust.nix
     ./i18n.nix
   ];

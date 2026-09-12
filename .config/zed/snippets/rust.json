@@ -1,0 +1,23 @@
+{
+  "errors": {
+    "prefix": "errmod",
+    "description": "insert errors module",
+    "body": [
+      "pub mod errors {",
+      "    use thiserror::Error;",
+      "    use thiserror_ext::{Box, Construct};",
+      "",
+      "    #[derive(Error, Construct, Box, Debug)]",
+      "    #[thiserror_ext(newtype(name = ${1:Error}))]",
+      "    pub enum ${1}Kind {",
+      "        $0",
+      "    }",
+      "}"
+    ]
+  },
+  "yew element": {
+    "prefix": "yel",
+    "description": "yew element",
+    "body": ["<${1:div}>", "    ${0}", "</${1:div}>"]
+  }
+}
