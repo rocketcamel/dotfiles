@@ -30,6 +30,7 @@ minecraftServer:
       - ferrite-core
       - fabric-language-kotlin
       - scalablelux
+      - chunk-debug
 
       - carpet
       - elytra-trims

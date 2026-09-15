@@ -1,5 +1,5 @@
 defaultSettings:
-  defaultReplicaCount: 1
+  defaultReplicaCount: 2
   defaultDataLocality: best-effort
   taintToleration: "graphics=true:NoSchedule"
   nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
@@ -8,7 +8,7 @@ defaultBackupStore:
   backupTarget: nfs://192.168.27.2:/backup/longhorn
 
 persistence:
-  defaultClassReplicaCount: 1
+  defaultClassReplicaCount: 2
   defaultDataLocality: best-effort
 
 longhornManager:

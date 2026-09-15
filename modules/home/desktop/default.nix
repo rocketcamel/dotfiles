@@ -63,7 +63,7 @@
   };
 
   xdg.mimeApps = import ./mime.nix;
-  xdg.configFile = {
-    "hypr/hyprlock.conf".source = ../../../custom/hyprlock/hyprlock.conf;
-  };
+  # xdg.configFile = {
+  #   "hypr/hyprlock.conf".source = ../../../custom/hyprlock/hyprlock.conf;
+  # };
 }

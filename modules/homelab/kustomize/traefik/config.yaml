@@ -5,9 +5,6 @@ metadata:
   namespace: kube-system
 spec:
   valuesContent: |-
-    nodeSelector:
-      kubernetes.io/hostname: rufus
-
     service:
       spec:
         externalTrafficPolicy: Local
@@ -20,7 +17,7 @@ spec:
           entryPoint:
             to: websecure
             scheme: https
-            permanent: true 
+            permanent: true
       websecure:
         port: 443
         nodePort: 30001
@@ -50,7 +47,7 @@ spec:
     api:
       dashboard: true
       insecure: true
-    
+
     ingressRoute:
       dashboard:
         enabled: true
@@ -80,7 +77,7 @@ spec:
           namespacePolicy:
             from: All
           mode: Terminate
-          certificateRefs:    
+          certificateRefs:
             - kind: Secret
               name: wildcard-lucalise.ca-tls
               group: ""
