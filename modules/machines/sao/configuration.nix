@@ -1,4 +1,10 @@
-{ config, pkgs, meta, ... }: {
+{
+  config,
+  pkgs,
+  meta,
+  ...
+}:
+{
   networking.hostName = meta.hostname;
 
   services.openssh = {
@@ -11,7 +17,12 @@
     shell = pkgs.zsh;
   };
 
-  environment.systemPackages = with pkgs; config.common_packages ++ [];
+  power.sleep = {
+    computer = "never";
+    display = 10;
+  };
+
+  environment.systemPackages = with pkgs; config.common_packages ++ [ ];
 
   system.stateVersion = 7;
 }
