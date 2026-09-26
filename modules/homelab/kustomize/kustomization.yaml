@@ -32,3 +32,4 @@ resources:
   - ./storage/syncthing.yaml
   - ./storage/bulk.yaml
   - ./storage/storage_classes.yaml
+  - ./storage/zipline.yaml

@@ -27,6 +27,8 @@ repositories:
     url: https://kubernetes-sigs.github.io/headlamp
   - name: jenkins
     url: https://charts.jenkins.io
+  - name: cnpg
+    url: https://cloudnative-pg.github.io/charts
 
 releases:
   # Load Balancer
@@ -203,6 +205,11 @@ releases:
     version: 18.5.1
     values:
       - values/database/postgresql.yaml
+
+  - name: pg
+    namespace: storage
+    chart: cnpg/cloudnative-pg
+    version: 0.29.0
 
   - name: valkey
     namespace: database

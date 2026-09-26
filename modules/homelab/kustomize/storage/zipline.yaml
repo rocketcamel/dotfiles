@@ -1,0 +1,156 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: zipline-db
+  namespace: storage
+spec:
+  instances: 1
+  bootstrap:
+    initdb:
+      database: zipline
+      owner: zipline
+  storage:
+    size: 10Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: zipline-data
+  namespace: storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipline
+  namespace: storage
+  labels:
+    app: zipline
+spec:
+  strategy:
+    type: Recreate
+
+  selector:
+    matchLabels:
+      app: zipline
+  template:
+    metadata:
+      labels:
+        app: zipline
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: kube
+
+      containers:
+        - name: zipline
+          image: ghcr.io/diced/zipline:latest
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: zipline-db-app
+                  key: uri
+            - name: CORE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: zipline
+                  key: core_secret
+            - name: CORE_RETURN_HTTPS_URLS
+              value: "true"
+          volumeMounts:
+            - name: data
+              mountPath: /zipline/uploads
+              subPath: uploads
+            - name: data
+              mountPath: /zipline/public
+              subPath: public
+            - name: data
+              mountPath: /zipline/themes
+              subPath: themes
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              cpu: 1
+              memory: 2Gi
+          livenessProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: 3000
+          readinessProbe:
+            httpGet:
+              path: /api/healthcheck
+              port: 3000
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: zipline-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipline
+  namespace: storage
+spec:
+  selector:
+    app: zipline
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: zipline-files
+  namespace: storage
+spec:
+  parentRefs:
+    - name: traefik-gateway
+      namespace: kube-system
+  hostnames:
+    - cdn.lucalise.ca
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /raw
+          method: GET
+        - path:
+            type: PathPrefix
+            value: /raw
+          method: HEAD
+        - path:
+            type: PathPrefix
+            value: /u
+          method: GET
+        - path:
+            type: PathPrefix
+            value: /view
+          method: GET
+        - path:
+            type: PathPrefix
+            value: /view
+          method: HEAD
+        - path:
+            type: PathPrefix
+            value: /assets
+          method: GET
+        - path:
+            type: PathPrefix
+            value: /assets
+          method: HEAD
+      backendRefs:
+        - name: zipline
+          port: 3000

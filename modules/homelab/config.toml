@@ -184,6 +184,12 @@ routes = [
     namespace = "git",
     port = 8080,
     private = true
+  },
+  {
+    name = "zipline",
+    namespace = "storage",
+    port = 3000,
+    private = true
   }
 ]
 
